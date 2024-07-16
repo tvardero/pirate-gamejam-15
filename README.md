@@ -1,1 +1,1 @@
-# pirate-gamejam-15
+# Pirate Gamejam 15
