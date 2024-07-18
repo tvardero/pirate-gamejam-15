@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c730qy1pl8aqv"]
+
+[ext_resource type="Script" path="res://scenes/tools/WorldState.gd" id="1_olktn"]
+
+[node name="WorldState" type="Node"]
+script = ExtResource("1_olktn")
