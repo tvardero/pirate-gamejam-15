@@ -15,6 +15,12 @@ run/main_scene="res://scenes/world/SampleLevel.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[layer_names]
+
+2d_physics/layer_1="physics"
+2d_physics/layer_2="interaction"
+2d_physics/layer_3="damage"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
