@@ -5,8 +5,8 @@ var input_movement_vector: Vector2 = Vector2.ZERO;
 var is_sprinting: bool = false;
 
 @export var walk_speed: float = 5;
-
 @export var sprint_speed: float = 12;
+@onready var _interaction_area: Area2D = $"InteractionArea";
 
 var _sprint_to_walk_ratio:
 	get: return sprint_speed / walk_speed;
@@ -20,9 +20,22 @@ func _physics_process(_delta) -> void:
 	move_and_collide(velocity);
 	_set_animations();
 
-func try_interact() -> bool:
-	print("todo: interaction")
-	return false;
+func try_interact() -> Node2D:
+	var _sort_interactables_by_dist = func(a: Interactable, b: Interactable) -> bool:
+		var lensq_a = (a.position - position).length_squared();
+		var lensq_b = (b.position - position).length_squared();
+		return lensq_a <= lensq_b;
+
+	var areas = _interaction_area.get_overlapping_areas();
+	if len(areas) == 0:
+		return null;
+
+	var interactables: Array[Interactable] = areas.map(func(area): return area.get_parent() as Interactable).filter(func(i): return i != null);
+	interactables.sort_custom(_sort_interactables_by_dist);
+	
+	var closest_interactable = interactables[0];
+	closest_interactable.interact(self);
+	return closest_interactable.get_parent();
 
 func _set_animations():
 	var is_walking = input_movement_vector != Vector2.ZERO;
