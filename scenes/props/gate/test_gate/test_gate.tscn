@@ -11,11 +11,12 @@ size = Vector2(72, 129)
 script = ExtResource("1_52qcl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
 texture = ExtResource("2_k6hcn")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(26, 0)
+position = Vector2(38, -1)
 texture = ExtResource("3_pmtnh")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

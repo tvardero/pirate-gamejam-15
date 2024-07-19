@@ -1,7 +1,7 @@
 extends Node2D
 
-var code = "01" #Code for unlocking the gate (0- lever closed, 1- lever open)
-var codeFromLevers = ""
+@export var code = "011" #Code for unlocking the gate (0- lever closed, 1- lever open)
+var codeFromLevers = "" #Code obtained from levers
 var levers = []
 @onready var collision_shape_2d = $StaticBody2D/CollisionShape2D
 
