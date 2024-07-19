@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpmojtgmslsfc"]
+
+[ext_resource type="PackedScene" uid="uid://3v1xx3haircx" path="res://scenes/characters/player/Player.tscn" id="1_ffxbl"]
+[ext_resource type="PackedScene" uid="uid://f57h0w8orswn" path="res://scenes/props/gate/test_gate/test_gate.tscn" id="2_lwa6b"]
+[ext_resource type="PackedScene" uid="uid://dfm5lak6mcup0" path="res://scenes/props/lever/test_lever/test-lever.tscn" id="2_m71jw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ffxbl")]
+position = Vector2(195, 222)
+
+[node name="Test-gate" parent="." instance=ExtResource("2_lwa6b")]
+position = Vector2(570, 184)
+
+[node name="Levers" type="Node" parent="Test-gate"]
+
+[node name="Lever" parent="Test-gate/Levers" instance=ExtResource("2_m71jw")]
+position = Vector2(266, 217)
+
+[node name="Lever2" parent="Test-gate/Levers" instance=ExtResource("2_m71jw")]
+position = Vector2(332, 217)
