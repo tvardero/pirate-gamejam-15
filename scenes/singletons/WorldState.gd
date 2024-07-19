@@ -3,7 +3,8 @@ extends Node
 var in_future: bool = false;
 
 func use_lantern() -> void:
-    timeshift(!in_future)
+    print("todo: lantern, now in future: " + str(in_future))
+    set_time(!in_future)
 
-func timeshift(to_future: bool) -> void:
+func set_time(to_future: bool) -> void:
     in_future = to_future;
