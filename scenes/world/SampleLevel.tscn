@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://8h3xg7k05qtw"]
+[gd_scene load_steps=4 format=3 uid="uid://8h3xg7k05qtw"]
 
 [ext_resource type="Script" path="res://scenes/world/SampleLevel.gd" id="1_04lkc"]
+[ext_resource type="PackedScene" uid="uid://3v1xx3haircx" path="res://scenes/characters/player/Player.tscn" id="2_hqx18"]
+[ext_resource type="PackedScene" uid="uid://c26vpb06ref5a" path="res://scenes/props/box/Box.tscn" id="3_ypf2b"]
 
 [node name="SampleLevel" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_04lkc")
+
+[node name="Player" parent="." instance=ExtResource("2_hqx18")]
+position = Vector2(345, 258)
+
+[node name="Box" parent="." instance=ExtResource("3_ypf2b")]
+position = Vector2(568, 313)
