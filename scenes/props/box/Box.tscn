@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c26vpb06ref5a"]
+
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="1_1ajnn"]
+[ext_resource type="Texture2D" uid="uid://ua0hi1fjqot2" path="res://assets/box/box.png" id="1_acaxf"]
+[ext_resource type="Script" path="res://scenes/props/box/Box.gd" id="1_lqyun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r62xt"]
+size = Vector2(64, 64)
+
+[node name="Box" type="StaticBody2D"]
+script = ExtResource("1_lqyun")
+
+[node name="Interactable" parent="." instance=ExtResource("1_1ajnn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r62xt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_acaxf")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
