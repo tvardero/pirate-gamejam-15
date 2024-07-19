@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0it2xtiiufrc"]
-
-[ext_resource type="Script" path="res://scenes/tools/InputController.gd" id="1_mc7vc"]
-
-[node name="InputController" type="Node"]
-script = ExtResource("1_mc7vc")
