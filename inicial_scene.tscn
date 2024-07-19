@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://eylq0mq0rv4f"]
+
+[ext_resource type="Script" path="res://inicial_scene.gd" id="1_eim7t"]
+[ext_resource type="Texture2D" uid="uid://dop201chl28jj" path="res://assets/inicial_scene/inicial_scene.png" id="1_o7rsw"]
+[ext_resource type="PackedScene" uid="uid://3v1xx3haircx" path="res://scenes/characters/player/Player.tscn" id="3_qoa8a"]
+
+[sub_resource type="GDScript" id="GDScript_yv2fn"]
+script/source = "extends Camera2D
+
+@export var decay := 0.1 #How quickly shaking will stop [0,1].
+@export var max_offset := Vector2(100,75) #Maximum displacement in pixels.
+@export var max_roll = 0.0 #Maximum rotation in radians (use sparingly).
+@export var noise : FastNoiseLite #The source of random values.
+
+var noise_y = 0 #Value used to move through the noise
+
+var trauma := 1.0 #Current shake strength
+var trauma_pwr := 3 #Trauma exponent. Use [2,3]
+
+func _ready():
+	randomize()
+	noise.seed = randi()
+	set_process(false)
+	await get_tree().create_timer(3.0).timeout
+	set_process(true)
+
+func add_trauma(amount : float):
+	trauma = min(trauma + amount, 1.0)
+	
+func _process(delta):
+	if trauma:
+		trauma = max(trauma - decay * delta, 0)
+		shake()
+		#optional
+	elif offset.x != 0 or offset.y != 0 or rotation != 0:
+		lerp(offset.x,0.0,1)
+		lerp(offset.y,0.0,1)
+		lerp(rotation,0.0,1)
+
+func shake(): 
+	var amt = pow(trauma, trauma_pwr)
+	noise_y += 1
+	rotation = max_roll * amt * noise.get_noise_2d(noise.seed,noise_y)
+	offset.x = max_offset.x * amt * noise.get_noise_2d(noise.seed*2,noise_y)
+	offset.y = max_offset.y * amt * noise.get_noise_2d(noise.seed*3,noise_y)
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5daor"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iccjr"]
+size = Vector2(412, 20)
+
+[node name="InicialScene" type="Node2D"]
+script = ExtResource("1_eim7t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = SubResource("GDScript_yv2fn")
+noise = SubResource("FastNoiseLite_5daor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o7rsw")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_qoa8a")]
+position = Vector2(70, -70)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 206)
+shape = SubResource("RectangleShape2D_iccjr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -195)
+shape = SubResource("RectangleShape2D_iccjr")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-194, -5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_iccjr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(194, -12)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_iccjr")
