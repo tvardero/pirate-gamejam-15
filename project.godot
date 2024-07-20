@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 WorldState="*res://scenes/singletons/WorldState.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+SoundPlayer="*res://scenes/singletons/SoundPlayer.tscn"
 
 [editor_plugins]
 
