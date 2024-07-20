@@ -14,15 +14,25 @@ var _sprint_to_walk_ratio:
 @onready var _animation_tree: AnimationTree = $"AnimationTree";
 @onready var _animation_player: AnimationPlayer = $"AnimationPlayer";
 
+@onready var all_interactions = [];
+@onready var interactLabel=$InteractionComponents/InteractLabel
+
+func _ready():
+	update_interactions()
+
 func _physics_process(_delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
 	velocity = input_movement_vector * multiplier;
 	move_and_collide(velocity);
 	_set_animations();
+	if Input.is_action_just_pressed("interaction"):
+		execute_interaction()
 
-func try_interact() -> bool:
-	print("todo: interaction")
-	return false;
+func execute_interaction():
+	if all_interactions:
+		var cur_interaction = all_interactions[0]
+		match cur_interaction.interact_type:
+			"start_shake" : print(cur_interaction.interact_value)
 
 func _set_animations():
 	var is_walking = input_movement_vector != Vector2.ZERO;
@@ -37,3 +47,21 @@ func _set_animations():
 	var x = input_movement_vector.x;
 	_animation_tree["parameters/idle/blend_position"] = x;
 	_animation_tree["parameters/walking/blend_position"] = x;
+
+
+# Interaction methods
+
+func _on_interaction_area_area_entered(area):
+	all_interactions.insert(0, area)
+	update_interactions()
+
+func _on_interaction_area_area_exited(area):
+	all_interactions.erase(area)
+	update_interactions()
+	
+func update_interactions():
+	if all_interactions: #if there are values in this array, then...
+		interactLabel.text = all_interactions[0].interact_label
+	else:
+		interactLabel.text=""
+

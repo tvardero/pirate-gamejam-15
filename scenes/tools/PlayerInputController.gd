@@ -10,7 +10,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	handled = handled||process_movement_input_events(event);
 	handled = handled||process_lantern_input_event(event);
-	handled = handled||process_interaction_input_event(event);
+	#handled = handled||process_interaction_input_event(event);
 	handled = handled||process_sprint_input_event(event);
 
 	# set event as handled, so other scenes will not recieve the same event
@@ -29,11 +29,12 @@ func process_lantern_input_event(event: InputEvent) -> bool:
 	if !event.is_echo()&&event.is_pressed(): WorldState.use_lantern();
 	return true;
 
+"""
 func process_interaction_input_event(event: InputEvent) -> bool:
 	if !event.is_action("interaction"): return false;
 	if !event.is_echo()&&event.is_pressed(): player.try_interact();
 	return true;
-
+"""
 func process_sprint_input_event(event: InputEvent) -> bool:
 	if !event.is_action("sprint"): return false;
 	player.is_sprinting = event.is_pressed();

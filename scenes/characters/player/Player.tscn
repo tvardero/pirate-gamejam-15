@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://3v1xx3haircx"]
+[gd_scene load_steps=22 format=3 uid="uid://3v1xx3haircx"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/Player.gd" id="1_kqidl"]
 [ext_resource type="Texture2D" uid="uid://behudrsulwn3" path="res://assets/player/player-atlas.png" id="1_spx6y"]
@@ -205,7 +205,10 @@ states/walking/node = SubResource("AnimationNodeBlendSpace1D_qx1iq")
 states/walking/position = Vector2(601.333, 100.667)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqj00"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_qcblo"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_530g2")]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rgqf"]
+radius = 88.0057
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 15
 motion_mode = 1
@@ -235,3 +238,30 @@ parameters/conditions/is_idle = true
 parameters/conditions/is_walking = false
 parameters/idle/blend_position = 0.0
 parameters/walking/blend_position = 0
+
+[node name="InteractionComponents" type="Node2D" parent="."]
+z_index = 1
+
+[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
+position = Vector2(2, -51)
+shape = SubResource("CircleShape2D_5rgqf")
+
+[node name="InteractLabel" type="Label" parent="InteractionComponents"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -140.0
+offset_right = 129.0
+offset_bottom = -117.0
+grow_horizontal = 2
+text = "test"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]
