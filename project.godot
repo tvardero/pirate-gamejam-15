@@ -21,6 +21,10 @@ WorldState="*res://scenes/singletons/WorldState.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SoundPlayer="*res://scenes/singletons/SoundPlayer.tscn"
 
+[dialogue_manager]
+
+general/wrap_lines=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
@@ -116,6 +120,10 @@ sprint={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":7,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://scenes/dialogue/LabInterior.dialogue", "res://scenes/dialogue/LabExterior.dialogue", "res://scenes/dialogue/Bridge.dialogue", "res://scenes/dialogue/PoliceOfficer.dialogue", "res://scenes/dialogue/SewageValve.dialogue", "res://scenes/dialogue/Clubhouse.dialogue", "res://scenes/dialogue/Wagon.dialogue")
 
 [layer_names]
 

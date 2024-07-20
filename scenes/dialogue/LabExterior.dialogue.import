@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://c6ss0m2ycc4qf"
+path="res://.godot/imported/LabExterior.dialogue-8ff73fe611ac6d98bef118f87e04ea26.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/LabExterior.dialogue"
+dest_files=["res://.godot/imported/LabExterior.dialogue-8ff73fe611ac6d98bef118f87e04ea26.tres"]
+
+[params]
+
+defaults=true

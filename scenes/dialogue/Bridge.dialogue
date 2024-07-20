@@ -1,0 +1,6 @@
+~ enter_bridge_scene_first_time
+You: That shiny thing looks like the star fragments in my Solar Tome. I need to get over there!
+=> END
+
+~ after_fusing_first_star_fragment
+You: I bet there are more of these star fragments if I keep looking around.

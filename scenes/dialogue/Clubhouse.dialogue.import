@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://b1ffuq2norjyu"
+path="res://.godot/imported/Clubhouse.dialogue-50fbbc3ab32f81e6dca9a5d620c8f883.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/Clubhouse.dialogue"
+dest_files=["res://.godot/imported/Clubhouse.dialogue-50fbbc3ab32f81e6dca9a5d620c8f883.tres"]
+
+[params]
+
+defaults=true
