@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://0dj08p3a3fxd"
+path="res://.godot/imported/PoliceOfficer.dialogue-fb92416d406f65ae5c86611382dfb375.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/PoliceOfficer.dialogue"
+dest_files=["res://.godot/imported/PoliceOfficer.dialogue-fb92416d406f65ae5c86611382dfb375.tres"]
+
+[params]
+
+defaults=true

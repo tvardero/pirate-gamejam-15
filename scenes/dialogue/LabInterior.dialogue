@@ -1,0 +1,21 @@
+~ start_of_game_text
+You: Here it is! The solar tome was right - this is the lantern I've been looking for.
+=> END
+
+~ try_leave_lab_without_lantern
+You: I should get what I came here for.
+=> END
+
+~ lantern_picked_up
+You: So... Now what?
+[i]*rumble*[/i]
+You: Wait, what's that sound?
+=> END
+
+~ interact_rubble
+You: I'm trapped! Maybe the lantern can help me? [i](Press E to use the lantern)[/i]
+=> END
+
+~ lantern_first_use
+You: That's weird, the rubble disappeared... Well, I'm not complaining. Time to get out of here.
+=> END

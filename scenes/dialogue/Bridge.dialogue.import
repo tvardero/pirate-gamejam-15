@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://rvsnkoae30ii"
+path="res://.godot/imported/Bridge.dialogue-96aeb6fdc74391384565a4fcad083883.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/Bridge.dialogue"
+dest_files=["res://.godot/imported/Bridge.dialogue-96aeb6fdc74391384565a4fcad083883.tres"]
+
+[params]
+
+defaults=true

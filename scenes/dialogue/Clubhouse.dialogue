@@ -1,0 +1,61 @@
+~ try_clubhouse_present
+[i](It's locked.)[/i]
+=> END
+
+~ try_partygoers_house_past
+[i](It's locked.)[/i]
+=> END
+
+~ try_clubhouse_past
+Bouncer: What's the password?
+- Er... pickle?
+	Bouncer: No.
+- Banana?
+	Bouncer: No.
+- Onion?
+	Bouncer: No.
+=> END
+
+~ clubhouse_past_with_password
+Bouncer: What's the password?
+- Pickle.
+	Bouncer: Cute, but no.
+- Banana.
+	Bouncer: Cute, but no.
+- Onion.
+	Bouncer: Cute, but no.
+- Penumbra.
+	Bouncer: Come on in.
+	[i]You go inside just long enough to turn off your lantern and pick up the star fragment.[/i]
+=> END
+
+~ partygoer
+Partygoer: If you want to get inside the clubhouse there, you'll need the password. I know it, but I can't tell you.
+- Pretty please, tell me?
+	Partygoer: Sorry, club rules! They'd kick me out if I told you.
+- I know the password, but I forgot.
+	Partygoer: Wait, do you have short-term memory loss too?
+	You: Nope, I'm just reeeeeeaaaaally forgetful. So, can you remind me?
+	Partygoer: I still can't tell you, but when you do find out, here's a tip to stop yourself forgetting it again. I like to write important things down in my house. If something's [i]really[/i] important, I'll even paint it on my wall. => where_do_you_live
+=> END
+
+~ where_do_you_live
+- Where do you live?
+	Partygoer: Umm, I just met you, I'm not going to tell you that. => lie_to_partygoer
+- Do you ever forget really important things?
+	Partygoer: Like what? My name? Ha!
+	You: Sure, or like... where you live?
+	Partygoer: No way, I remember [i]that[/i]! My house is just along the path, a little ways East of here.
+	You: Phew, you wouldn't want to forget something like that!
+	Partygoer: Yeah, after all, it wouldn't do me much good to write that on my wall!
+=> END
+
+~ lie_to_partygoer
+- No, we've known each other for years!
+	Partygoer: I'd remember something like that. Stop talking to me now.
+- Yeah, that's fair.
+=> END
+
+~ partygoer_after_password_seen
+Partygoer: Sorry, have we met?
+=> END

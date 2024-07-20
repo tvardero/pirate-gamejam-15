@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://dv551ojlwydea"
+path="res://.godot/imported/Wagon.dialogue-6988a19ea6009b561eb7566009c66df1.tres"
+
+[deps]
+
+source_file="res://scenes/dialogue/Wagon.dialogue"
+dest_files=["res://.godot/imported/Wagon.dialogue-6988a19ea6009b561eb7566009c66df1.tres"]
+
+[params]
+
+defaults=true
