@@ -7,10 +7,60 @@ script = ExtResource("1_wqhpd")
 
 [node name="AudioPlayers" type="Node" parent="."]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"SFX"
+
 [node name="AudioPlayers2D" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D6" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D7" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D8" type="AudioStreamPlayer2D" parent="AudioPlayers2D"]
+bus = &"SFX"
 
 [node name="MusicPlayers" type="Node" parent="."]
 
 [node name="PresentMusicPlayer" type="AudioStreamPlayer" parent="MusicPlayers"]
+bus = &"Music"
 
 [node name="PastMusicPlayer" type="AudioStreamPlayer" parent="MusicPlayers"]
+bus = &"Music"

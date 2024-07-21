@@ -15,6 +15,7 @@ func start_dialog(dialogue_resource: DialogueResource, dialogue_start: String = 
 	create_balloon()
 	balloon.start(dialogue_resource, dialogue_start)
 	await dialogue_manager.dialogue_ended
+	balloon = null
 
 # For creating dialogue lines on the fly
 func start_from_text(text: String):
