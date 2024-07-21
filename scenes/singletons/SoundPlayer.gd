@@ -7,7 +7,6 @@ extends Node
 
 var fade_speed: float = 0
 
-
 func _physics_process(delta):
 	if fade_speed != 0:
 		var inc = fade_speed * delta
@@ -22,8 +21,7 @@ func _physics_process(delta):
 		present_music_player.volume_db = present_db
 		past_music_player.volume_db = past_db
 
-
-func play_sound(sound: AudioStream, volume: float = 0) -> AudioStreamPlayer:
+func play_sound(sound: AudioStream, volume: float=0) -> AudioStreamPlayer:
 	for audio_player in audio_players.get_children():
 		if not audio_player.playing:
 			audio_player.stream = sound
@@ -33,8 +31,7 @@ func play_sound(sound: AudioStream, volume: float = 0) -> AudioStreamPlayer:
 			return audio_player
 	return null
 
-
-func play_sound2D(sound: AudioStream, pos: Vector2, volume: float = 0) -> AudioStreamPlayer2D:
+func play_sound2D(sound: AudioStream, pos: Vector2, volume: float=0) -> AudioStreamPlayer2D:
 	for audio_player in audio_players_2D.get_children():
 		if not audio_player.playing:
 			audio_player.stream = sound
@@ -45,7 +42,6 @@ func play_sound2D(sound: AudioStream, pos: Vector2, volume: float = 0) -> AudioS
 			return audio_player
 	return null
 
-
 func play_music(present_track, past_track):
 	if present_music_player.stream == present_track: return
 	
@@ -55,8 +51,7 @@ func play_music(present_track, past_track):
 	present_music_player.play()
 	past_music_player.play()
 
-
-func set_music_track(future: bool, fade_seconds: float = 0):
+func set_music_track(future: bool, fade_seconds: float=0):
 	if fade_seconds <= 0:
 		if future:
 			present_music_player.volume_db = 0
