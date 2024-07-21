@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6uyrw5eppb2s"]
+
+[ext_resource type="Texture2D" uid="uid://dogitxq0r3lpq" path="res://assets/backgrounds/BridgeMapPast.png" id="1_qb277"]
+[ext_resource type="Texture2D" uid="uid://ce7frv2vhc4uf" path="res://assets/backgrounds/BridgeMapPresent.png" id="2_wcs8w"]
+
+[node name="Bridge" type="Node2D"]
+
+[node name="BridgeMapPast" type="Sprite2D" parent="."]
+texture = ExtResource("1_qb277")
+
+[node name="BridgeMapPresent" type="Sprite2D" parent="."]
+texture = ExtResource("2_wcs8w")
