@@ -6,7 +6,9 @@ extends Node
 # process keyboard/mouse/gamepad inputs
 func _unhandled_input(event: InputEvent) -> void:
 	var handled: bool = false;
-
+	
+	if DialogState.balloon: return
+	
 	handled = handled||process_movement_input_events(event);
 	handled = handled||process_lantern_input_event(event);
 	handled = handled||process_interaction_input_event(event);
@@ -16,6 +18,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (handled): get_tree().root.set_input_as_handled();
 
 func _physics_process(_delta) -> void:
+	if DialogState.balloon: return
+	
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down", 0.1);
 	player.input_movement_vector = input_vector.normalized();
 

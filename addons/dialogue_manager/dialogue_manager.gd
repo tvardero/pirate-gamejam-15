@@ -356,8 +356,9 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 	if key in resource.titles.values():
 		passed_title.emit(resource.titles.find_key(key))
 
+	# Key not found, just use the first title
 	if not resource.lines.has(key):
-		assert(false, DialogueConstants.translate(&"errors.key_not_found").format({ key = key }))
+		key = resource.first_title
 
 	var data: Dictionary = resource.lines.get(key)
 
