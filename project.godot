@@ -24,8 +24,8 @@ DialogState="*res://scenes/singletons/DialogState.tscn"
 
 [dialogue_manager]
 
-general/wrap_lines=true
 general/states=["DialogState"]
+general/wrap_lines=true
 general/balloon_path="res://scenes/ui/DialogBalloon.tscn"
 
 [editor_plugins]
