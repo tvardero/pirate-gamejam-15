@@ -164,7 +164,7 @@ func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float):
 	if letter_index % actual_speed != 0: return
 	
 	talk_sound_player.stream = default_talk_sound
-	talk_sound_player.pitch_scale = 1
+	talk_sound_player.pitch_scale = 2 if dialogue_line.character == 'You' else 1
 	talk_sound_player.play()
 
 
