@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmnwbnche615r"]
+[gd_scene load_steps=11 format=3 uid="uid://dmnwbnche615r"]
 
 [ext_resource type="Texture2D" uid="uid://ch10jelgp84ft" path="res://assets/backgrounds/LabExteriorMapPast.png" id="1_8reys"]
 [ext_resource type="Texture2D" uid="uid://dc1ewif0h6io8" path="res://assets/backgrounds/LabExteriorPresent.png" id="2_pcolr"]
-[ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="3_sx0a7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d2ff"]
 size = Vector2(352, 18)
@@ -172,9 +171,3 @@ shape = SubResource("RectangleShape2D_8yoci")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Present/InteractableCollisions/Lab"]
 position = Vector2(-161.5, 0)
 shape = SubResource("RectangleShape2D_568ne")
-
-[node name="Player" parent="." instance=ExtResource("3_sx0a7")]
-position = Vector2(-75, 19)
-scale = Vector2(0.35, 0.35)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
