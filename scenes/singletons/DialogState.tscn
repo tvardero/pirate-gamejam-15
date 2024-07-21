@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1mkhe2gy5yx0"]
+
+[ext_resource type="Script" path="res://scenes/singletons/DialogState.gd" id="1_2ati7"]
+
+[node name="DialogState" type="Node"]
+script = ExtResource("1_2ati7")
