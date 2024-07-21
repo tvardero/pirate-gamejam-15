@@ -1,8 +1,7 @@
 class_name InputController
 extends Node
 
-@export
-var player: Player = null;
+@export var player: Player = null;
 
 # process keyboard/mouse/gamepad inputs
 func _unhandled_input(event: InputEvent) -> void:
