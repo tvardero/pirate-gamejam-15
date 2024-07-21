@@ -29,10 +29,10 @@ func try_interact() -> Node2D:
 	if len(areas) == 0:
 		return null;
 
-	var interactables: Array[Interactable] = areas.map(func(area): return area.get_parent() as Interactable).filter(func(i): return i != null);
+	var interactables: = areas.map(func(area): return area.get_parent()).filter(func(i): return i != null && i is Interactable);
 	interactables.sort_custom(_sort_interactables_by_dist);
 	
-	var closest_interactable = interactables[0];
+	var closest_interactable = interactables[0] as Interactable; 
 	closest_interactable.interact(self);
 	return closest_interactable.get_parent();
 
