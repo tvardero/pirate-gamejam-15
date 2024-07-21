@@ -20,10 +20,13 @@ config/icon="res://icon.svg"
 WorldState="*res://scenes/singletons/WorldState.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SoundPlayer="*res://scenes/singletons/SoundPlayer.tscn"
+DialogState="*res://scenes/singletons/DialogState.tscn"
 
 [dialogue_manager]
 
 general/wrap_lines=true
+general/states=["DialogState"]
+general/balloon_path="res://scenes/ui/DialogBalloon.tscn"
 
 [editor_plugins]
 
