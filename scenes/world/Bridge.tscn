@@ -39,24 +39,24 @@ size = Vector2(33, 3)
 [node name="Bridge" type="Node2D"]
 position = Vector2(147, 80)
 
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Top wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top wall"]
+position = Vector2(-1.5, -90)
+shape = SubResource("RectangleShape2D_of81s")
+
+[node name="Bottom wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom wall"]
+position = Vector2(-1.5, 90)
+shape = SubResource("RectangleShape2D_of81s")
+
 [node name="Past" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Past"]
 texture = ExtResource("1_qb277")
-
-[node name="Walls" type="Node2D" parent="Past"]
-
-[node name="Top wall" type="StaticBody2D" parent="Past/Walls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Walls/Top wall"]
-position = Vector2(-1.5, -90)
-shape = SubResource("RectangleShape2D_of81s")
-
-[node name="Bottom wall" type="StaticBody2D" parent="Past/Walls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Walls/Bottom wall"]
-position = Vector2(-1.5, 90)
-shape = SubResource("RectangleShape2D_of81s")
 
 [node name="OtherCollisions" type="Node2D" parent="Past"]
 
@@ -82,57 +82,44 @@ shape = SubResource("RectangleShape2D_0ysu7")
 position = Vector2(-3.5, -27.5052)
 shape = SubResource("RectangleShape2D_xctqj")
 
-[node name="Present" type="Node2D" parent="."]
+[node name="Future" type="Node2D" parent="."]
+visible = false
 
-[node name="Background" type="Sprite2D" parent="Present"]
+[node name="Background" type="Sprite2D" parent="Future"]
 texture = ExtResource("2_wcs8w")
 
-[node name="Walls" type="Node2D" parent="Present"]
+[node name="OtherCollisions" type="Node2D" parent="Future"]
 
-[node name="Top wall" type="StaticBody2D" parent="Present/Walls"]
+[node name="River" type="StaticBody2D" parent="Future/OtherCollisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/Walls/Top wall"]
-position = Vector2(-1.5, -90)
-shape = SubResource("RectangleShape2D_of81s")
-
-[node name="Bottom wall" type="StaticBody2D" parent="Present/Walls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/Walls/Bottom wall"]
-position = Vector2(-1.5, 90)
-shape = SubResource("RectangleShape2D_of81s")
-
-[node name="OtherCollisions" type="Node2D" parent="Present"]
-
-[node name="River" type="StaticBody2D" parent="Present/OtherCollisions"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/River"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/OtherCollisions/River"]
 position = Vector2(-9.5, -2.5)
 shape = SubResource("RectangleShape2D_igu3q")
 
-[node name="BridgeEdgesLeft" type="StaticBody2D" parent="Present/OtherCollisions"]
+[node name="BridgeEdgesLeft" type="StaticBody2D" parent="Future/OtherCollisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/BridgeEdgesLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/OtherCollisions/BridgeEdgesLeft"]
 position = Vector2(-82.375, 2)
 shape = SubResource("RectangleShape2D_ol5cn")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Present/OtherCollisions/BridgeEdgesLeft"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Future/OtherCollisions/BridgeEdgesLeft"]
 position = Vector2(-97, 31.5)
 shape = SubResource("RectangleShape2D_k020b")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Present/OtherCollisions/BridgeEdgesLeft"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Future/OtherCollisions/BridgeEdgesLeft"]
 position = Vector2(-98.5, -27.5052)
 shape = SubResource("RectangleShape2D_g5gqi")
 
-[node name="BridgeEdgesRight" type="StaticBody2D" parent="Present/OtherCollisions"]
+[node name="BridgeEdgesRight" type="StaticBody2D" parent="Future/OtherCollisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/BridgeEdgesRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/OtherCollisions/BridgeEdgesRight"]
 position = Vector2(56, 2)
 shape = SubResource("RectangleShape2D_ol5cn")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Present/OtherCollisions/BridgeEdgesRight"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Future/OtherCollisions/BridgeEdgesRight"]
 position = Vector2(76, 32)
 shape = SubResource("RectangleShape2D_68a5k")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Present/OtherCollisions/BridgeEdgesRight"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Future/OtherCollisions/BridgeEdgesRight"]
 position = Vector2(74.5, -27.5052)
 shape = SubResource("RectangleShape2D_576pe")
