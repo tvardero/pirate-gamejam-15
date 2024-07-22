@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmllerypcllhe"]
+
+[ext_resource type="Script" path="res://scenes/tools/SceneTransition.gd" id="1_03kjj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vjchi"]
+radius = 64.0
+
+[node name="SceneTransition" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("1_03kjj")
+collision_shape = SubResource("CircleShape2D_vjchi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vjchi")
+debug_color = Color(1, 0.443137, 0, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
