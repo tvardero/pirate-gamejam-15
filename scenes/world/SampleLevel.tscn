@@ -13,7 +13,7 @@ present_music = ExtResource("2_dxfor")
 past_music = ExtResource("3_fjpbc")
 
 [node name="Player" parent="." instance=ExtResource("2_hqx18")]
-position = Vector2(345, 258)
+position = Vector2(169, 109)
 
 [node name="Box" parent="." instance=ExtResource("3_ypf2b")]
 position = Vector2(568, 313)
