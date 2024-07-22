@@ -2,18 +2,20 @@
 
 [ext_resource type="Script" path="res://scenes/world/SampleLevel.gd" id="1_04lkc"]
 [ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_dxfor"]
-[ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="2_hqx18"]
 [ext_resource type="AudioStream" uid="uid://d0pjxkln07gby" path="res://assets/music/temp_past.ogg" id="3_fjpbc"]
 [ext_resource type="PackedScene" uid="uid://c26vpb06ref5a" path="res://scenes/props/box/Box.tscn" id="3_ypf2b"]
+[ext_resource type="Script" path="res://scenes/tools/SpawnPoint.gd" id="5_343my"]
 
 [node name="SampleLevel" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_04lkc")
 present_music = ExtResource("2_dxfor")
 past_music = ExtResource("3_fjpbc")
-
-[node name="Player" parent="." instance=ExtResource("2_hqx18")]
-position = Vector2(345, 258)
+auto_spawn_player = true
 
 [node name="Box" parent="." instance=ExtResource("3_ypf2b")]
 position = Vector2(568, 313)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(309, 253)
+script = ExtResource("5_343my")
