@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn8g012ru2k1u"]
+
+[ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="1_h4f4g"]
+[ext_resource type="PackedScene" uid="uid://5oi627h6iq1q" path="res://scenes/props/lever/Lever.tscn" id="2_qpjlr"]
+[ext_resource type="PackedScene" uid="uid://cubsjubgu48h4" path="res://scenes/props/gate/Gate.tscn" id="3_u2etu"]
+
+[node name="SampleLeverGateLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_h4f4g")]
+position = Vector2(191, 199)
+
+[node name="Levers" type="Node" parent="."]
+
+[node name="Lever" parent="Levers" instance=ExtResource("2_qpjlr")]
+position = Vector2(386, 161)
+gate_path = NodePath("../../Gates/Gate")
+
+[node name="Lever2" parent="Levers" instance=ExtResource("2_qpjlr")]
+position = Vector2(399, 363)
+gate_path = NodePath("../../Gates/Gate2")
+
+[node name="Gates" type="Node" parent="."]
+
+[node name="Gate" parent="Gates" instance=ExtResource("3_u2etu")]
+z_index = -1
+position = Vector2(625, 189)
+
+[node name="Gate2" parent="Gates" instance=ExtResource("3_u2etu")]
+z_index = -1
+position = Vector2(617, 361)

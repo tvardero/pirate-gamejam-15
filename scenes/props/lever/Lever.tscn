@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://5oi627h6iq1q"]
+
+[ext_resource type="Script" path="res://scenes/props/lever/Lever.gd" id="1_dhfde"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="1_q26qf"]
+[ext_resource type="Texture2D" uid="uid://dnd1f4mtj6c1y" path="res://assets/lever/test_lever.png" id="2_cbdxo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8j8h"]
+size = Vector2(32, 23)
+
+[node name="Lever" type="StaticBody2D"]
+script = ExtResource("1_dhfde")
+
+[node name="Interactable" parent="." instance=ExtResource("1_q26qf")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cbdxo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_m8j8h")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
