@@ -17,13 +17,12 @@ func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 	player.direction = direction;
 	player.position = spawn_position;
 
-	add_child(player);
+	call_deferred("add_child", player);
 
 func find_spawnpoint(spawn_id: int) -> SpawnPoint:
 	var children = get_children();
 	
 	for child in children:
-		if child is SpawnPoint && child.id == spawn_id:
-			return child;
+		if child is SpawnPoint&&child.id == spawn_id: return child;
 
 	return null;
