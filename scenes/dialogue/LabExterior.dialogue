@@ -8,3 +8,7 @@ You: Everything's so bright, as if the lantern is lighting up the whole town. Bu
 ~ try_gate_in_past
 You: This wasn't locked when I came in here. I'm trapped... Unless...?
 => END
+
+~ try_lab_entrance_past
+[i](It won't open. The door must have locked behind you when you left the lab.)[/i]
+=> END

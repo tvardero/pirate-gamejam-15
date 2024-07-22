@@ -4,8 +4,8 @@ extends CharacterBody2D
 var input_movement_vector: Vector2 = Vector2.ZERO;
 var is_sprinting: bool = false;
 
-@export var walk_speed: float = 5;
-@export var sprint_speed: float = 12;
+@export var walk_speed: float = 1.5;
+@export var sprint_speed: float = 2;
 @onready var _interaction_area: Area2D = $"InteractionArea";
 @onready var _animation_tree: AnimationTree = $"AnimationTree";
 @onready var _animation_player: AnimationPlayer = $"AnimationPlayer";

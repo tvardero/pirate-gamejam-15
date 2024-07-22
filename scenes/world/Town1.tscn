@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=3 uid="uid://bst8yfew54yxv"]
+
+[ext_resource type="Texture2D" uid="uid://bbn4qblnyxm5t" path="res://assets/backgrounds/Town1MapPast.png" id="1_36obe"]
+[ext_resource type="Texture2D" uid="uid://cciu52u6geixk" path="res://assets/backgrounds/Town1MapPresent.png" id="2_e0hoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uccj0"]
+size = Vector2(119.854, 1.58389)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ify"]
+size = Vector2(182.124, 1.58389)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp8vi"]
+size = Vector2(3.64037, 73.2307)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6v7c"]
+size = Vector2(20.4643, 34.5852)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
+size = Vector2(353.049, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xduas"]
+size = Vector2(24.5137, 100.906)
+
+[node name="Town1" type="Node2D"]
+position = Vector2(170.387, 159.972)
+
+[node name="Past" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Past"]
+texture = ExtResource("1_36obe")
+
+[node name="OtherCollisions" type="Node2D" parent="Past"]
+
+[node name="FenceLeft" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/FenceLeft"]
+position = Vector2(-112.215, -88.4458)
+shape = SubResource("RectangleShape2D_uccj0")
+
+[node name="FenceRight" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/FenceRight"]
+position = Vector2(80.7581, -88.4458)
+shape = SubResource("RectangleShape2D_e8ify")
+
+[node name="FenceRightEdge" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/FenceRightEdge"]
+position = Vector2(169.66, -125.005)
+shape = SubResource("RectangleShape2D_jp8vi")
+
+[node name="FenceLeftEdge" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/FenceLeftEdge"]
+position = Vector2(-171.796, -125.005)
+shape = SubResource("RectangleShape2D_jp8vi")
+
+[node name="Pipe" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/Pipe"]
+position = Vector2(128.984, 144.276)
+shape = SubResource("RectangleShape2D_l6v7c")
+
+[node name="Walls" type="Node2D" parent="Past"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Past/Walls"]
+
+[node name="TopWall" type="CollisionShape2D" parent="Past/Walls/StaticBody2D"]
+position = Vector2(2.32542, -169.881)
+shape = SubResource("RectangleShape2D_250ur")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Past/Walls/StaticBody2D"]
+position = Vector2(2.32542, 169.977)
+shape = SubResource("RectangleShape2D_250ur")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Past/Walls/StaticBody2D"]
+position = Vector2(-182.321, 110.173)
+shape = SubResource("RectangleShape2D_xduas")
+
+[node name="Present" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Present"]
+texture = ExtResource("2_e0hoc")
+
+[node name="OtherCollisions" type="Node2D" parent="Present"]
+
+[node name="FenceLeft" type="StaticBody2D" parent="Present/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/FenceLeft"]
+position = Vector2(-112.215, -88.4458)
+shape = SubResource("RectangleShape2D_uccj0")
+
+[node name="FenceRight" type="StaticBody2D" parent="Present/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/FenceRight"]
+position = Vector2(80.7581, -88.4458)
+shape = SubResource("RectangleShape2D_e8ify")
+
+[node name="FenceRightEdge" type="StaticBody2D" parent="Present/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/FenceRightEdge"]
+position = Vector2(169.66, -125.005)
+shape = SubResource("RectangleShape2D_jp8vi")
+
+[node name="FenceLeftEdge" type="StaticBody2D" parent="Present/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/FenceLeftEdge"]
+position = Vector2(-171.796, -125.005)
+shape = SubResource("RectangleShape2D_jp8vi")
+
+[node name="Pipe" type="StaticBody2D" parent="Present/OtherCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Present/OtherCollisions/Pipe"]
+position = Vector2(128.984, 144.276)
+shape = SubResource("RectangleShape2D_l6v7c")
+
+[node name="Walls" type="Node2D" parent="Present"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Present/Walls"]
+
+[node name="TopWall" type="CollisionShape2D" parent="Present/Walls/StaticBody2D"]
+position = Vector2(2.32542, -169.881)
+shape = SubResource("RectangleShape2D_250ur")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Present/Walls/StaticBody2D"]
+position = Vector2(2.32542, 169.977)
+shape = SubResource("RectangleShape2D_250ur")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Present/Walls/StaticBody2D"]
+position = Vector2(-182.321, 110.173)
+shape = SubResource("RectangleShape2D_xduas")
