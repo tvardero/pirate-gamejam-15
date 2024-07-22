@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmnwbnche615r"]
+[gd_scene load_steps=13 format=3 uid="uid://bwmy5und3r5r3"]
 
 [ext_resource type="Texture2D" uid="uid://ch10jelgp84ft" path="res://assets/backgrounds/LabExteriorMapPast.png" id="1_8reys"]
 [ext_resource type="Texture2D" uid="uid://dc1ewif0h6io8" path="res://assets/backgrounds/LabExteriorPresent.png" id="2_pcolr"]
@@ -10,7 +10,7 @@ size = Vector2(30, 11)
 size = Vector2(12, 111.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yoci"]
-size = Vector2(12, 63.25)
+size = Vector2(12, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_568ne"]
 size = Vector2(19, 114)
@@ -23,6 +23,9 @@ size = Vector2(352, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb3ur"]
 size = Vector2(15, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qj6fg"]
+size = Vector2(15, 55.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqj4a"]
 size = Vector2(25, 16)
@@ -90,7 +93,7 @@ shape = SubResource("RectangleShape2D_yyvd2")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Future/OtherCollisions/FenceTop"]
-position = Vector2(-85, -57.375)
+position = Vector2(-85, -61)
 shape = SubResource("RectangleShape2D_8yoci")
 
 [node name="InteractableCollisions" type="Node2D" parent="Future"]
@@ -117,6 +120,17 @@ collision_layer = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left wall"]
 position = Vector2(-167.5, 0)
 shape = SubResource("RectangleShape2D_hb3ur")
+
+[node name="Right walls" type="StaticBody2D" parent="Walls"]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right walls"]
+position = Vector2(167, 61)
+shape = SubResource("RectangleShape2D_qj6fg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/Right walls"]
+position = Vector2(167, -66)
+shape = SubResource("RectangleShape2D_qj6fg")
 
 [node name="Bottom wall" type="StaticBody2D" parent="Walls"]
 collision_layer = 3
