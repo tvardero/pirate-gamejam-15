@@ -10,8 +10,8 @@ extends Node2D
 var player_packed: PackedScene = preload ("res://scenes/characters/player/Player.tscn");
 
 func _ready():
-	if (auto_spawn_player): spawn_player_at(auto_spawn_id);
-	if present_music && past_music:
+	if (auto_spawn_player&&!WorldState.player_exists): spawn_player_at(auto_spawn_id);
+	if present_music&&past_music:
 		SoundPlayer.play_music(present_music, past_music)
 
 func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
@@ -21,6 +21,8 @@ func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 	var player = player_packed.instantiate() as Player;
 	player.direction = direction;
 	player.position = spawn_position;
+
+	WorldState.player = player;
 
 	call_deferred("add_child", player);
 

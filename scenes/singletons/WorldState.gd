@@ -2,6 +2,9 @@ extends Node
 
 var in_future: bool = true;
 var disable_movement: bool = false;
+var player: Player = null;
+var player_exists: bool:
+	get: return player != null;
 
 func use_lantern() -> void:
 	set_time(!in_future)
@@ -10,6 +13,8 @@ func use_lantern() -> void:
 func set_time(to_future: bool) -> void:
 	in_future = to_future;
 	SoundPlayer.set_music_track(in_future, 1)
+	var level = get_current_level();
+	level.switch_time(to_future)
 
 func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_direction: Vector2):
 	var level = destination.instantiate();
@@ -29,5 +34,14 @@ func get_current_level() -> Level:
 	var children = get_tree().root.get_children();
 	for child in children:
 		if child is Level: return child;
+	
+	return null;
+
+func get_player() -> Player:
+	var level = get_current_level();
+	if !level: return null;
+
+	for child in level.get_children():
+		if child is Player: return child;
 	
 	return null;
