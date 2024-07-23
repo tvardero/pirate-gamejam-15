@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/characters/player/Player.gd" id="1_kqidl"]
 [ext_resource type="Texture2D" uid="uid://behudrsulwn3" path="res://assets/player/player-atlas.png" id="1_spx6y"]
-[ext_resource type="PackedScene" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
+[ext_resource type="PackedScene" uid="uid://b0it2xtiiufrc" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpj78"]
 radius = 25.0
@@ -232,6 +232,9 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkx0j")
+}
 tree_root = SubResource("AnimationNodeStateMachine_3u51c")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_idle = true
@@ -246,3 +249,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_r2toq")
 debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
