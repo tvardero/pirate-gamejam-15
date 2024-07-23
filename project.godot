@@ -31,7 +31,6 @@ general/balloon_path="res://scenes/ui/DialogBalloon.tscn"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/scale=5.0
 
 [editor_plugins]
 
