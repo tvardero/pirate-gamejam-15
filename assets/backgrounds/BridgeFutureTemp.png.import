@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce7frv2vhc4uf"
-path="res://.godot/imported/BridgeMapPresent.png-a96080660500e3707fe267c2d69c2a89.ctex"
+uid="uid://b101211rm1rq2"
+path="res://.godot/imported/BridgeFutureTemp.png-4306443e61dd8a356fe1929b05dfda68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/BridgeMapPresent.png"
-dest_files=["res://.godot/imported/BridgeMapPresent.png-a96080660500e3707fe267c2d69c2a89.ctex"]
+source_file="res://assets/backgrounds/BridgeFutureTemp.png"
+dest_files=["res://.godot/imported/BridgeFutureTemp.png-4306443e61dd8a356fe1929b05dfda68.ctex"]
 
 [params]
 

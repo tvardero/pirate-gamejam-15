@@ -1,16 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cooppajrgdkr4"]
+[gd_scene load_steps=10 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://w5yxw3fh3me2" path="res://assets/backgrounds/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Texture2D" uid="uid://3oc4jq8fwvq5" path="res://assets/backgrounds/Town2MapPresent.png" id="2_rpksn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpm56"]
-size = Vector2(371, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7hin"]
-size = Vector2(13, 344)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltllp"]
-size = Vector2(13, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
 size = Vector2(377, 2.5)
@@ -21,6 +12,18 @@ size = Vector2(153.5, 2.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdwao"]
 size = Vector2(152, 2.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltllp"]
+size = Vector2(13, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt3u"]
+size = Vector2(13, 28.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpm56"]
+size = Vector2(371, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7hin"]
+size = Vector2(13, 344)
+
 [node name="Town2" type="Node2D"]
 
 [node name="Past" type="Node2D" parent="."]
@@ -28,63 +31,56 @@ size = Vector2(152, 2.5)
 [node name="Background" type="Sprite2D" parent="Past"]
 texture = ExtResource("1_0prr0")
 
-[node name="Walls" type="StaticBody2D" parent="Past"]
-
-[node name="Top" type="CollisionShape2D" parent="Past/Walls"]
-position = Vector2(0.5, -168)
-shape = SubResource("RectangleShape2D_xpm56")
-
-[node name="Bottom" type="CollisionShape2D" parent="Past/Walls"]
-position = Vector2(0.5, 169)
-shape = SubResource("RectangleShape2D_xpm56")
-
-[node name="Right" type="CollisionShape2D" parent="Past/Walls"]
-position = Vector2(187.5, 0)
-shape = SubResource("RectangleShape2D_g7hin")
-
 [node name="OtherCollisions" type="Node2D" parent="Past"]
 
 [node name="Fences" type="StaticBody2D" parent="Past/OtherCollisions"]
-
-[node name="Left" type="CollisionShape2D" parent="Past/OtherCollisions/Fences"]
-position = Vector2(-185.5, -141.5)
-shape = SubResource("RectangleShape2D_ltllp")
 
 [node name="Bottom" type="CollisionShape2D" parent="Past/OtherCollisions/Fences"]
 position = Vector2(1.5, -121.25)
 shape = SubResource("RectangleShape2D_3qtw8")
 
-[node name="Present" type="Node2D" parent="."]
+[node name="SewagePast" type="StaticBody2D" parent="Past/OtherCollisions"]
 
-[node name="Background" type="Sprite2D" parent="Present"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/OtherCollisions/SewagePast"]
+polygon = PackedVector2Array(-190, 100, -124, 101, -36, 109, 10, 89, 79, 93, 107, 88, 122, 94, 141, 89, 184, 90, 185, 100, 157, 100, 139, 99, 123, 103, 107, 102, 96, 97, 85, 102, 52, 101, 18, 98, -35, 119, -70, 118, -141, 109, -174, 114, -198, 114)
+
+[node name="Future" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Future"]
 texture = ExtResource("2_rpksn")
 
-[node name="Walls" type="StaticBody2D" parent="Present"]
+[node name="OtherCollisions" type="Node2D" parent="Future"]
 
-[node name="Top" type="CollisionShape2D" parent="Present/Walls"]
-position = Vector2(0.5, -168)
-shape = SubResource("RectangleShape2D_xpm56")
+[node name="Fences" type="StaticBody2D" parent="Future/OtherCollisions"]
+collision_layer = 2
 
-[node name="Bottom" type="CollisionShape2D" parent="Present/Walls"]
-position = Vector2(0.5, 169)
-shape = SubResource("RectangleShape2D_xpm56")
-
-[node name="Right" type="CollisionShape2D" parent="Present/Walls"]
-position = Vector2(187.5, 0)
-shape = SubResource("RectangleShape2D_g7hin")
-
-[node name="OtherCollisions" type="Node2D" parent="Present"]
-
-[node name="Fences" type="StaticBody2D" parent="Present/OtherCollisions"]
-
-[node name="Left" type="CollisionShape2D" parent="Present/OtherCollisions/Fences"]
-position = Vector2(-185.5, -141.5)
-shape = SubResource("RectangleShape2D_ltllp")
-
-[node name="BottomLeft" type="CollisionShape2D" parent="Present/OtherCollisions/Fences"]
+[node name="BottomLeft" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
 position = Vector2(-106.75, -121.25)
 shape = SubResource("RectangleShape2D_aiyby")
 
-[node name="BottomRight" type="CollisionShape2D" parent="Present/OtherCollisions/Fences"]
+[node name="BottomRight" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
 position = Vector2(107, -121.25)
 shape = SubResource("RectangleShape2D_pdwao")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-185.5, -102.5)
+shape = SubResource("RectangleShape2D_ltllp")
+
+[node name="LeftBottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-186, 87)
+shape = SubResource("RectangleShape2D_3vt3u")
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0.5, -168)
+shape = SubResource("RectangleShape2D_xpm56")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0.5, 169)
+shape = SubResource("RectangleShape2D_xpm56")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(187.5, 0)
+shape = SubResource("RectangleShape2D_g7hin")
