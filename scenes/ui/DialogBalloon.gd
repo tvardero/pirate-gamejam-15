@@ -12,7 +12,7 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
-@onready var player_sprite: Sprite2D = $Balloon/PlayerSprite
+@onready var player_sprite: Sprite2D = $Balloon/PlayerArt/PlayerSprite
 @onready var talk_sound_player: AudioStreamPlayer = $TalkSound
 @onready var default_talk_sound: AudioStream = preload('res://assets/sounds/ui/menu_beep.wav')
 
