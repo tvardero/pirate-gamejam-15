@@ -30,6 +30,7 @@ general/balloon_path="res://scenes/ui/DialogBalloon.tscn"
 
 [display]
 
+window/size/viewport_height=1152
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

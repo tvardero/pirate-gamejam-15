@@ -103,3 +103,8 @@ func get_random_offset() -> Vector2:
 
 func switch_background():
 	rubble.visible = true
+
+
+func _on_trigger_exit_dialogue_body_entered(body):
+	print(body)
+	
