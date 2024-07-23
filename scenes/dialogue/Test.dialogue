@@ -1,0 +1,9 @@
+~ Start
+
+do emote("wagon")
+You: hey
+Star: wow youre literally a wagon
+do emote("box")
+You: actually im a box
+
+=> END

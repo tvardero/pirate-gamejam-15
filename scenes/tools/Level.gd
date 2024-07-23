@@ -4,10 +4,15 @@ extends Node2D
 @export var auto_spawn_player: bool = false
 @export var auto_spawn_id: int = 0;
 
+@export var present_music: AudioStream
+@export var past_music: AudioStream
+
 var player_packed: PackedScene = preload ("res://scenes/characters/player/Player.tscn");
 
 func _ready():
 	if (auto_spawn_player): spawn_player_at(auto_spawn_id);
+	if present_music && past_music:
+		SoundPlayer.play_music(present_music, past_music)
 
 func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 	var spawn = find_spawnpoint(spawn_id);

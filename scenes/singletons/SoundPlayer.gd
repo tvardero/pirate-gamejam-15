@@ -5,6 +5,7 @@ extends Node
 @onready var present_music_player: AudioStreamPlayer = $MusicPlayers/PresentMusicPlayer
 @onready var past_music_player: AudioStreamPlayer = $MusicPlayers/PastMusicPlayer
 
+var music_position: float = 0
 var fade_speed: float = 0
 
 func _physics_process(delta):
@@ -64,3 +65,12 @@ func set_music_track(future: bool, fade_seconds: float=0):
 
 	# Calculate fade speed per second, from 0db to -80db
 	fade_speed = (1.0 if future else -1.0) / fade_seconds;
+
+func pause_music(val: bool):
+	if val:
+		music_position = present_music_player.get_playback_position()
+		present_music_player.stop()
+		past_music_player.stop()
+	else:
+		present_music_player.play(music_position)
+		past_music_player.play(music_position)
