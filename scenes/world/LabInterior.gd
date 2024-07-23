@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 @export var NOISE_SHAKE_SPEED: float = 30.0
 @export var NOISE_SWAY_SPEED: float = 1.0
@@ -6,8 +6,14 @@ extends Node2D
 @export var NOISE_SWAY_STRENGTH: float = 10.0
 @export var RANDOM_SHAKE_STRENGTH: float = 30.0
 @export var SHAKE_DECAY_RATE: float = 1.1
-@export var EARTHQUAKE_DURATION: float = 5.0 
-@export var DELAY_BEFORE_EARTHQUAKE: float = 1.0
+@export var EARTHQUAKE_DURATION: float = 6.0 
+@export var DELAY_BEFORE_EARTHQUAKE: float = 2.0
+@export var lantern_picked_up: bool=false
+@export var present_music: AudioStream
+@export var past_music: AudioStream
+
+# Used so we can pause the player's movements
+var player: Player
 
 enum ShakeType {
 	Random,
@@ -15,14 +21,12 @@ enum ShakeType {
 	Sway
 }
 
-@onready var camera = $Camera2D
+@onready var camera = $Player/Camera2D
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
 @onready var lantern = $Lantern
-@onready var background_before = $Background_Before
-@onready var background_after = $Background_After
+@onready var rubble = $Future/Entryway/rubble
 @onready var earthquake_timer = Timer.new()
-@onready var color_rect = $ColorRect
 
 var noise_i: float = 0.0
 var shake_type: int = ShakeType.Random
@@ -31,6 +35,7 @@ var earthquake_active: bool = false
 var lantern_interacted: bool = false
 
 func _ready() -> void:
+	DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'start_of_game_text')
 	rand.randomize()
 	noise.seed = rand.randi()
 	noise.frequency = 0.5
@@ -41,12 +46,18 @@ func _ready() -> void:
 	earthquake_timer.connect("timeout", Callable(self, "_on_earthquake_timer_timeout"))
 	
 	lantern.connect("interacted", Callable(self, "_on_lantern_interacted"))
-	background_after.visible = false 
+	rubble.visible = false 
 
-func _on_lantern_interacted(initiator):
+func _on_lantern_interacted(_initiator):
+	player = $Player
+	player.process_mode = Node.PROCESS_MODE_DISABLED
 	if not lantern_interacted:
 		lantern_interacted = true
 		lantern.visible = false
+		lantern.queue_free()
+		await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
+		lantern_picked_up = true
+		$AudioStreamPlayer2D.play()
 		earthquake_timer.start()
 
 func _on_earthquake_timer_timeout():
@@ -59,23 +70,27 @@ func start_earthquake():
 	earthquake_active = true
 
 func _process(delta: float) -> void:
-	if earthquake_active:
-		earthquake_timer -= delta
-		if earthquake_timer <= 0:
-			earthquake_active = false
-			shake_strength = 0.0
-			switch_background()
-		else:
-			shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
-			var shake_offset: Vector2
-			match shake_type:
-				ShakeType.Random:
-					shake_offset = get_random_offset()
-				ShakeType.Noise:
-					shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
-				ShakeType.Sway:
-					shake_offset = get_noise_offset(delta, NOISE_SWAY_SPEED, NOISE_SWAY_STRENGTH)
-			camera.offset = shake_offset
+	
+	if !earthquake_active: return
+	
+	earthquake_timer -= delta
+	if earthquake_timer <= 2:
+		switch_background()
+	if earthquake_timer <= 0:
+		earthquake_active = false
+		shake_strength = 0.0
+		player.process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
+		var shake_offset: Vector2
+		match shake_type:
+			ShakeType.Random:
+				shake_offset = get_random_offset()
+			ShakeType.Noise:
+				shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
+			ShakeType.Sway:
+				shake_offset = get_noise_offset(delta, NOISE_SWAY_SPEED, NOISE_SWAY_STRENGTH)
+		camera.offset = shake_offset
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed
@@ -91,5 +106,13 @@ func get_random_offset() -> Vector2:
 	)
 
 func switch_background():
-	background_before.visible = false
-	background_after.visible = true
+	rubble.visible = true
+
+func _on_entryway_text_body_entered(_body):
+	if WorldState.in_future:
+		if !lantern_picked_up:
+			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
+		else:
+			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'interact_rubble')
+
+		

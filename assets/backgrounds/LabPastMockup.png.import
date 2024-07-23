@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddc04c2kcp2ky"
-path="res://.godot/imported/LabInteriorAfter.png-2d3bfed7e687e165d1fef3a95b9345bf.ctex"
+uid="uid://dymu4oqe5v6r6"
+path="res://.godot/imported/LabPastMockup.png-58c0ce3ccd2db6515bf82ab2517642ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/LabInteriorAfter.png"
-dest_files=["res://.godot/imported/LabInteriorAfter.png-2d3bfed7e687e165d1fef3a95b9345bf.ctex"]
+source_file="res://assets/backgrounds/LabPastMockup.png"
+dest_files=["res://.godot/imported/LabPastMockup.png-58c0ce3ccd2db6515bf82ab2517642ed.ctex"]
 
 [params]
 
