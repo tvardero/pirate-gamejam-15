@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8h3xg7k05qtw"]
+[gd_scene load_steps=9 format=3 uid="uid://8h3xg7k05qtw"]
 
 [ext_resource type="Script" path="res://scenes/world/SampleLevel.gd" id="1_04lkc"]
 [ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_dxfor"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c26vpb06ref5a" path="res://scenes/props/box/Box.tscn" id="3_ypf2b"]
 [ext_resource type="Script" path="res://scenes/tools/SpawnPoint.gd" id="5_343my"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="6_kdb42"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star fragment/StarFragment.tscn" id="7_04jx4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vtsk"]
 size = Vector2(20, 300)
@@ -34,3 +35,6 @@ collision_shape = SubResource("RectangleShape2D_5vtsk")
 position = Vector2(1057, 320)
 script = ExtResource("5_343my")
 id = 1
+
+[node name="StarFragment" parent="." instance=ExtResource("7_04jx4")]
+position = Vector2(562, 97)

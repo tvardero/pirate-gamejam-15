@@ -22,6 +22,8 @@ script = ExtResource("1_cq13f")
 [node name="Past" type="Node2D" parent="."]
 
 [node name="Future" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(177, 87)
 
 [node name="Background_Before" type="Sprite2D" parent="Future"]
 position = Vector2(178, 88)
