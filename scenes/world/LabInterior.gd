@@ -22,7 +22,6 @@ enum ShakeType {
 @onready var background_before = $Background_Before
 @onready var background_after = $Background_After
 @onready var earthquake_timer = Timer.new()
-@onready var color_rect = $ColorRect
 
 var noise_i: float = 0.0
 var shake_type: int = ShakeType.Random
@@ -43,7 +42,7 @@ func _ready() -> void:
 	lantern.connect("interacted", Callable(self, "_on_lantern_interacted"))
 	background_after.visible = false 
 
-func _on_lantern_interacted(initiator):
+func _on_lantern_interacted(_initiator):
 	if not lantern_interacted:
 		lantern_interacted = true
 		lantern.visible = false
