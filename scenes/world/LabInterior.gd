@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 @export var NOISE_SHAKE_SPEED: float = 30.0
 @export var NOISE_SWAY_SPEED: float = 1.0
@@ -7,9 +7,10 @@ extends Node2D
 @export var RANDOM_SHAKE_STRENGTH: float = 30.0
 @export var SHAKE_DECAY_RATE: float = 1.1
 @export var EARTHQUAKE_DURATION: float = 5.0 
-@export var RUBBLE_APPEARS_TIME: float=3.0
 @export var DELAY_BEFORE_EARTHQUAKE: float = 1.0
 @export var LANTERN_PICKED_UP: bool=true
+@export var present_music: AudioStream
+@export var past_music: AudioStream
 
 # Used so we can pause the player's movements
 var player: Player
@@ -24,7 +25,7 @@ enum ShakeType {
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
 @onready var lantern = $Lantern
-@onready var rubble = $Future/rubble
+@onready var rubble = $Future/StaticBody2D/rubble
 @onready var earthquake_timer = Timer.new()
 
 var noise_i: float = 0.0
@@ -34,6 +35,9 @@ var earthquake_active: bool = false
 var lantern_interacted: bool = false
 
 func _ready() -> void:
+	super._ready();
+	SoundPlayer.play_music(present_music, past_music)
+	
 	DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'start_of_game_text')
 	rand.randomize()
 	noise.seed = rand.randi()
@@ -48,6 +52,8 @@ func _ready() -> void:
 	rubble.visible = false 
 
 func _on_lantern_interacted(_initiator):
+	await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
+	LANTERN_PICKED_UP = true
 	player = $Player
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	if not lantern_interacted:
