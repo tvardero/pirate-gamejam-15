@@ -37,4 +37,4 @@ script = ExtResource("5_343my")
 id = 1
 
 [node name="StarFragment" parent="." instance=ExtResource("7_04jx4")]
-position = Vector2(562, 97)
+position = Vector2(252, 305)

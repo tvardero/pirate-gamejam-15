@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
+@onready var player_sprite: Sprite2D = $Balloon/PlayerSprite
 @onready var talk_sound_player: AudioStreamPlayer = $TalkSound
 @onready var default_talk_sound: AudioStream = preload('res://assets/sounds/ui/menu_beep.wav')
 
@@ -82,6 +83,7 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
+	_on_sprite_texture_changed()
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -167,5 +169,8 @@ func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float):
 	talk_sound_player.pitch_scale = 2 if dialogue_line.character == 'You' else 1
 	talk_sound_player.play()
 
+
+func _on_sprite_texture_changed():
+	player_sprite.offset.y = -player_sprite.texture.get_height()
 
 #endregion
