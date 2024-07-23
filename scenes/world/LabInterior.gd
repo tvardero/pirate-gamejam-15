@@ -8,7 +8,7 @@ extends Level
 @export var SHAKE_DECAY_RATE: float = 1.1
 @export var EARTHQUAKE_DURATION: float = 5.0 
 @export var DELAY_BEFORE_EARTHQUAKE: float = 1.0
-@export var LANTERN_PICKED_UP: bool=true
+@export var lantern_picked_up: bool=false
 @export var present_music: AudioStream
 @export var past_music: AudioStream
 
@@ -25,7 +25,7 @@ enum ShakeType {
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
 @onready var lantern = $Lantern
-@onready var rubble = $Future/StaticBody2D/rubble
+@onready var rubble = $Future/Entryway/rubble
 @onready var earthquake_timer = Timer.new()
 
 var noise_i: float = 0.0
@@ -35,9 +35,6 @@ var earthquake_active: bool = false
 var lantern_interacted: bool = false
 
 func _ready() -> void:
-	super._ready();
-	SoundPlayer.play_music(present_music, past_music)
-	
 	DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'start_of_game_text')
 	rand.randomize()
 	noise.seed = rand.randi()
@@ -52,14 +49,14 @@ func _ready() -> void:
 	rubble.visible = false 
 
 func _on_lantern_interacted(_initiator):
-	await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
-	LANTERN_PICKED_UP = true
 	player = $Player
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	if not lantern_interacted:
 		lantern_interacted = true
 		lantern.visible = false
 		lantern.queue_free()
+		await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
+		lantern_picked_up = true
 		earthquake_timer.start()
 
 func _on_earthquake_timer_timeout():
@@ -110,7 +107,11 @@ func get_random_offset() -> Vector2:
 func switch_background():
 	rubble.visible = true
 
+func _on_entryway_text_body_entered(_body):
+	print(lantern_picked_up)
+	if !lantern_picked_up:
+		DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
+	else:
+		DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'interact_rubble')
 
-func _on_trigger_exit_dialogue_body_entered(body):
-	print(body)
 	

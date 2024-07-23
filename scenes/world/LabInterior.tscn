@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bna50xgjrlfsg"]
+[gd_scene load_steps=12 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world/LabInterior.gd" id="1_cq13f"]
 [ext_resource type="PackedScene" uid="uid://byp0qbxdwimhg" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
 [ext_resource type="Texture2D" uid="uid://be61mpgliitlj" path="res://assets/backgrounds/LabMockup.png" id="2_ctcer"]
+[ext_resource type="Texture2D" uid="uid://dymu4oqe5v6r6" path="res://assets/backgrounds/LabPastMockup.png" id="2_wabqi"]
 [ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="3_ivq5x"]
 [ext_resource type="Texture2D" uid="uid://80emoxw7udaj" path="res://assets/backgrounds/LabRubbleMockup.png" id="5_d7bd3"]
 
@@ -10,7 +11,7 @@
 size = Vector2(60, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxcnd"]
-size = Vector2(60, 32)
+size = Vector2(60, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmnqa"]
 size = Vector2(18, 175.75)
@@ -27,11 +28,13 @@ script = ExtResource("1_cq13f")
 
 [node name="Past" type="Node2D" parent="."]
 
-[node name="Future" type="Node2D" parent="."]
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(177, 87)
+[node name="Background" type="Sprite2D" parent="Past"]
+position = Vector2(178, 88)
+texture = ExtResource("2_wabqi")
 
-[node name="Background_Before" type="Sprite2D" parent="Future"]
+[node name="Future" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Future"]
 position = Vector2(178, 88)
 texture = ExtResource("2_ctcer")
 
@@ -39,7 +42,6 @@ texture = ExtResource("2_ctcer")
 collision_layer = 2
 
 [node name="rubble" type="Sprite2D" parent="Future/Entryway"]
-visible = false
 position = Vector2(178, 88)
 texture = ExtResource("5_d7bd3")
 
@@ -47,11 +49,14 @@ texture = ExtResource("5_d7bd3")
 position = Vector2(177, 7)
 shape = SubResource("RectangleShape2D_8qucy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Entryway"]
-position = Vector2(176, 17)
-shape = SubResource("RectangleShape2D_oxcnd")
+[node name="EntrywayText" type="Area2D" parent="Future"]
+collision_layer = 0
+collision_mask = 8
 
-[node name="EntrywayText" type="StaticBody2D" parent="Future"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/EntrywayText"]
+position = Vector2(176, 10.5)
+shape = SubResource("RectangleShape2D_oxcnd")
+debug_color = Color(0.806313, 0.365183, 0.523813, 0.42)
 
 [node name="Lantern" parent="." instance=ExtResource("2_b355w")]
 position = Vector2(207, 85)
@@ -90,3 +95,5 @@ shape = SubResource("RectangleShape2D_0kydd")
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(233.75, 8)
 shape = SubResource("RectangleShape2D_0kydd")
+
+[connection signal="body_entered" from="Future/EntrywayText" to="." method="_on_entryway_text_body_entered"]
