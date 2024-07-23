@@ -24,7 +24,6 @@ scale = Vector2(0.3, 0.3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(177, 87)
-zoom = Vector2(0.2, 0.2)
 
 [node name="Lantern" parent="." instance=ExtResource("2_b355w")]
 position = Vector2(206, 84)
