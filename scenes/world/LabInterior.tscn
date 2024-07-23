@@ -24,23 +24,24 @@ script = ExtResource("1_cq13f")
 [node name="Future" type="Node2D" parent="."]
 
 [node name="Background_Before" type="Sprite2D" parent="Future"]
-position = Vector2(124.5, 102.5)
+position = Vector2(178, 88)
 texture = ExtResource("2_ctcer")
 
 [node name="rubble" type="Sprite2D" parent="Future"]
-position = Vector2(124.5, 102.5)
+position = Vector2(178, 88)
 texture = ExtResource("5_d7bd3")
 
 [node name="Lantern" parent="." instance=ExtResource("2_b355w")]
-position = Vector2(153.5, 99.5)
+position = Vector2(207, 85)
 scale = Vector2(0.7, 0.7)
 
 [node name="Player" parent="." instance=ExtResource("3_ivq5x")]
-position = Vector2(109.5, 112.5)
+position = Vector2(163, 98)
 scale = Vector2(0.3, 0.3)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(124.5, 102.5)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(50, -33.3333)
+scale = Vector2(3.33333, 3.33333)
 zoom = Vector2(5, 5)
 
 [node name="Walls" type="Node2D" parent="."]
@@ -49,21 +50,21 @@ zoom = Vector2(5, 5)
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(43.5, 104.375)
+position = Vector2(97, 89.875)
 shape = SubResource("RectangleShape2D_fmnqa")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(208, 102.5)
+position = Vector2(261.5, 88)
 shape = SubResource("RectangleShape2D_fmnqa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(128.5, 183.5)
+position = Vector2(182, 169)
 shape = SubResource("RectangleShape2D_qqaro")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(66.25, 22.5)
+position = Vector2(119.75, 8)
 shape = SubResource("RectangleShape2D_0kydd")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(180.25, 22.5)
+position = Vector2(233.75, 8)
 shape = SubResource("RectangleShape2D_0kydd")

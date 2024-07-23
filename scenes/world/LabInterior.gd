@@ -11,13 +11,16 @@ extends Node2D
 @export var DELAY_BEFORE_EARTHQUAKE: float = 1.0
 @export var LANTERN_PICKED_UP: bool=true
 
+# Used so we can pause the player's movements
+var player: Player
+
 enum ShakeType {
 	Random,
 	Noise,
 	Sway
 }
 
-@onready var camera = $Camera2D
+@onready var camera = $Player/Camera2D
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
 @onready var lantern = $Lantern
@@ -45,9 +48,12 @@ func _ready() -> void:
 	rubble.visible = false 
 
 func _on_lantern_interacted(_initiator):
+	player = $Player
+	player.process_mode = Node.PROCESS_MODE_DISABLED
 	if not lantern_interacted:
 		lantern_interacted = true
 		lantern.visible = false
+		lantern.queue_free()
 		earthquake_timer.start()
 
 func _on_earthquake_timer_timeout():
@@ -60,13 +66,16 @@ func start_earthquake():
 	earthquake_active = true
 
 func _process(delta: float) -> void:
+	
 	if !earthquake_active: return
+	
 	earthquake_timer -= delta
 	if earthquake_timer <= 2:
 		switch_background()
 	if earthquake_timer <= 0:
 		earthquake_active = false
 		shake_strength = 0.0
+		player.process_mode = Node.PROCESS_MODE_INHERIT
 	else:
 		shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
 		var shake_offset: Vector2
