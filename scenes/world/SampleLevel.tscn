@@ -14,9 +14,9 @@ size = Vector2(20, 300)
 [node name="SampleLevel" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_04lkc")
+auto_spawn_player = true
 present_music = ExtResource("2_dxfor")
 past_music = ExtResource("3_fjpbc")
-auto_spawn_player = true
 
 [node name="Box" parent="." instance=ExtResource("3_ypf2b")]
 position = Vector2(568, 313)
