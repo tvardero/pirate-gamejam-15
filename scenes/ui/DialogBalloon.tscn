@@ -80,6 +80,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_qq3yp")
 
+[node name="PlayerArt" type="Control" parent="Balloon"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="PlayerSprite" type="Sprite2D" parent="Balloon/PlayerArt"]
+position = Vector2(83, -142)
+texture = ExtResource("4_53ktl")
+centered = false
+
 [node name="Panel" type="Panel" parent="Balloon"]
 clip_children = 2
 layout_mode = 1
@@ -148,12 +163,7 @@ response_template = NodePath("ResponseExample")
 layout_mode = 2
 text = "Response example"
 
-[node name="PlayerSprite" type="Sprite2D" parent="Balloon"]
-position = Vector2(56, 465)
-texture = ExtResource("4_53ktl")
-centered = false
-
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="texture_changed" from="Balloon/PlayerArt/PlayerSprite" to="." method="_on_sprite_texture_changed"]
 [connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
-[connection signal="texture_changed" from="Balloon/PlayerSprite" to="." method="_on_sprite_texture_changed"]
