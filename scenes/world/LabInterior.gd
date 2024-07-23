@@ -7,7 +7,9 @@ extends Node2D
 @export var RANDOM_SHAKE_STRENGTH: float = 30.0
 @export var SHAKE_DECAY_RATE: float = 1.1
 @export var EARTHQUAKE_DURATION: float = 5.0 
+@export var RUBBLE_APPEARS_TIME: float=3.0
 @export var DELAY_BEFORE_EARTHQUAKE: float = 1.0
+@export var LANTERN_PICKED_UP: bool=true
 
 enum ShakeType {
 	Random,
@@ -19,8 +21,7 @@ enum ShakeType {
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
 @onready var lantern = $Lantern
-@onready var background_before = $Background_Before
-@onready var background_after = $Background_After
+@onready var rubble = $Future/rubble
 @onready var earthquake_timer = Timer.new()
 
 var noise_i: float = 0.0
@@ -30,6 +31,7 @@ var earthquake_active: bool = false
 var lantern_interacted: bool = false
 
 func _ready() -> void:
+	DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'start_of_game_text')
 	rand.randomize()
 	noise.seed = rand.randi()
 	noise.frequency = 0.5
@@ -40,7 +42,7 @@ func _ready() -> void:
 	earthquake_timer.connect("timeout", Callable(self, "_on_earthquake_timer_timeout"))
 	
 	lantern.connect("interacted", Callable(self, "_on_lantern_interacted"))
-	background_after.visible = false 
+	rubble.visible = false 
 
 func _on_lantern_interacted(_initiator):
 	if not lantern_interacted:
@@ -58,23 +60,24 @@ func start_earthquake():
 	earthquake_active = true
 
 func _process(delta: float) -> void:
-	if earthquake_active:
-		earthquake_timer -= delta
-		if earthquake_timer <= 0:
-			earthquake_active = false
-			shake_strength = 0.0
-			switch_background()
-		else:
-			shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
-			var shake_offset: Vector2
-			match shake_type:
-				ShakeType.Random:
-					shake_offset = get_random_offset()
-				ShakeType.Noise:
-					shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
-				ShakeType.Sway:
-					shake_offset = get_noise_offset(delta, NOISE_SWAY_SPEED, NOISE_SWAY_STRENGTH)
-			camera.offset = shake_offset
+	if !earthquake_active: return
+	earthquake_timer -= delta
+	if earthquake_timer <= 2:
+		switch_background()
+	if earthquake_timer <= 0:
+		earthquake_active = false
+		shake_strength = 0.0
+	else:
+		shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
+		var shake_offset: Vector2
+		match shake_type:
+			ShakeType.Random:
+				shake_offset = get_random_offset()
+			ShakeType.Noise:
+				shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
+			ShakeType.Sway:
+				shake_offset = get_noise_offset(delta, NOISE_SWAY_SPEED, NOISE_SWAY_STRENGTH)
+		camera.offset = shake_offset
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed
@@ -90,5 +93,4 @@ func get_random_offset() -> Vector2:
 	)
 
 func switch_background():
-	background_before.visible = false
-	background_after.visible = true
+	rubble.visible = true

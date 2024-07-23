@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bna50xgjrlfsg"]
+[gd_scene load_steps=9 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world/LabInterior.gd" id="1_cq13f"]
 [ext_resource type="PackedScene" uid="uid://byp0qbxdwimhg" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
@@ -6,25 +6,64 @@
 [ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="3_ivq5x"]
 [ext_resource type="Texture2D" uid="uid://80emoxw7udaj" path="res://assets/backgrounds/LabRubbleMockup.png" id="5_d7bd3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmnqa"]
+size = Vector2(18, 175.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqaro"]
+size = Vector2(178, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kydd"]
+size = Vector2(56.25, 13.25)
+
 [node name="LabInterior" type="Node2D"]
 position = Vector2(-178, -88)
 script = ExtResource("1_cq13f")
 
-[node name="Background_Before" type="Sprite2D" parent="."]
-position = Vector2(177, 87)
+[node name="Past" type="Node2D" parent="."]
+
+[node name="Future" type="Node2D" parent="."]
+
+[node name="Background_Before" type="Sprite2D" parent="Future"]
+position = Vector2(124.5, 102.5)
 texture = ExtResource("2_ctcer")
 
-[node name="Background_After" type="Sprite2D" parent="."]
-position = Vector2(177, 87)
+[node name="rubble" type="Sprite2D" parent="Future"]
+position = Vector2(124.5, 102.5)
 texture = ExtResource("5_d7bd3")
 
 [node name="Lantern" parent="." instance=ExtResource("2_b355w")]
-position = Vector2(206, 84)
+position = Vector2(153.5, 99.5)
 scale = Vector2(0.7, 0.7)
 
 [node name="Player" parent="." instance=ExtResource("3_ivq5x")]
-position = Vector2(162, 97)
+position = Vector2(109.5, 112.5)
 scale = Vector2(0.3, 0.3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(177, 87)
+position = Vector2(124.5, 102.5)
+zoom = Vector2(5, 5)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(43.5, 104.375)
+shape = SubResource("RectangleShape2D_fmnqa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(208, 102.5)
+shape = SubResource("RectangleShape2D_fmnqa")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(128.5, 183.5)
+shape = SubResource("RectangleShape2D_qqaro")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(66.25, 22.5)
+shape = SubResource("RectangleShape2D_0kydd")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(180.25, 22.5)
+shape = SubResource("RectangleShape2D_0kydd")
