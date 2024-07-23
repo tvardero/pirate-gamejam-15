@@ -40,7 +40,7 @@ size = Vector2(17, 20)
 size = Vector2(10, 75)
 
 [node name="LabExterior" type="Node2D"]
-position = Vector2(160, 80)
+position = Vector2(-1, 0)
 script = ExtResource("1_may8i")
 
 [node name="Past" type="Node2D" parent="."]
@@ -65,7 +65,7 @@ shape = SubResource("RectangleShape2D_avaaw")
 [node name="FenceBottom" type="StaticBody2D" parent="Past/OtherCollisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/FenceBottom"]
-position = Vector2(24, 70)
+position = Vector2(-85, 25)
 shape = SubResource("RectangleShape2D_gnkyw")
 
 [node name="FenceTop" type="StaticBody2D" parent="Past/OtherCollisions"]
@@ -83,7 +83,6 @@ position = Vector2(-161.5, 0)
 shape = SubResource("RectangleShape2D_568ne")
 
 [node name="Future" type="Node2D" parent="."]
-visible = false
 
 [node name="Background" type="Sprite2D" parent="Future"]
 texture = ExtResource("2_pcolr")
@@ -171,12 +170,15 @@ position = Vector2(126.5, -73)
 shape = SubResource("RectangleShape2D_185c2")
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("3_sx54t")]
-position = Vector2(-136, -5)
+position = Vector2(-139, 6)
 id = 3
 
 [node name="SpawnPoint4" parent="." instance=ExtResource("3_sx54t")]
-position = Vector2(151, 4)
+position = Vector2(150, 0)
+id = 5
 
 [node name="SceneTransition" parent="." instance=ExtResource("5_2ics6")]
 position = Vector2(163, -3)
+destination_level = "res://scenes/world/Bridge.tscn"
+spawn_id = 4
 collision_shape = SubResource("RectangleShape2D_ay3fe")

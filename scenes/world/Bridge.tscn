@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6uyrw5eppb2s"]
+[gd_scene load_steps=10 format=3 uid="uid://b6uyrw5eppb2s"]
 
+[ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_77hfr"]
 [ext_resource type="Texture2D" uid="uid://cntjfweqjw1o0" path="res://assets/backgrounds/BridgePastTemp.png" id="2_4vkfo"]
 [ext_resource type="Texture2D" uid="uid://b101211rm1rq2" path="res://assets/backgrounds/BridgeFutureTemp.png" id="2_h3mss"]
+[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_jxdx0"]
+[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_l42oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_of81s"]
 size = Vector2(323, 20)
@@ -9,8 +12,15 @@ size = Vector2(323, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3le00"]
 size = Vector2(20, 60.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm5bs"]
+size = Vector2(10, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vanw0"]
+size = Vector2(10, 75)
+
 [node name="Bridge" type="Node2D"]
 position = Vector2(147, 80)
+script = ExtResource("1_77hfr")
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -40,6 +50,7 @@ texture = ExtResource("2_h3mss")
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Future/OtherCollisions/BridgeEdges"]
+position = Vector2(-1, -3)
 polygon = PackedVector2Array(-135, -161, -136, -150, -136, -113, -112, -113, -111, -76, -146, -74, -146, 19, -3, 5, -19, -27, -34, -44, -34, -75, -64, -75, -61, -112, -39, -112, -31, -127, -41, -143, -59, -168, -129, -170, -135, -159)
 
 [node name="Walls" type="Node2D" parent="."]
@@ -60,13 +71,33 @@ position = Vector2(-316, -28.75)
 shape = SubResource("RectangleShape2D_3le00")
 
 [node name="Right" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(18, -29)
+position = Vector2(21, -25)
 shape = SubResource("RectangleShape2D_3le00")
 
 [node name="Right2" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(18, -154)
+position = Vector2(21, -152)
 shape = SubResource("RectangleShape2D_3le00")
 
 [node name="Left2" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(-316, -154)
 shape = SubResource("RectangleShape2D_3le00")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("4_jxdx0")]
+position = Vector2(-297, -92)
+id = 4
+
+[node name="SceneTransition" parent="." instance=ExtResource("5_l42oa")]
+position = Vector2(17, -90)
+destination_level = "res://scenes/world/Town1.tscn"
+spawn_id = 6
+collision_shape = SubResource("RectangleShape2D_wm5bs")
+
+[node name="SceneTransition2" parent="." instance=ExtResource("5_l42oa")]
+position = Vector2(-311, -92)
+destination_level = "res://scenes/world/LabExterior.tscn"
+spawn_id = 5
+collision_shape = SubResource("RectangleShape2D_vanw0")
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("4_jxdx0")]
+position = Vector2(0, -90)
+id = 7

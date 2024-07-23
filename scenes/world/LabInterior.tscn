@@ -51,7 +51,7 @@ position = Vector2(178, 88)
 texture = ExtResource("5_d7bd3")
 
 [node name="Block" type="CollisionShape2D" parent="Future/Entryway"]
-position = Vector2(177, 7)
+position = Vector2(177, 8)
 shape = SubResource("RectangleShape2D_8qucy")
 
 [node name="EntrywayText" type="Area2D" parent="Future"]
