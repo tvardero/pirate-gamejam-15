@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=15 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://w5yxw3fh3me2" path="res://assets/backgrounds/Town2MapPast.png" id="1_0prr0"]
+[ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
 [ext_resource type="Texture2D" uid="uid://3oc4jq8fwvq5" path="res://assets/backgrounds/Town2MapPresent.png" id="2_rpksn"]
+[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
+[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="5_r8cyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
 size = Vector2(377, 2.5)
@@ -16,7 +19,7 @@ size = Vector2(152, 2.5)
 size = Vector2(13, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt3u"]
-size = Vector2(13, 28.5)
+size = Vector2(13, 40.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpm56"]
 size = Vector2(371, 18)
@@ -24,7 +27,14 @@ size = Vector2(371, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7hin"]
 size = Vector2(13, 344)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48b7o"]
+size = Vector2(10, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8i8g"]
+size = Vector2(10, 50)
+
 [node name="Town2" type="Node2D"]
+script = ExtResource("1_mlm7f")
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -42,7 +52,8 @@ shape = SubResource("RectangleShape2D_3qtw8")
 [node name="SewagePast" type="StaticBody2D" parent="Past/OtherCollisions"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/OtherCollisions/SewagePast"]
-polygon = PackedVector2Array(-190, 100, -124, 101, -36, 109, 10, 89, 79, 93, 107, 88, 122, 94, 141, 89, 184, 90, 185, 100, 157, 100, 139, 99, 123, 103, 107, 102, 96, 97, 85, 102, 52, 101, 18, 98, -35, 119, -70, 118, -141, 109, -174, 114, -198, 114)
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-190, 100, -124, 101, -40, 110, 10, 89, 79, 93, 100, 88, 122, 94, 141, 89, 184, 90, 185, 100, 157, 100, 139, 99, 123, 103, 107, 102, 96, 97, 85, 102, 52, 101, 18, 98, -35, 119, -70, 118, -141, 109, -174, 114, -189, 114)
 
 [node name="Future" type="Node2D" parent="."]
 
@@ -70,7 +81,7 @@ position = Vector2(-185.5, -102.5)
 shape = SubResource("RectangleShape2D_ltllp")
 
 [node name="LeftBottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-186, 87)
+position = Vector2(-186, 92.875)
 shape = SubResource("RectangleShape2D_3vt3u")
 
 [node name="Top" type="CollisionShape2D" parent="Walls"]
@@ -84,3 +95,23 @@ shape = SubResource("RectangleShape2D_xpm56")
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 position = Vector2(187.5, 0)
 shape = SubResource("RectangleShape2D_g7hin")
+
+[node name="SceneTransition" parent="." instance=ExtResource("4_a4xjw")]
+position = Vector2(-185, 14)
+destination_level = "res://scenes/world/Town1.tscn"
+spawn_id = 9
+collision_shape = SubResource("RectangleShape2D_48b7o")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("5_r8cyn")]
+position = Vector2(-170, 14)
+id = 8
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("5_r8cyn")]
+position = Vector2(-165, 137)
+id = 10
+
+[node name="SceneTransition2" parent="." instance=ExtResource("4_a4xjw")]
+position = Vector2(-185, 137)
+destination_level = "res://scenes/world/Town1.tscn"
+spawn_id = 11
+collision_shape = SubResource("RectangleShape2D_y8i8g")

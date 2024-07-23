@@ -209,6 +209,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 radius = 80.0
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
 collision_layer = 11
 collision_mask = 3
 motion_mode = 1
@@ -232,9 +233,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_mkx0j")
-}
 tree_root = SubResource("AnimationNodeStateMachine_3u51c")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_idle = true
@@ -252,3 +250,6 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

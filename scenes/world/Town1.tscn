@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=17 format=3 uid="uid://bsejqbayf2grx"]
 
+[ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://bbn4qblnyxm5t" path="res://assets/backgrounds/Town1MapPast.png" id="1_36obe"]
 [ext_resource type="Texture2D" uid="uid://cciu52u6geixk" path="res://assets/backgrounds/Town1MapPresent.png" id="2_e0hoc"]
+[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
+[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -16,16 +19,29 @@ size = Vector2(119.854, 1.58389)
 size = Vector2(182.124, 1.58389)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g85dm"]
-size = Vector2(14.2946, 91.1833)
+size = Vector2(14.2946, 111.297)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymjfy"]
+size = Vector2(15.9023, 49.1868)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o128w"]
-size = Vector2(16.1226, 104.594)
+size = Vector2(16.1226, 118.774)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6v7c"]
 size = Vector2(20.4643, 34.5852)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33bum"]
+size = Vector2(10, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfwto"]
+size = Vector2(10, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1ufm"]
+size = Vector2(10, 50)
+
 [node name="Town1" type="Node2D"]
 position = Vector2(170.387, 159.972)
+script = ExtResource("1_20k8d")
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -56,7 +72,7 @@ position = Vector2(2.32542, 169.977)
 shape = SubResource("RectangleShape2D_250ur")
 
 [node name="LeftWall" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(-182.321, 110.173)
+position = Vector2(-181.762, 110.313)
 shape = SubResource("RectangleShape2D_xduas")
 
 [node name="OtherCollisions" type="Node2D" parent="."]
@@ -79,14 +95,18 @@ shape = SubResource("RectangleShape2D_e8ify")
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherCollisions/FenceRightEdge"]
-position = Vector2(174.987, -116.029)
+position = Vector2(174.987, -105.971)
 shape = SubResource("RectangleShape2D_g85dm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OtherCollisions/FenceRightEdge"]
+position = Vector2(176.752, 91.5879)
+shape = SubResource("RectangleShape2D_ymjfy")
 
 [node name="FenceLeftEdge" type="StaticBody2D" parent="OtherCollisions"]
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherCollisions/FenceLeftEdge"]
-position = Vector2(-178.037, -112.636)
+position = Vector2(-177.618, -105.826)
 shape = SubResource("RectangleShape2D_o128w")
 
 [node name="Pipe" type="StaticBody2D" parent="OtherCollisions"]
@@ -95,3 +115,33 @@ collision_layer = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherCollisions/Pipe"]
 position = Vector2(128.984, 144.276)
 shape = SubResource("RectangleShape2D_l6v7c")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("4_g5mc5")]
+position = Vector2(-160.247, 5.16734)
+id = 6
+
+[node name="SceneTransition" parent="." instance=ExtResource("5_tnids")]
+position = Vector2(-174.651, 5.21196)
+destination_level = "res://scenes/world/Bridge.tscn"
+spawn_id = 7
+collision_shape = SubResource("RectangleShape2D_33bum")
+
+[node name="SceneTransition2" parent="." instance=ExtResource("5_tnids")]
+position = Vector2(174.401, 8.16992)
+destination_level = "res://scenes/world/Town2.tscn"
+spawn_id = 8
+collision_shape = SubResource("RectangleShape2D_nfwto")
+
+[node name="SceneTransition3" parent="." instance=ExtResource("5_tnids")]
+position = Vector2(174.733, 138.448)
+destination_level = "res://scenes/world/Town2.tscn"
+spawn_id = 10
+collision_shape = SubResource("RectangleShape2D_y1ufm")
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("4_g5mc5")]
+position = Vector2(156.644, 7.36934)
+id = 9
+
+[node name="SpawnPoint3" parent="." instance=ExtResource("4_g5mc5")]
+position = Vector2(155.145, 140.11)
+id = 11
