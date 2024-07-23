@@ -109,9 +109,10 @@ func switch_background():
 	rubble.visible = true
 
 func _on_entryway_text_body_entered(_body):
-	if !lantern_picked_up:
-		DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
-	else:
-		DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'interact_rubble')
+	if WorldState.in_future:
+		if !lantern_picked_up:
+			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
+		else:
+			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'interact_rubble')
 
-	
+		
