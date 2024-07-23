@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bna50xgjrlfsg"]
+
+[ext_resource type="Texture2D" uid="uid://c7etgwe8fotj1" path="res://assets/backgrounds/LabInterior.png" id="1_4icku"]
+[ext_resource type="Script" path="res://scenes/world/LabInterior.gd" id="1_cq13f"]
+[ext_resource type="PackedScene" uid="uid://byp0qbxdwimhg" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
+[ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="3_ivq5x"]
+[ext_resource type="Texture2D" uid="uid://ddc04c2kcp2ky" path="res://assets/backgrounds/LabInteriorAfter.png" id="5_0geny"]
+
+[node name="LabInterior" type="Node2D"]
+position = Vector2(-178, -88)
+script = ExtResource("1_cq13f")
+
+[node name="Player" parent="." instance=ExtResource("3_ivq5x")]
+position = Vector2(194, -115)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(177, 87)
+zoom = Vector2(0.2, 0.2)
+
+[node name="Background_Before" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(179, 86)
+scale = Vector2(3.6, 4.03125)
+texture = ExtResource("1_4icku")
+
+[node name="Lantern" parent="." instance=ExtResource("2_b355w")]
+position = Vector2(206, 84)
+
+[node name="Background_After" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(177, 91)
+scale = Vector2(3.66563, 4.10625)
+texture = ExtResource("5_0geny")
