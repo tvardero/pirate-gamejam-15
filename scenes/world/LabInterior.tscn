@@ -15,7 +15,6 @@ position = Vector2(194, -115)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(177, 87)
-zoom = Vector2(0.2, 0.2)
 
 [node name="Background_Before" type="Sprite2D" parent="."]
 z_index = -1
