@@ -6,8 +6,8 @@ extends Level
 @export var NOISE_SWAY_STRENGTH: float = 10.0
 @export var RANDOM_SHAKE_STRENGTH: float = 30.0
 @export var SHAKE_DECAY_RATE: float = 1.1
-@export var EARTHQUAKE_DURATION: float = 5.0 
-@export var DELAY_BEFORE_EARTHQUAKE: float = 1.0
+@export var EARTHQUAKE_DURATION: float = 6.0 
+@export var DELAY_BEFORE_EARTHQUAKE: float = 2.0
 @export var lantern_picked_up: bool=false
 @export var present_music: AudioStream
 @export var past_music: AudioStream
@@ -57,6 +57,7 @@ func _on_lantern_interacted(_initiator):
 		lantern.queue_free()
 		await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
 		lantern_picked_up = true
+		$AudioStreamPlayer2D.play()
 		earthquake_timer.start()
 
 func _on_earthquake_timer_timeout():
@@ -108,7 +109,6 @@ func switch_background():
 	rubble.visible = true
 
 func _on_entryway_text_body_entered(_body):
-	print(lantern_picked_up)
 	if !lantern_picked_up:
 		DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
 	else:

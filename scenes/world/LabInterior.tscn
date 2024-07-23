@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bna50xgjrlfsg"]
+[gd_scene load_steps=13 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world/LabInterior.gd" id="1_cq13f"]
 [ext_resource type="PackedScene" uid="uid://byp0qbxdwimhg" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dymu4oqe5v6r6" path="res://assets/backgrounds/LabPastMockup.png" id="2_wabqi"]
 [ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="3_ivq5x"]
 [ext_resource type="Texture2D" uid="uid://80emoxw7udaj" path="res://assets/backgrounds/LabRubbleMockup.png" id="5_d7bd3"]
+[ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="7_4tmci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qucy"]
 size = Vector2(60, 14)
@@ -95,5 +96,8 @@ shape = SubResource("RectangleShape2D_0kydd")
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(233.75, 8)
 shape = SubResource("RectangleShape2D_0kydd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_4tmci")
 
 [connection signal="body_entered" from="Future/EntrywayText" to="." method="_on_entryway_text_body_entered"]
