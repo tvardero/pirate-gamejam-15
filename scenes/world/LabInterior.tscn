@@ -18,12 +18,13 @@ texture = ExtResource("2_ctcer")
 position = Vector2(177, 87)
 texture = ExtResource("5_d7bd3")
 
+[node name="Lantern" parent="." instance=ExtResource("2_b355w")]
+position = Vector2(206, 84)
+scale = Vector2(0.7, 0.7)
+
 [node name="Player" parent="." instance=ExtResource("3_ivq5x")]
 position = Vector2(162, 97)
 scale = Vector2(0.3, 0.3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(177, 87)
-
-[node name="Lantern" parent="." instance=ExtResource("2_b355w")]
-position = Vector2(206, 84)
