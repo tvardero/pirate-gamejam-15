@@ -18,7 +18,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (handled): get_tree().root.set_input_as_handled();
 
 func _physics_process(_delta) -> void:
-	if DialogState.balloon: return
+	if DialogState.balloon:
+		player.input_movement_vector = Vector2.ZERO
+		return
 	
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down", 0.1);
 	player.input_movement_vector = input_vector.normalized();
