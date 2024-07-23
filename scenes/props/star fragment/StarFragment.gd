@@ -9,4 +9,4 @@ func _ready():
 
 
 func _on_interactable_interacted(_initiator):
-	DialogState.start_dialog(load('res://scenes/dialogue/Test.dialogue'))
+	pass
