@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
-[ext_resource type="Texture2D" uid="uid://bbn4qblnyxm5t" path="res://assets/backgrounds/Town1MapPast.png" id="1_36obe"]
-[ext_resource type="Texture2D" uid="uid://cciu52u6geixk" path="res://assets/backgrounds/Town1MapPresent.png" id="2_e0hoc"]
+[ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
+[ext_resource type="Texture2D" uid="uid://ds0hfxokwlwp" path="res://assets/sprites/bg/lab-03/Town1MapPresent.png" id="2_e0hoc"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 [ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]

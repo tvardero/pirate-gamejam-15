@@ -1,10 +1,11 @@
 [gd_scene load_steps=39 format=3 uid="uid://pg6vmturro7f"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/Player.gd" id="1_kqidl"]
-[ext_resource type="PackedScene" uid="uid://b0it2xtiiufrc" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
-[ext_resource type="Texture2D" uid="uid://cddm27gvnqo38" path="res://assets/player/player-spritesheet.png" id="3_0xshx"]
+[ext_resource type="PackedScene" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
+[ext_resource type="Texture2D" uid="uid://cddm27gvnqo38" path="res://assets/sprites/player/player-spritesheet.png" id="3_hrt3o"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wpj78"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7svyb"]
+size = Vector2(14, 10)
 
 [sub_resource type="Animation" id="Animation_57qwd"]
 length = 0.001
@@ -537,20 +538,19 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 radius = 20.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 11
-collision_mask = 3
+collision_layer = 10
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_kqidl")
 
 [node name="PlayerInputController" parent="." instance=ExtResource("2_6k1m8")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_wpj78")
+shape = SubResource("RectangleShape2D_7svyb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -17)
-texture = ExtResource("3_0xshx")
+texture = ExtResource("3_hrt3o")
 hframes = 10
 vframes = 10
 
@@ -566,8 +566,8 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_idle = true
 parameters/conditions/is_walking = false
 parameters/conditions/lantern = false
-parameters/idle/blend_position = Vector2(-0.5472, 0.251799)
-parameters/lantern/blend_position = -0.998498
+parameters/idle/blend_position = Vector2(0, 0)
+parameters/lantern/blend_position = 0.0
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="InteractionArea" type="Area2D" parent="."]
