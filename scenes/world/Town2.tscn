@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=20 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://w5yxw3fh3me2" path="res://assets/backgrounds/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
 [ext_resource type="Texture2D" uid="uid://3oc4jq8fwvq5" path="res://assets/backgrounds/Town2MapPresent.png" id="2_rpksn"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="4_4t400"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
+[ext_resource type="Script" path="res://scenes/props/newspaper/Newspaper.gd" id="4_jpkcw"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="5_r8cyn"]
+[ext_resource type="Texture2D" uid="uid://ce3leum3h8rl" path="res://assets/objects/Newspaper.png" id="5_y7edv"]
 [ext_resource type="PackedScene" uid="uid://dvlgtq5e01t5u" path="res://scenes/props/house/partygoers_house.tscn" id="6_wv00r"]
 [ext_resource type="Texture2D" uid="uid://b5rvldv08mg1u" path="res://assets/backgrounds/Housecrack.png" id="8_6js3d"]
 
@@ -75,6 +78,15 @@ shape = SubResource("RectangleShape2D_aiyby")
 position = Vector2(107, -121.25)
 shape = SubResource("RectangleShape2D_pdwao")
 
+[node name="Newspaper" type="Node2D" parent="Future"]
+script = ExtResource("4_jpkcw")
+
+[node name="Interactable" parent="Future/Newspaper" instance=ExtResource("4_4t400")]
+scale = Vector2(0.095, 0.095)
+
+[node name="Sprite2D" type="Sprite2D" parent="Future/Newspaper"]
+texture = ExtResource("5_y7edv")
+
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 3
 
@@ -105,7 +117,7 @@ spawn_id = 9
 collision_shape = SubResource("RectangleShape2D_48b7o")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("5_r8cyn")]
-position = Vector2(-170, 14)
+position = Vector2(-161, 13)
 id = 8
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("5_r8cyn")]
@@ -146,3 +158,5 @@ offset_bottom = 1019.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_6js3d")
+
+[connection signal="interacted" from="Future/Newspaper/Interactable" to="Future/Newspaper" method="_on_interactable_interacted"]

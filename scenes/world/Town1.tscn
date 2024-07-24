@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cciu52u6geixk" path="res://assets/backgrounds/Town1MapPresent.png" id="2_e0hoc"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
-[ext_resource type="Script" path="res://scenes/props/gate/town1_gate/GateTown1.gd" id="6_jjptr"]
+[ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
+[ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -39,9 +40,6 @@ size = Vector2(10, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1ufm"]
 size = Vector2(10, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjgfu"]
-size = Vector2(42, 9)
 
 [node name="Town1" type="Node2D"]
 position = Vector2(170.387, 159.972)
@@ -121,7 +119,7 @@ position = Vector2(128.984, 144.276)
 shape = SubResource("RectangleShape2D_l6v7c")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("4_g5mc5")]
-position = Vector2(-160.247, 5.16734)
+position = Vector2(-150.387, 5.028)
 id = 6
 
 [node name="SceneTransition" parent="." instance=ExtResource("5_tnids")]
@@ -143,23 +141,15 @@ spawn_id = 10
 collision_shape = SubResource("RectangleShape2D_y1ufm")
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("4_g5mc5")]
-position = Vector2(156.644, 7.36934)
+position = Vector2(148.613, 8.028)
 id = 9
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(155.145, 140.11)
 id = 11
 
-[node name="Gate" type="StaticBody2D" parent="."]
-position = Vector2(-31.387, -88.972)
-script = ExtResource("6_jjptr")
+[node name="Town 1 Gate" parent="." instance=ExtResource("8_gsgk6")]
+position = Vector2(-51.387, -96.972)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_vjgfu")
-
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Policeman" parent="." instance=ExtResource("7_q1mcf")]
+position = Vector2(-35.387, -71.972)

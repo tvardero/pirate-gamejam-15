@@ -7,7 +7,8 @@ var player_exists: bool:
 	get: return player != null;
 	
 var policeman_moved: bool = false
-signal policeman_moved_changed
+var town1_gate_open: bool = false
+var newspaper_picked_up: bool = false
 
 func use_lantern() -> void:
 	set_time(!in_future)
@@ -48,7 +49,4 @@ func get_player() -> Player:
 		if child is Player: return child;
 	
 	return null;
-	
-func move_policeman():
-	policeman_moved = true
-	emit_signal("policeman_moved_changed", policeman_moved)
+
