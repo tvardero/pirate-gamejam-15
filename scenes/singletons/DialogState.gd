@@ -20,13 +20,10 @@ func _ready():
 		player_emote_textures[file] = texture
 	print(player_emote_textures)
 
-
-
 func create_balloon() -> DialogBalloon:
 	balloon = balloon_packed.instantiate()
 	WorldState.get_current_level().add_child(balloon)
 	return balloon
-
 
 func start_dialog(dialogue_resource: DialogueResource, dialogue_start: String = 'Start'):
 	create_balloon()

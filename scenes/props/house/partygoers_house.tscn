@@ -1,24 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvlgtq5e01t5u"]
+[gd_scene load_steps=7 format=3 uid="uid://dvlgtq5e01t5u"]
 
 [ext_resource type="Script" path="res://scenes/props/house/partygoers_house.gd" id="1_2knma"]
-[ext_resource type="Texture2D" uid="uid://cuith3ape2cbk" path="res://assets/objects/HouseTemp.png" id="1_nguyv"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="2_3vj0r"]
+[ext_resource type="Texture2D" uid="uid://mtwekrm7eqem" path="res://assets/objects/house/HouseTemp.png" id="2_oicrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0od1a"]
 size = Vector2(49, 65)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugj1f"]
+size = Vector2(30, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l34gk"]
+size = Vector2(10, 60)
+
 [node name="PartygoersHouse" type="StaticBody2D"]
+collision_layer = 3
 script = ExtResource("1_2knma")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_nguyv")
+texture = ExtResource("2_oicrn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_0od1a")
 
 [node name="Interactable" parent="." instance=ExtResource("2_3vj0r")]
-position = Vector2(24, -1)
-scale = Vector2(0.12, 0.12)
+position = Vector2(2, 32)
+shape = SubResource("RectangleShape2D_ugj1f")
+
+[node name="WrongSide" parent="." instance=ExtResource("2_3vj0r")]
+position = Vector2(-25, -2)
+shape = SubResource("RectangleShape2D_l34gk")
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="interacted" from="WrongSide" to="." method="_on_wrong_side_interacted"]

@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=21 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
 [ext_resource type="Texture2D" uid="uid://ds0hfxokwlwp" path="res://assets/sprites/bg/lab-03/Town1MapPresent.png" id="2_e0hoc"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
+[ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
+[ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
+[ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
+[ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -117,7 +121,7 @@ position = Vector2(128.984, 144.276)
 shape = SubResource("RectangleShape2D_l6v7c")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("4_g5mc5")]
-position = Vector2(-160.247, 5.16734)
+position = Vector2(-150.387, 5.028)
 id = 6
 
 [node name="SceneTransition" parent="." instance=ExtResource("5_tnids")]
@@ -139,9 +143,21 @@ spawn_id = 10
 collision_shape = SubResource("RectangleShape2D_y1ufm")
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("4_g5mc5")]
-position = Vector2(156.644, 7.36934)
+position = Vector2(148.613, 8.028)
 id = 9
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(155.145, 140.11)
 id = 11
+
+[node name="Town 1 Gate" parent="." instance=ExtResource("8_gsgk6")]
+position = Vector2(-51.387, -96.972)
+
+[node name="Policeman" parent="." instance=ExtResource("7_q1mcf")]
+position = Vector2(-35.387, -71.972)
+
+[node name="Partygoer" parent="." instance=ExtResource("9_ud5is")]
+position = Vector2(-68.0708, 94.0637)
+
+[node name="Clubhouse" parent="." instance=ExtResource("10_phmbm")]
+position = Vector2(18.0122, 46.6895)

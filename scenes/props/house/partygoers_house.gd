@@ -17,8 +17,12 @@ func _ready():
 		interactable.connect("interacted", Callable(self, "_on_interactable_interacted"))
 
 func _on_interactable_interacted(initiator):
-	if initiator is Node2D:
-		show_overlay()
+	if initiator is Player:
+		if WorldState.in_future:
+			show_overlay()
+			WorldState.password_found = true
+		else:
+			DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'try_partygoers_house_past')
 
 func show_overlay():
 	if canvas_layer:
@@ -33,3 +37,12 @@ func hide_overlay():
 	if canvas_layer:
 		canvas_layer.visible = false
 		overlay_visible = false
+
+
+
+func _on_wrong_side_interacted(initiator):
+	if initiator is Player:
+		if WorldState.in_future:
+			DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'try_partygoers_house_future')
+		else:
+			DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'try_partygoers_house_past')

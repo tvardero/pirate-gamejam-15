@@ -6,6 +6,10 @@ var disable_movement: bool = false;
 var player: Player = null;
 var player_exists: bool:
 	get: return player != null;
+	
+var policeman_moved: bool = false
+var town1_gate_open: bool = false
+var newspaper_picked_up: bool = false
 
 func use_lantern() -> bool:
 	if !lantern_unlocked: return false;
