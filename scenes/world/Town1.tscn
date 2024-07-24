@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=17 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://bbn4qblnyxm5t" path="res://assets/backgrounds/Town1MapPast.png" id="1_36obe"]
 [ext_resource type="Texture2D" uid="uid://cciu52u6geixk" path="res://assets/backgrounds/Town1MapPresent.png" id="2_e0hoc"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
-[ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="6_ou1bb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -146,6 +145,3 @@ id = 9
 [node name="SpawnPoint3" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(155.145, 140.11)
 id = 11
-
-[node name="Player" parent="." instance=ExtResource("6_ou1bb")]
-position = Vector2(-30.387, 5.028)

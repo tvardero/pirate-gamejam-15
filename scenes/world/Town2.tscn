@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=17 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://w5yxw3fh3me2" path="res://assets/backgrounds/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="5_r8cyn"]
 [ext_resource type="PackedScene" uid="uid://dvlgtq5e01t5u" path="res://scenes/props/house/partygoers_house.tscn" id="6_wv00r"]
-[ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="7_4kkcg"]
 [ext_resource type="Texture2D" uid="uid://b5rvldv08mg1u" path="res://assets/backgrounds/Housecrack.png" id="8_6js3d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
@@ -122,9 +121,6 @@ collision_shape = SubResource("RectangleShape2D_y8i8g")
 [node name="PartygoersHouse" parent="." instance=ExtResource("6_wv00r")]
 position = Vector2(67, 8)
 canvas_layer_path = NodePath("../CanvasLayer")
-
-[node name="Player" parent="." instance=ExtResource("7_4kkcg")]
-position = Vector2(-84, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
