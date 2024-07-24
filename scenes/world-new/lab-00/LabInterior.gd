@@ -57,10 +57,7 @@ func _on_lantern_interacted(_initiator):
 	
 	await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
 
-	await get_tree().create_timer(500).timeout;
 	player.direction = Vector2.UP;
-	
-	await get_tree().create_timer(500).timeout;
 	$AudioStreamPlayer2D.play()
 	earthquake_timer.start()
 
