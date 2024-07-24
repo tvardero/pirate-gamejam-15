@@ -10,6 +10,7 @@ var _direction: Vector2 = Vector2.ZERO;
 @onready var _interaction_area: Area2D = $"InteractionArea";
 @onready var _animation_tree: AnimationTree = $"AnimationTree";
 @onready var _animation_player: AnimationPlayer = $"AnimationPlayer";
+@onready var camera: Camera2D = $"Camera2D";
 
 var direction: Vector2:
 	get: return _direction;
