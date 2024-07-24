@@ -22,7 +22,7 @@ func _ready():
 
 func create_balloon() -> DialogBalloon:
 	balloon = balloon_packed.instantiate()
-	get_tree().current_scene.add_child(balloon)
+	WorldState.get_current_level().add_child(balloon)
 	return balloon
 
 func start_dialog(dialogue_resource: DialogueResource, dialogue_start: String = 'Start'):
