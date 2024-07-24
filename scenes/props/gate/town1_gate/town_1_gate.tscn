@@ -16,6 +16,7 @@ size = Vector2(13, 40)
 script = ExtResource("1_coc2l")
 
 [node name="Gate Closed" type="StaticBody2D" parent="."]
+collision_layer = 3
 
 [node name="Interactable" parent="Gate Closed" instance=ExtResource("2_fmj3i")]
 position = Vector2(20, 12)
@@ -30,6 +31,7 @@ offset_right = 40.0
 offset_bottom = 13.0
 
 [node name="Gate Open" type="StaticBody2D" parent="."]
+collision_layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="Gate Open"]
 offset_right = 40.0

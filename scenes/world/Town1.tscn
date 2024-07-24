@@ -46,6 +46,7 @@ size = Vector2(10, 50)
 [node name="Town1" type="Node2D"]
 position = Vector2(170.387, 159.972)
 script = ExtResource("1_20k8d")
+auto_spawn_player = true
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -160,4 +161,4 @@ position = Vector2(-35.387, -71.972)
 position = Vector2(-68.0708, 94.0637)
 
 [node name="Clubhouse" parent="." instance=ExtResource("10_phmbm")]
-position = Vector2(18.0122, 46.6895)
+position = Vector2(43.613, 72.028)
