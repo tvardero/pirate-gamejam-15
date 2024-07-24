@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://behudrsulwn3"
-path="res://.godot/imported/player-atlas.png-19e3ca552009b296f277fdd4a0f8b298.ctex"
+uid="uid://swo3y2waj0aa"
+path="res://.godot/imported/Pull_out_lantern-10.png-23395caf1ad7247ee63570bba7827d95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/player-atlas.png"
-dest_files=["res://.godot/imported/player-atlas.png-19e3ca552009b296f277fdd4a0f8b298.ctex"]
+source_file="res://assets/player/lantern/Pull_out_lantern-10.png"
+dest_files=["res://.godot/imported/Pull_out_lantern-10.png-23395caf1ad7247ee63570bba7827d95.ctex"]
 
 [params]
 
