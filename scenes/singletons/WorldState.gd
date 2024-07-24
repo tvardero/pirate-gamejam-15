@@ -10,6 +10,7 @@ var player_exists: bool:
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
+var password_found: bool = false
 
 func use_lantern() -> bool:
 	if !lantern_unlocked: return false;
