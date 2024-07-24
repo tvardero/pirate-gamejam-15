@@ -33,3 +33,6 @@ func find_spawnpoint(spawn_id: int) -> SpawnPoint:
 		if child is SpawnPoint&&child.id == spawn_id: return child;
 
 	return null;
+
+func _on_button_pressed():
+	WorldState.move_policeman()

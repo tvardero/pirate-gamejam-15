@@ -5,6 +5,9 @@ var disable_movement: bool = false;
 var player: Player = null;
 var player_exists: bool:
 	get: return player != null;
+	
+var policeman_moved: bool = false
+signal policeman_moved_changed
 
 func use_lantern() -> void:
 	set_time(!in_future)
@@ -45,3 +48,7 @@ func get_player() -> Player:
 		if child is Player: return child;
 	
 	return null;
+	
+func move_policeman():
+	policeman_moved = true
+	emit_signal("policeman_moved_changed", policeman_moved)

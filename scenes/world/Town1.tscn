@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=19 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://bbn4qblnyxm5t" path="res://assets/backgrounds/Town1MapPast.png" id="1_36obe"]
 [ext_resource type="Texture2D" uid="uid://cciu52u6geixk" path="res://assets/backgrounds/Town1MapPresent.png" id="2_e0hoc"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
+[ext_resource type="Script" path="res://scenes/props/gate/town1_gate/GateTown1.gd" id="6_jjptr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -38,6 +39,9 @@ size = Vector2(10, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1ufm"]
 size = Vector2(10, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjgfu"]
+size = Vector2(42, 9)
 
 [node name="Town1" type="Node2D"]
 position = Vector2(170.387, 159.972)
@@ -145,3 +149,17 @@ id = 9
 [node name="SpawnPoint3" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(155.145, 140.11)
 id = 11
+
+[node name="Gate" type="StaticBody2D" parent="."]
+position = Vector2(-31.387, -88.972)
+script = ExtResource("6_jjptr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_vjgfu")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
