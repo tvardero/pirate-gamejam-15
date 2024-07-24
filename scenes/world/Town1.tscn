@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=21 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 [ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
 [ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
+[ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
+[ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -153,3 +155,9 @@ position = Vector2(-51.387, -96.972)
 
 [node name="Policeman" parent="." instance=ExtResource("7_q1mcf")]
 position = Vector2(-35.387, -71.972)
+
+[node name="Partygoer" parent="." instance=ExtResource("9_ud5is")]
+position = Vector2(-68.0708, 94.0637)
+
+[node name="Clubhouse" parent="." instance=ExtResource("10_phmbm")]
+position = Vector2(18.0122, 46.6895)
