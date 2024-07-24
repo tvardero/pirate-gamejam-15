@@ -4,12 +4,15 @@ extends Node
 @export var disable_movement: bool = false;
 var player: Player;
 
+var _is_disabled: bool:
+	get: return disable_movement||WorldState.disable_movement||DialogState.balloon;
+
 func _ready():
 	player = get_parent() as Player;
 
 # process keyboard/mouse/gamepad inputs
 func _unhandled_input(event: InputEvent) -> void:
-	if disable_movement||WorldState.disable_movement: return
+	if _is_disabled: return
 	
 	var handled: bool = false;
 	
@@ -22,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (handled): get_tree().root.set_input_as_handled();
 
 func _physics_process(_delta) -> void:
-	if disable_movement||WorldState.disable_movement:
+	if _is_disabled:
 		player.input_movement_vector = Vector2.ZERO;
 		return
 	
