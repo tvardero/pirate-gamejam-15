@@ -20,6 +20,8 @@ func _ready():
 func _on_interactable_interacted(initiator):
 	if WorldState.policeman_moved == true:
 		if initiator is Node2D:
+			SoundPlayer.play_sound(load('res://assets/sounds/gate/gate.wav'))
+			await get_tree().create_timer(1.0).timeout
 			collision_shape_closed.disabled = true
 			collision_shape_open.disabled = false
 			gate_closed.visible = false
