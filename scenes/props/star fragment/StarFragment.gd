@@ -6,3 +6,7 @@ extends StaticBody2D
 func _ready():
 	var sound_player = SoundPlayer.play_sound2D(sfx, position)
 	sound_player.max_distance = 300
+
+
+func _on_interactable_interacted(_initiator):
+	pass

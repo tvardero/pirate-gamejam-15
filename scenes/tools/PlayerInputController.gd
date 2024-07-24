@@ -22,7 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (handled): get_tree().root.set_input_as_handled();
 
 func _physics_process(_delta) -> void:
-	if disable_movement||WorldState.disable_movement: 
+	if disable_movement||WorldState.disable_movement:
 		player.input_movement_vector = Vector2.ZERO;
 		return
 	

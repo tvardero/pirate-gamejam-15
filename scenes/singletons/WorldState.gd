@@ -1,6 +1,6 @@
 extends Node
 
-var in_future: bool = false;
+var in_future: bool = true;
 var disable_movement: bool = false;
 
 func use_lantern() -> void:
@@ -13,7 +13,7 @@ func set_time(to_future: bool) -> void:
 
 func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_direction: Vector2):
 	var level = destination.instantiate();
-	if !(level is Level): 
+	if !(level is Level):
 		assert(false, "Invalid destination scene provided, should extend class 'Level'");
 
 	level.spawn_player_at(spawn_id, player_direction);

@@ -9,8 +9,6 @@ extends Level
 @export var EARTHQUAKE_DURATION: float = 6.0 
 @export var DELAY_BEFORE_EARTHQUAKE: float = 2.0
 @export var lantern_picked_up: bool=false
-@export var present_music: AudioStream
-@export var past_music: AudioStream
 
 # Used so we can pause the player's movements
 var player: Player
