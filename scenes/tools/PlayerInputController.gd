@@ -1,13 +1,17 @@
-class_name InputController
+class_name PlayerInputController
 extends Node
 
-@export var player: Player = null;
+@export var disable_movement: bool = false;
+var player: Player;
+
+func _ready():
+	player = get_parent() as Player;
 
 # process keyboard/mouse/gamepad inputs
 func _unhandled_input(event: InputEvent) -> void:
-	var handled: bool = false;
+	if disable_movement||WorldState.disable_movement: return
 	
-	if DialogState.balloon: return
+	var handled: bool = false;
 	
 	handled = handled||process_movement_input_events(event);
 	handled = handled||process_lantern_input_event(event);
@@ -18,8 +22,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (handled): get_tree().root.set_input_as_handled();
 
 func _physics_process(_delta) -> void:
-	if DialogState.balloon:
-		player.input_movement_vector = Vector2.ZERO
+	if disable_movement||WorldState.disable_movement:
+		player.input_movement_vector = Vector2.ZERO;
 		return
 	
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down", 0.1);
@@ -31,7 +35,7 @@ func process_movement_input_events(event: InputEvent) -> bool:
 
 func process_lantern_input_event(event: InputEvent) -> bool:
 	if !event.is_action("lantern"): return false;
-	if !event.is_echo()&&event.is_pressed(): WorldState.use_lantern();
+	if !event.is_echo()&&event.is_pressed(): player.use_lantern();
 	return true;
 
 func process_interaction_input_event(event: InputEvent) -> bool:
