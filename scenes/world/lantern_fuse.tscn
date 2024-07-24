@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckmoiew8h0nex"]
+
+[ext_resource type="Texture2D" uid="uid://c3guuau5a5jq7" path="res://assets/backgrounds/LanternCloseUp.png" id="1_avyua"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star fragment/StarFragment.tscn" id="2_qhmkj"]
+
+[node name="LanternFuse" type="Node2D"]
+
+[node name="LanternCloseUp" type="Sprite2D" parent="."]
+texture = ExtResource("1_avyua")
+
+[node name="StarFragment" parent="." instance=ExtResource("2_qhmkj")]
+position = Vector2(-72, -4)
