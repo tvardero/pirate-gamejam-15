@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8h3xg7k05qtw"]
+[gd_scene load_steps=9 format=3 uid="uid://blq8fl2hc36h0"]
 
 [ext_resource type="Script" path="res://scenes/world/SampleLevel.gd" id="1_04lkc"]
 [ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_dxfor"]

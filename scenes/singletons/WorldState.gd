@@ -1,6 +1,7 @@
 extends Node
 
 var in_future: bool = false;
+var disable_movement: bool = false;
 
 func use_lantern() -> void:
 	set_time(!in_future)
