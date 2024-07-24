@@ -30,9 +30,11 @@ func create_balloon() -> DialogBalloon:
 
 func start_dialog(dialogue_resource: DialogueResource, dialogue_start: String = 'Start'):
 	create_balloon()
+	WorldState.disable_movement = true;
 	balloon.start(dialogue_resource, dialogue_start)
 	await dialogue_manager.dialogue_ended
 	balloon = null
+	WorldState.disable_movement = false;
 
 # For creating dialogue lines on the fly
 func start_from_text(text: String):

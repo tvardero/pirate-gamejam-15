@@ -18,13 +18,17 @@ var direction: Vector2:
 var _sprint_to_walk_ratio: float:
 	get: return sprint_speed / walk_speed;
 
+func use_lantern():
+	WorldState.use_lantern();
+	_animation_tree["parameters/conditions/lantern"] = true;
+
 func _physics_process(_delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
 	velocity = input_movement_vector * multiplier;
 	move_and_collide(velocity);
 	_set_animations();
 
-func _ready() :
+func _ready():
 	_set_direction(_direction);
 
 func try_interact() -> Node2D:
@@ -58,6 +62,7 @@ func _set_animations():
 func _set_direction(value: Vector2):
 	_direction = value;
 
-	if !_animation_tree: return;
-	_animation_tree["parameters/idle/blend_position"] = _direction.x;
-	_animation_tree["parameters/walking/blend_position"] = _direction.x;
+	if !_animation_tree: return ;
+	_animation_tree["parameters/idle/blend_position"] = _direction;
+	_animation_tree["parameters/walk/blend_position"] = _direction;
+	_animation_tree["parameters/lantern/blend_position"] = _direction.x;
