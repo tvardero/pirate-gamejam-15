@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://b6uyrw5eppb2s"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_77hfr"]
-[ext_resource type="Texture2D" uid="uid://cntjfweqjw1o0" path="res://assets/backgrounds/BridgePastTemp.png" id="2_4vkfo"]
-[ext_resource type="Texture2D" uid="uid://b101211rm1rq2" path="res://assets/backgrounds/BridgeFutureTemp.png" id="2_h3mss"]
+[ext_resource type="Texture2D" uid="uid://d18sk7ksu5dfw" path="res://assets/sprites/bg/lab-02/BridgePastTemp.png" id="2_4vkfo"]
+[ext_resource type="Texture2D" uid="uid://d1wqwubhfoq26" path="res://assets/sprites/bg/lab-02/BridgeFutureTemp.png" id="2_h3mss"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_jxdx0"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_l42oa"]
 

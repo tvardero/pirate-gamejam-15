@@ -19,8 +19,8 @@ var _sprint_to_walk_ratio: float:
 	get: return sprint_speed / walk_speed;
 
 func use_lantern():
-	WorldState.use_lantern();
-	_animation_tree["parameters/conditions/lantern"] = true;
+	var success = WorldState.use_lantern();
+	if success:	_animation_tree["parameters/conditions/lantern"] = true;
 
 func _physics_process(_delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
