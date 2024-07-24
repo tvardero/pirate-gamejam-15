@@ -9,7 +9,7 @@ var player_emote_textures: Dictionary = {}
 
 func _ready():
 	# Load all player emote sprites
-	var player_emote_dir = "res://assets/player/emotes"
+	var player_emote_dir = "res://assets/sprites/player/emotes"
 	var files = DirAccess.open(player_emote_dir).get_files()
 	for file in files:
 		if file.ends_with(".import"):

@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world/LabInterior.gd" id="1_cq13f"]
-[ext_resource type="PackedScene" uid="uid://byp0qbxdwimhg" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
-[ext_resource type="Texture2D" uid="uid://be61mpgliitlj" path="res://assets/backgrounds/LabMockup.png" id="2_ctcer"]
-[ext_resource type="Texture2D" uid="uid://dymu4oqe5v6r6" path="res://assets/backgrounds/LabPastMockup.png" id="2_wabqi"]
+[ext_resource type="PackedScene" uid="uid://bwpwey6vpux15" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
+[ext_resource type="Texture2D" uid="uid://b8u2u6uhukwwm" path="res://assets/sprites/bg/lab-00/LabMockup.png" id="2_ctcer"]
+[ext_resource type="Texture2D" uid="uid://cgsl5f2ykuxxq" path="res://assets/sprites/bg/lab-00/LabPastMockup.png" id="2_wabqi"]
 [ext_resource type="PackedScene" uid="uid://pg6vmturro7f" path="res://scenes/characters/player/Player.tscn" id="3_ivq5x"]
-[ext_resource type="Texture2D" uid="uid://80emoxw7udaj" path="res://assets/backgrounds/LabRubbleMockup.png" id="5_d7bd3"]
+[ext_resource type="Texture2D" uid="uid://cx6h262xlyiel" path="res://assets/sprites/bg/lab-00/LabRubbleMockup.png" id="5_d7bd3"]
 [ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="7_4tmci"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="7_ogvsg"]
 

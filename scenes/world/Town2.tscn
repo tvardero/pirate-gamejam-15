@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://ndutnk77cj2o"]
 
-[ext_resource type="Texture2D" uid="uid://w5yxw3fh3me2" path="res://assets/backgrounds/Town2MapPast.png" id="1_0prr0"]
+[ext_resource type="Texture2D" uid="uid://cxs04nxi5tr4n" path="res://assets/sprites/bg/lab-04/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
-[ext_resource type="Texture2D" uid="uid://3oc4jq8fwvq5" path="res://assets/backgrounds/Town2MapPresent.png" id="2_rpksn"]
+[ext_resource type="Texture2D" uid="uid://bhlk0gxhkwl4f" path="res://assets/sprites/bg/lab-04/Town2MapPresent.png" id="2_rpksn"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="5_r8cyn"]
 
