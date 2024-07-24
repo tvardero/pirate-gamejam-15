@@ -45,6 +45,8 @@ func _ready() -> void:
 	earthquake_timer.one_shot = true
 	earthquake_timer.connect("timeout", Callable(self, "_on_earthquake_timer_timeout"))
 
+	switch_time(WorldState.in_future)
+
 func _on_lantern_interacted(_initiator):
 	if WorldState.lantern_unlocked: return ;
 
@@ -55,6 +57,10 @@ func _on_lantern_interacted(_initiator):
 	
 	await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
 
+	await get_tree().create_timer(500).timeout;
+	player.direction = Vector2.UP;
+	
+	await get_tree().create_timer(500).timeout;
 	$AudioStreamPlayer2D.play()
 	earthquake_timer.start()
 
@@ -111,3 +117,4 @@ func switch_time(to_future: bool):
 	print("switching time in lab-0")
 	$"Future".visible = to_future;
 	$"Past".visible = !to_future;
+	$"CanvasLayer/ColorRect".color = Color.BLACK if to_future else Color.WHITE;

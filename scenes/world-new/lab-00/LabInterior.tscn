@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://bna50xgjrlfsg"]
 
-[ext_resource type="Script" path="res://scenes/world/lab-00/LabInterior.gd" id="1_ybegf"]
-[ext_resource type="PackedScene" uid="uid://bwpwey6vpux15" path="res://scenes/props/lantern/Lantern.tscn" id="2_b355w"]
-[ext_resource type="Texture2D" uid="uid://b8u2u6uhukwwm" path="res://assets/sprites/bg/lab-00/LabMockup.png" id="2_ctcer"]
-[ext_resource type="Texture2D" uid="uid://cgsl5f2ykuxxq" path="res://assets/sprites/bg/lab-00/LabPastMockup.png" id="2_wabqi"]
-[ext_resource type="Texture2D" uid="uid://cx6h262xlyiel" path="res://assets/sprites/bg/lab-00/LabRubbleMockup.png" id="5_d7bd3"]
-[ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="7_4tmci"]
-[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="7_ogvsg"]
-[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="8_kcd5q"]
+[ext_resource type="Script" path="res://scenes/world-new/lab-00/LabInterior.gd" id="1_gq17i"]
+[ext_resource type="Texture2D" uid="uid://cgsl5f2ykuxxq" path="res://assets/sprites/bg/lab-00/LabPastMockup.png" id="2_24gr8"]
+[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="3_5fndb"]
+[ext_resource type="Texture2D" uid="uid://b8u2u6uhukwwm" path="res://assets/sprites/bg/lab-00/LabMockup.png" id="4_j3ruy"]
+[ext_resource type="Texture2D" uid="uid://cx6h262xlyiel" path="res://assets/sprites/bg/lab-00/LabRubbleMockup.png" id="5_y3b7w"]
+[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="6_dojuy"]
+[ext_resource type="PackedScene" uid="uid://bwpwey6vpux15" path="res://scenes/props/lantern/Lantern.tscn" id="7_hdylt"]
+[ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="8_yflx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j38sd"]
 size = Vector2(70, 10)
@@ -19,9 +19,19 @@ size = Vector2(64, 23)
 size = Vector2(60, 20)
 
 [node name="LabInterior" type="Node2D"]
-script = ExtResource("1_ybegf")
+script = ExtResource("1_gq17i")
 auto_spawn_player = true
-auto_spawn_direction = Vector2(0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -36,31 +46,21 @@ y_sort_enabled = true
 
 [node name="Background" type="Sprite2D" parent="Past"]
 z_index = -1
-texture = ExtResource("2_wabqi")
+texture = ExtResource("2_24gr8")
 
-[node name="SceneTransition" parent="Past" instance=ExtResource("7_ogvsg")]
-position = Vector2(-4, -80)
+[node name="SceneTransition" parent="Past" instance=ExtResource("3_5fndb")]
+position = Vector2(0, -85)
 destination_level = "res://scenes/world/LabExterior.tscn"
-spawn_id = 3
+override_player_direction = true
+player_direction_override = Vector2(1, 0)
 collision_shape = SubResource("RectangleShape2D_j38sd")
 
 [node name="Future" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Future"]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="Future/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="Background" type="Sprite2D" parent="Future"]
 z_index = -1
-texture = ExtResource("2_ctcer")
+texture = ExtResource("4_j3ruy")
 
 [node name="Entryway" type="StaticBody2D" parent="Future"]
 position = Vector2(-3, -71)
@@ -70,16 +70,13 @@ collision_mask = 0
 [node name="rubble" type="Sprite2D" parent="Future/Entryway"]
 visible = false
 position = Vector2(0, 71)
-texture = ExtResource("5_d7bd3")
+texture = ExtResource("5_y3b7w")
 
 [node name="Block" type="CollisionShape2D" parent="Future/Entryway"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_8qucy")
 
-[node name="SpawnPoint" parent="Future" instance=ExtResource("8_kcd5q")]
-position = Vector2(0, -31)
-
-[node name="Lantern" parent="Future" instance=ExtResource("2_b355w")]
+[node name="Lantern" parent="Future" instance=ExtResource("7_hdylt")]
 position = Vector2(0, 26)
 
 [node name="EntrywayText" type="Area2D" parent="Future"]
@@ -91,8 +88,11 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_oxcnd")
 debug_color = Color(0.806313, 0.365183, 0.523813, 0.42)
 
+[node name="SpawnPoint" parent="." instance=ExtResource("6_dojuy")]
+position = Vector2(0, -31)
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_4tmci")
+stream = ExtResource("8_yflx0")
 
 [connection signal="interacted" from="Future/Lantern/Interactable" to="." method="_on_lantern_interacted"]
 [connection signal="body_entered" from="Future/EntrywayText" to="." method="_on_entryway_text_body_entered"]
