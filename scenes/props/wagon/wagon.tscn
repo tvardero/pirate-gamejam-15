@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpcptuskifrpr"]
+
+[ext_resource type="Script" path="res://scenes/props/wagon/push_wagon.gd" id="1_3jrdg"]
+[ext_resource type="Texture2D" uid="uid://dbbk5p1v5ck7c" path="res://assets/sprites/bg/lab-04/Wagon.png" id="1_cmpm4"]
+[ext_resource type="Texture2D" uid="uid://lgno7osw4ac6" path="res://assets/sprites/bg/lab-04/Wagon-present.png" id="2_3pobn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
+size = Vector2(58, 42)
+
+[node name="Wagon" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 11
+gravity_scale = 1.66533e-16
+contact_monitor = true
+script = ExtResource("1_3jrdg")
+
+[node name="Wagon-past" type="Sprite2D" parent="."]
+texture = ExtResource("1_cmpm4")
+
+[node name="Wagon-future" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+texture = ExtResource("2_3pobn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_4dbvp")
