@@ -21,7 +21,7 @@ var _sprint_to_walk_ratio: float:
 
 func use_lantern():
 	var success = WorldState.use_lantern();
-	if success:	_animation_tree["parameters/conditions/lantern"] = true;
+	if success: _animation_tree["parameters/conditions/lantern"] = true;
 
 func _physics_process(_delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
@@ -67,3 +67,7 @@ func _set_direction(value: Vector2):
 	_animation_tree["parameters/idle/blend_position"] = _direction;
 	_animation_tree["parameters/walk/blend_position"] = _direction;
 	_animation_tree["parameters/lantern/blend_position"] = _direction.x;
+
+func detect_collision_before_time_switch(in_future: bool) -> bool:
+	var area: Area2D = ($"Area2DFuture" if in_future else $"Area2DPast") as Area2D;
+	return area.has_overlapping_bodies();
