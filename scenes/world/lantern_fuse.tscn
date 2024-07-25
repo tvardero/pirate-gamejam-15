@@ -1,0 +1,143 @@
+[gd_scene load_steps=21 format=3 uid="uid://ckmoiew8h0nex"]
+
+[ext_resource type="Texture2D" uid="uid://c3guuau5a5jq7" path="res://assets/sprites/bg/LanternCloseUp.png" id="1_avyua"]
+[ext_resource type="Texture2D" uid="uid://u3n8p2x4ty3v" path="res://assets/sprites/bg/LanternFuse/ezgif-4-3f785efd96.png" id="3_3c5ac"]
+[ext_resource type="PackedScene" uid="uid://durrk8c4ecw6r" path="res://scenes/props/star-fragment/fusionFragment.tscn" id="4_7uavm"]
+[ext_resource type="PackedScene" uid="uid://cxap8mj757cyt" path="res://scenes/singletons/drop_zone.tscn" id="5_sj23w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh84g"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr6b3"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 160, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g348c"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cvql"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 480, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpxap"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 640, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj4y3"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 800, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn4dq"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 960, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ccfo"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 1120, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1uj8"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 1280, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfput"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 1440, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl5n8"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 1600, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ina"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 1760, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm2kd"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 1920, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nksn1"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 2080, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nkj3"]
+atlas = ExtResource("3_3c5ac")
+region = Rect2(0, 2240, 320, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22fsf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh84g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr6b3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g348c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cvql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpxap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj4y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn4dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ccfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1uj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfput")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl5n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ina")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vm2kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nksn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nkj3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="LanternFuse" type="Node2D"]
+position = Vector2(486, 243)
+scale = Vector2(3, 3)
+
+[node name="LanternCloseUp" type="Sprite2D" parent="."]
+texture = ExtResource("1_avyua")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_22fsf")
+frame = 14
+frame_progress = 1.0
+
+[node name="RestPoint" parent="." instance=ExtResource("5_sj23w")]
+visible = false
+position = Vector2(-79, 9.53674e-07)
+
+[node name="DestinationPoint" parent="." instance=ExtResource("5_sj23w")]
+visible = false
+position = Vector2(77, 9)
+is_destination = true
+
+[node name="Fragment" parent="." instance=ExtResource("4_7uavm")]
+position = Vector2(-79, 0)

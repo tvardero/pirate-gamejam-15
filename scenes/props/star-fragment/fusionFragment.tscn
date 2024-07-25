@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://durrk8c4ecw6r"]
+
+[ext_resource type="Script" path="res://scenes/props/star-fragment/fuse_fragment.gd" id="1_kgicx"]
+[ext_resource type="Texture2D" uid="uid://7s61icb084fa" path="res://assets/sprites/star-fragment/Fragment.png" id="1_vyknm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fthk"]
+atlas = ExtResource("1_vyknm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0o6b"]
+atlas = ExtResource("1_vyknm")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emqeg"]
+atlas = ExtResource("1_vyknm")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0qvm"]
+atlas = ExtResource("1_vyknm")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoyfi"]
+atlas = ExtResource("1_vyknm")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1dxrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fthk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0o6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emqeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0qvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoyfi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_feavf"]
+radius = 23.0
+
+[node name="Fragment" type="Node2D"]
+script = ExtResource("1_kgicx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1dxrw")
+autoplay = "default"
+frame_progress = 0.0831022
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+shape = SubResource("CircleShape2D_feavf")
+
+[connection signal="input_event" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_input_event"]
