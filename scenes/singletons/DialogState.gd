@@ -18,7 +18,6 @@ func _ready():
 			file = file.trim_suffix(".remap")
 		var texture = load(player_emote_dir + '/' + file)
 		player_emote_textures[file] = texture
-	print(player_emote_textures)
 
 func create_balloon() -> DialogBalloon:
 	balloon = balloon_packed.instantiate()

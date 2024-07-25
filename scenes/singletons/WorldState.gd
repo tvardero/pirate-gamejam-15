@@ -2,6 +2,7 @@ extends Node
 
 var lantern_unlocked: bool = false;
 var in_future: bool = true;
+var star_fragment_count: int = 0
 var disable_movement: bool = false;
 var player: Player = null;
 var player_exists: bool:

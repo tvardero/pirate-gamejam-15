@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=23 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
 [ext_resource type="Texture2D" uid="uid://ds0hfxokwlwp" path="res://assets/sprites/bg/lab-03/Town1MapPresent.png" id="2_e0hoc"]
+[ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_mtjc5"]
+[ext_resource type="AudioStream" uid="uid://d0pjxkln07gby" path="res://assets/music/temp_past.ogg" id="3_1bva4"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_g5mc5"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 [ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
@@ -47,6 +49,8 @@ size = Vector2(10, 50)
 position = Vector2(170.387, 159.972)
 script = ExtResource("1_20k8d")
 auto_spawn_player = true
+present_music = ExtResource("2_mtjc5")
+past_music = ExtResource("3_1bva4")
 
 [node name="Past" type="Node2D" parent="."]
 
