@@ -15,7 +15,7 @@ func _ready():
 	rest_point = rest_nodes[0].global_position
 	rest_nodes[0].select()
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	if Input.is_action_just_pressed("click"):
 		selected=true
 		instructions.visible = false
