@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=23 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
 [ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
 [ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
-[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="12_tpxlk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -169,9 +168,3 @@ position = Vector2(-68.0708, 94.0637)
 
 [node name="Clubhouse" parent="." instance=ExtResource("10_phmbm")]
 position = Vector2(43.613, 72.028)
-
-[node name="StarFragment" parent="." instance=ExtResource("12_tpxlk")]
-position = Vector2(54.613, -32.972)
-
-[node name="StarFragment2" parent="." instance=ExtResource("12_tpxlk")]
-position = Vector2(102.613, -18.972)
