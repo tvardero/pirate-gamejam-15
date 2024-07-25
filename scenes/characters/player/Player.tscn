@@ -3,9 +3,7 @@
 [ext_resource type="Script" path="res://scenes/characters/player/Player.gd" id="1_kqidl"]
 [ext_resource type="PackedScene" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
 [ext_resource type="Texture2D" uid="uid://cddm27gvnqo38" path="res://assets/sprites/player/player-spritesheet.png" id="3_hrt3o"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7svyb"]
-size = Vector2(14, 10)
+[ext_resource type="Shape2D" uid="uid://jadm8mnl1yrg" path="res://scenes/characters/player/PlayerCollision.tres" id="3_re55c"]
 
 [sub_resource type="Animation" id="Animation_57qwd"]
 length = 0.001
@@ -546,7 +544,7 @@ script = ExtResource("1_kqidl")
 [node name="PlayerInputController" parent="." instance=ExtResource("2_6k1m8")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7svyb")
+shape = ExtResource("3_re55c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -17)
@@ -584,3 +582,16 @@ current = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="Area2DPast" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DPast"]
+shape = ExtResource("3_re55c")
+
+[node name="Area2DFuture" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DFuture"]
+shape = ExtResource("3_re55c")

@@ -14,8 +14,16 @@ var password_found: bool = false
 
 func use_lantern() -> bool:
 	if !lantern_unlocked: return false;
+
+	var will_be_set_to_future = !in_future;
+
+	var p = get_player();
+	if !p: return true;
+
+	var collided = p.detect_collision_before_time_switch(will_be_set_to_future);
+	if collided: return false;
+
 	set_time(!in_future)
-	print("todo: lantern, now in future: " + str(in_future))
 	return true;
 
 func set_time(to_future: bool) -> void:
