@@ -5,6 +5,11 @@ func _ready():
 	visible = false
 
 
+func _process(_delta):
+	if Input.is_action_just_pressed('pause'):
+		toggle()
+
+
 func toggle():
 	if is_instance_valid(DialogState.balloon): return
 	

@@ -29,10 +29,6 @@ func _ready():
 
 	switch_time(WorldState.in_future);
 
-func _process(_delta):
-	if Input.is_action_just_pressed('pause'):
-		PauseMenu.toggle()
-
 func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 	var spawn = find_spawnpoint(spawn_id);
 	var spawn_position: Vector2 = spawn.position if spawn else Vector2.ZERO;
