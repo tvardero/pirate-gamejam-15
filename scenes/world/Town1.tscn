@@ -45,12 +45,14 @@ size = Vector2(10, 120)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1ufm"]
 size = Vector2(10, 50)
 
-[node name="Town1" type="Node2D"]
+[node name="Town1" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 position = Vector2(170.387, 159.972)
 script = ExtResource("1_20k8d")
 auto_spawn_player = true
-present_music = ExtResource("2_mtjc5")
+future_music = ExtResource("2_mtjc5")
 past_music = ExtResource("3_1bva4")
+past_nodes = NodePath("Past")
+future_nodes = NodePath("Future")
 
 [node name="Past" type="Node2D" parent="."]
 

@@ -2,12 +2,25 @@ extends CanvasLayer
 
 
 func _ready():
+	visible = false
+
+
+func toggle():
+	if is_instance_valid(DialogState.balloon): return
+	
+	if !visible: pause()
+	else: resume()
+
+
+func pause():
+	get_tree().paused = true
 	%StarCount.text = ' ' + str(WorldState.star_fragment_count)
+	visible = true
 
 
 func resume():
 	get_tree().paused = false
-	queue_free()
+	visible = false
 
 
 func _on_resume_pressed():
