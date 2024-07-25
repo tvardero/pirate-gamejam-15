@@ -14,7 +14,7 @@ func toggle():
 
 func pause():
 	get_tree().paused = true
-	%StarCount.text = ' ' + str(WorldState.star_fragment_count)
+	%StarCount.text = '  ' + str(WorldState.star_fragment_count)
 	visible = true
 
 
