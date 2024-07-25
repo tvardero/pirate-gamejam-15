@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3guuau5a5jq7"
-path="res://.godot/imported/LanternCloseUp.png-5f1f99902926652b1e3d9a931236d09a.ctex"
+uid="uid://u3n8p2x4ty3v"
+path="res://.godot/imported/ezgif-4-3f785efd96.png-e7186e82811f97c657f98bea51a40b8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg/LanternCloseUp.png"
-dest_files=["res://.godot/imported/LanternCloseUp.png-5f1f99902926652b1e3d9a931236d09a.ctex"]
+source_file="res://assets/sprites/bg/LanternFuse/ezgif-4-3f785efd96.png"
+dest_files=["res://.godot/imported/ezgif-4-3f785efd96.png-e7186e82811f97c657f98bea51a40b8b.ctex"]
 
 [params]
 

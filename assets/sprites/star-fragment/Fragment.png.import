@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3guuau5a5jq7"
-path="res://.godot/imported/LanternCloseUp.png-5f1f99902926652b1e3d9a931236d09a.ctex"
+uid="uid://7s61icb084fa"
+path="res://.godot/imported/Fragment.png-0ebb23a9d3984b34d95985bf27640a25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg/LanternCloseUp.png"
-dest_files=["res://.godot/imported/LanternCloseUp.png-5f1f99902926652b1e3d9a931236d09a.ctex"]
+source_file="res://assets/sprites/star-fragment/Fragment.png"
+dest_files=["res://.godot/imported/Fragment.png-0ebb23a9d3984b34d95985bf27640a25.ctex"]
 
 [params]
 
