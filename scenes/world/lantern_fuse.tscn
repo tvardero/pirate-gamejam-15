@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://ckmoiew8h0nex"]
+[gd_scene load_steps=25 format=3 uid="uid://ckmoiew8h0nex"]
 
 [ext_resource type="Texture2D" uid="uid://c3guuau5a5jq7" path="res://assets/sprites/bg/LanternCloseUp.png" id="1_avyua"]
 [ext_resource type="Texture2D" uid="uid://u3n8p2x4ty3v" path="res://assets/sprites/bg/LanternFuse/ezgif-4-3f785efd96.png" id="3_3c5ac"]
+[ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="3_qojc2"]
 [ext_resource type="PackedScene" uid="uid://durrk8c4ecw6r" path="res://scenes/props/star-fragment/fusionFragment.tscn" id="4_7uavm"]
 [ext_resource type="PackedScene" uid="uid://cxap8mj757cyt" path="res://scenes/singletons/drop_zone.tscn" id="5_sj23w"]
 [ext_resource type="AudioStream" uid="uid://mlxuupoqvjl5" path="res://assets/sounds/star-fragment-hum/star-fragment-hum-1.mp3" id="5_xlb8y"]
@@ -133,8 +134,11 @@ animations = [{
 
 [sub_resource type="LabelSettings" id="LabelSettings_2nepi"]
 line_spacing = 1.0
-font_size = 10
+font = ExtResource("3_qojc2")
+font_size = 11
 font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="LanternFuse" type="Node2D"]
 position = Vector2(486, 243)
@@ -147,10 +151,10 @@ texture = ExtResource("1_avyua")
 sprite_frames = SubResource("SpriteFrames_22fsf")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -149.0
-offset_top = -61.0
-offset_right = 2.0
-offset_bottom = -29.0
+offset_left = -150.0
+offset_top = -53.3333
+offset_right = 1.0
+offset_bottom = -21.3333
 text = "Fuse the star fragment by dragging it into the lantern"
 label_settings = SubResource("LabelSettings_2nepi")
 horizontal_alignment = 1
