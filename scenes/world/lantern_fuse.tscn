@@ -140,39 +140,57 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
-[node name="LanternFuse" type="Node2D"]
-position = Vector2(486, 243)
-scale = Vector2(3, 3)
+[node name="LanternFuse" type="CanvasLayer"]
 
-[node name="LanternCloseUp" type="Sprite2D" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control2" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LanternCloseUp" type="Sprite2D" parent="MarginContainer/Control2"]
+scale = Vector2(3, 3)
 texture = ExtResource("1_avyua")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/Control"]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_22fsf")
 autoplay = "default"
 
+[node name="RestPoint" parent="MarginContainer" instance=ExtResource("5_sj23w")]
+position = Vector2(326, 358)
+
+[node name="DestinationPoint" parent="MarginContainer" instance=ExtResource("5_sj23w")]
+position = Vector2(805, 358)
+is_destination = true
+
+[node name="Fragment" parent="MarginContainer" instance=ExtResource("4_7uavm")]
+position = Vector2(326, 358)
+scale = Vector2(3, 3)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MarginContainer/Fragment"]
+stream = ExtResource("5_xlb8y")
+autoplay = true
+
 [node name="Label" type="Label" parent="."]
-offset_left = -150.0
-offset_top = -53.3333
-offset_right = 1.0
-offset_bottom = -21.3333
+offset_left = 124.0
+offset_top = 162.0
+offset_right = 273.0
+offset_bottom = 211.0
+scale = Vector2(3, 3)
+theme_override_font_sizes/font_size = 248
 text = "Fuse the star fragment by dragging it into the lantern"
 label_settings = SubResource("LabelSettings_2nepi")
 horizontal_alignment = 1
 autowrap_mode = 2
-
-[node name="RestPoint" parent="." instance=ExtResource("5_sj23w")]
-visible = false
-position = Vector2(-79, 9.53674e-07)
-
-[node name="DestinationPoint" parent="." instance=ExtResource("5_sj23w")]
-visible = false
-position = Vector2(77, 9)
-is_destination = true
-
-[node name="Fragment" parent="." instance=ExtResource("4_7uavm")]
-position = Vector2(-79, 0)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Fragment"]
-stream = ExtResource("5_xlb8y")
-autoplay = true

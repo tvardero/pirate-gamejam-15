@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var anim = $"../AnimatedSprite2D"
-@onready var instructions = $"../Label"
+@onready var anim = $"../Control/AnimatedSprite2D"
+@onready var instructions = $"../../Label"
 
 @onready var build_sfx = preload('res://assets/sounds/lantern/fuse-build.wav')
 @onready var woosh_sfx = preload('res://assets/sounds/lantern/fuse-woosh.wav')
@@ -9,6 +9,7 @@ extends Node2D
 var selected=false
 var rest_point
 var rest_nodes = []
+signal finished
 
 func _ready():
 	rest_nodes = get_tree().get_nodes_in_group("zone")
@@ -25,7 +26,7 @@ func _physics_process(delta):
 		global_position = lerp(global_position, get_global_mouse_position(), 25*delta)
 	else:
 		global_position = lerp(global_position, rest_point, 10*delta)
-		
+
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
@@ -45,4 +46,7 @@ func resolve():
 	await get_tree().create_timer(0.4).timeout
 	SoundPlayer.play_sound(woosh_sfx)
 	await get_tree().create_timer(0.3).timeout
-	queue_free()
+	visible = false
+	await get_tree().create_timer(1.0).timeout
+	finished.emit()
+	get_parent().get_parent().queue_free()
