@@ -55,7 +55,7 @@ script = ExtResource("1_kgicx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1dxrw")
 autoplay = "default"
-frame_progress = 0.663911
+frame_progress = 0.0831022
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 

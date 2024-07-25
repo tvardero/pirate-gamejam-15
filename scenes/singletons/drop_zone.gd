@@ -1,5 +1,7 @@
 extends Marker2D
 
+@export var is_destination: bool = false
+
 func _draw():
 	draw_circle(Vector2.ZERO, 35, Color.BLANCHED_ALMOND)
 	

@@ -3,6 +3,7 @@ extends Node2D
 var selected=false
 var rest_point
 var rest_nodes = []
+@onready var anim = $"../AnimatedSprite2D"
 
 func _ready():
 	rest_nodes = get_tree().get_nodes_in_group("zone")
@@ -31,3 +32,8 @@ func _input(event):
 					child.select()
 					rest_point=child.global_position
 					shortest_distance = distance
+					if child.is_destination: resolve()
+					
+func resolve():
+	anim.play('default')
+	queue_free()

@@ -119,7 +119,8 @@ animations = [{
 }]
 
 [node name="LanternFuse" type="Node2D"]
-position = Vector2(162, 82)
+position = Vector2(486, 243)
+scale = Vector2(3, 3)
 
 [node name="LanternCloseUp" type="Sprite2D" parent="."]
 texture = ExtResource("1_avyua")
@@ -130,10 +131,13 @@ frame = 14
 frame_progress = 1.0
 
 [node name="RestPoint" parent="." instance=ExtResource("5_sj23w")]
+visible = false
 position = Vector2(-79, 9.53674e-07)
 
 [node name="DestinationPoint" parent="." instance=ExtResource("5_sj23w")]
+visible = false
 position = Vector2(77, 9)
+is_destination = true
 
 [node name="Fragment" parent="." instance=ExtResource("4_7uavm")]
 position = Vector2(-79, 0)
