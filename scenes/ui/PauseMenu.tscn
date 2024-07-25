@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb048xqukelm0"]
+[gd_scene load_steps=5 format=3 uid="uid://bb048xqukelm0"]
 
 [ext_resource type="Script" path="res://scenes/ui/PauseMenu.gd" id="1_s7vpu"]
 [ext_resource type="Texture2D" uid="uid://cap644hq2jx53" path="res://assets/sprites/star-fragment/starfragment-spritesheet.png" id="2_4qkx7"]
+[ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="2_ckp4a"]
 [ext_resource type="Script" path="res://scenes/ui/VolumeSlider.gd" id="2_euitm"]
 
 [node name="PauseMenu" type="CanvasLayer"]
@@ -31,7 +32,8 @@ alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2_ckp4a")
+theme_override_font_sizes/font_size = 42
 text = "Paused"
 horizontal_alignment = 1
 
@@ -40,8 +42,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -35.0
-offset_bottom = 23.0
+offset_left = -59.0
+offset_top = -16.0
+offset_right = 1.0
+offset_bottom = 26.0
 grow_horizontal = 0
 
 [node name="StarCount" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Label/StarTracker"]
@@ -49,6 +53,9 @@ unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_ckp4a")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = " X"
 fit_content = true
@@ -56,7 +63,8 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/Label/StarTracker"]
-position = Vector2(23, 11)
+position = Vector2(39, 20)
+scale = Vector2(2, 2)
 texture = ExtResource("2_4qkx7")
 hframes = 2
 
@@ -64,6 +72,8 @@ hframes = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_ckp4a")
+theme_override_font_sizes/font_size = 24
 text = "Resume"
 
 [node name="Volumes" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
@@ -75,6 +85,8 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Volumes/MusicVolume"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckp4a")
+theme_override_font_sizes/font_size = 24
 text = "Music"
 horizontal_alignment = 1
 
@@ -91,6 +103,8 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Volumes/SFXVolume"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckp4a")
+theme_override_font_sizes/font_size = 24
 text = "SFX"
 horizontal_alignment = 1
 
@@ -105,6 +119,8 @@ bus_name = "SFX"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_ckp4a")
+theme_override_font_sizes/font_size = 24
 text = "Quit
 "
 
