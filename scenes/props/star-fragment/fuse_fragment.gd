@@ -4,6 +4,7 @@ var selected=false
 var rest_point
 var rest_nodes = []
 @onready var anim = $"../AnimatedSprite2D"
+@onready var instructions = $"../Label"
 
 func _ready():
 	rest_nodes = get_tree().get_nodes_in_group("zone")
@@ -13,7 +14,7 @@ func _ready():
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if Input.is_action_just_pressed("click"):
 		selected=true
-		
+		instructions.visible = false
 
 func _physics_process(delta):
 	if selected:
@@ -36,5 +37,8 @@ func _input(event):
 					
 func resolve():
 	anim.play('play')
-	await get_tree().create_timer(0.75).timeout
+	SoundPlayer.play_sound(load('res://assets/sounds/lantern/fuse-build.wav'))
+	await get_tree().create_timer(0.4).timeout
+	SoundPlayer.play_sound(load('res://assets/sounds/lantern/fuse-woosh.wav'))
+	await get_tree().create_timer(0.3).timeout
 	queue_free()
