@@ -4,6 +4,9 @@ extends Node
 @export var disable_movement: bool = false;
 var player: Player;
 
+@onready var pause_menu_packed: PackedScene = preload('res://scenes/ui/PauseMenu.tscn')
+var pause_menu
+
 var _is_disabled: bool:
 	get: return disable_movement||WorldState.disable_movement||DialogState.balloon;
 
@@ -20,6 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	handled = handled||process_lantern_input_event(event);
 	handled = handled||process_interaction_input_event(event);
 	handled = handled||process_sprint_input_event(event);
+	handled = handled||process_pause_input_event(event)
 
 	# set event as handled, so other scenes will not recieve the same event
 	if (handled): get_tree().root.set_input_as_handled();
@@ -50,3 +54,14 @@ func process_sprint_input_event(event: InputEvent) -> bool:
 	if !event.is_action("sprint"): return false;
 	player.is_sprinting = event.is_pressed();
 	return true;
+
+func process_pause_input_event(event: InputEvent) -> bool:
+	if !event.is_action("pause"): return false
+	if event.is_echo() || !event.is_pressed(): return false
+	if !is_instance_valid(pause_menu):
+		get_tree().paused = true
+		pause_menu = pause_menu_packed.instantiate()
+		WorldState.get_current_level().add_child(pause_menu)
+	else:
+		pause_menu.resume()
+	return true

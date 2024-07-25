@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb048xqukelm0"]
+
+[ext_resource type="Script" path="res://scenes/ui/PauseMenu.gd" id="1_s7vpu"]
+[ext_resource type="Texture2D" uid="uid://cap644hq2jx53" path="res://assets/sprites/star-fragment/starfragment-spritesheet.png" id="2_4qkx7"]
+[ext_resource type="Script" path="res://scenes/ui/VolumeSlider.gd" id="2_euitm"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_s7vpu")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -130.0
+offset_right = 157.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="StarTracker" type="PanelContainer" parent="PanelContainer/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -35.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="StarCount" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Label/StarTracker"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 0
+bbcode_enabled = true
+text = " X"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/Label/StarTracker"]
+position = Vector2(23, 11)
+texture = ExtResource("2_4qkx7")
+hframes = 2
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Resume"
+
+[node name="Volumes" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Volumes"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Volumes/MusicVolume"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Volumes/MusicVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("2_euitm")
+bus_name = "Music"
+
+[node name="SFXVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Volumes"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Volumes/SFXVolume"]
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Volumes/SFXVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("2_euitm")
+bus_name = "SFX"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit
+"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -69,6 +69,7 @@ layer = 100
 script = ExtResource("1_3xlym")
 
 [node name="TalkSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true

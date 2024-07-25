@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/singletons/SoundPlayer.gd" id="1_wqhpd"]
 
 [node name="SoundPlayer" type="Node"]
+process_mode = 3
 script = ExtResource("1_wqhpd")
 
 [node name="AudioPlayers" type="Node" parent="."]
