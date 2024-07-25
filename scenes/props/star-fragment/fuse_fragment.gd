@@ -35,5 +35,6 @@ func _input(event):
 					if child.is_destination: resolve()
 					
 func resolve():
-	anim.play('default')
+	anim.play('play')
+	await get_tree().create_timer(0.75).timeout
 	queue_free()

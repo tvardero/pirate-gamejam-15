@@ -1,9 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckmoiew8h0nex"]
+[gd_scene load_steps=22 format=3 uid="uid://ckmoiew8h0nex"]
 
 [ext_resource type="Texture2D" uid="uid://c3guuau5a5jq7" path="res://assets/sprites/bg/LanternCloseUp.png" id="1_avyua"]
 [ext_resource type="Texture2D" uid="uid://u3n8p2x4ty3v" path="res://assets/sprites/bg/LanternFuse/ezgif-4-3f785efd96.png" id="3_3c5ac"]
 [ext_resource type="PackedScene" uid="uid://durrk8c4ecw6r" path="res://scenes/props/star-fragment/fusionFragment.tscn" id="4_7uavm"]
 [ext_resource type="PackedScene" uid="uid://cxap8mj757cyt" path="res://scenes/singletons/drop_zone.tscn" id="5_sj23w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg6f6"]
+atlas = ExtResource("1_avyua")
+region = Rect2(0, 0, 320, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hh84g"]
 atlas = ExtResource("3_3c5ac")
@@ -69,6 +73,14 @@ region = Rect2(0, 2240, 320, 160)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gg6f6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hh84g")
 }, {
 "duration": 1.0,
@@ -114,7 +126,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1nkj3")
 }],
 "loop": false,
-"name": &"default",
+"name": &"play",
 "speed": 12.0
 }]
 
@@ -127,8 +139,6 @@ texture = ExtResource("1_avyua")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_22fsf")
-frame = 14
-frame_progress = 1.0
 
 [node name="RestPoint" parent="." instance=ExtResource("5_sj23w")]
 visible = false
