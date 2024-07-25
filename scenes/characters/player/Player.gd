@@ -10,6 +10,7 @@ var _direction: Vector2 = Vector2.ZERO;
 @onready var _interaction_area: Area2D = $"InteractionArea";
 @onready var _animation_tree: AnimationTree = $"AnimationTree";
 @onready var _animation_player: AnimationPlayer = $"AnimationPlayer";
+@onready var camera: Camera2D = $"Camera2D";
 
 var direction: Vector2:
 	get: return _direction;
@@ -19,8 +20,8 @@ var _sprint_to_walk_ratio: float:
 	get: return sprint_speed / walk_speed;
 
 func use_lantern():
-	WorldState.use_lantern();
-	_animation_tree["parameters/conditions/lantern"] = true;
+	var success = WorldState.use_lantern();
+	if success:	_animation_tree["parameters/conditions/lantern"] = true;
 
 func _physics_process(_delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;

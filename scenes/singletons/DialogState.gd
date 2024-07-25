@@ -9,7 +9,7 @@ var player_emote_textures: Dictionary = {}
 
 func _ready():
 	# Load all player emote sprites
-	var player_emote_dir = "res://assets/player/emotes"
+	var player_emote_dir = "res://assets/sprites/player/emotes"
 	var files = DirAccess.open(player_emote_dir).get_files()
 	for file in files:
 		if file.ends_with(".import"):
@@ -20,21 +20,16 @@ func _ready():
 		player_emote_textures[file] = texture
 	print(player_emote_textures)
 
-
-
 func create_balloon() -> DialogBalloon:
 	balloon = balloon_packed.instantiate()
-	get_tree().current_scene.add_child(balloon)
+	WorldState.get_current_level().add_child(balloon)
 	return balloon
-
 
 func start_dialog(dialogue_resource: DialogueResource, dialogue_start: String = 'Start'):
 	create_balloon()
-	WorldState.disable_movement = true;
 	balloon.start(dialogue_resource, dialogue_start)
 	await dialogue_manager.dialogue_ended
 	balloon = null
-	WorldState.disable_movement = false;
 
 # For creating dialogue lines on the fly
 func start_from_text(text: String):

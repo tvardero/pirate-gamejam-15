@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pirate Software Gamejam 15"
-run/main_scene="res://scenes/world/SampleLevel.tscn"
+run/main_scene="res://scenes/world-new/lab-00/LabInterior.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -30,8 +30,7 @@ general/balloon_path="res://scenes/ui/DialogBalloon.tscn"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

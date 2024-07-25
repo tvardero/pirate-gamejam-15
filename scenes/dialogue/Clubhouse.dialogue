@@ -1,9 +1,13 @@
-~ try_clubhouse_present
+~ try_clubhouse_future
 [i](It's locked.)[/i]
 => END
 
 ~ try_partygoers_house_past
 [i](It's locked.)[/i]
+=> END
+
+~ try_partygoers_house_future
+It's locked, but looks like part of the building has fallen down. Maybe I can see in from the right angle.
 => END
 
 ~ try_clubhouse_past
