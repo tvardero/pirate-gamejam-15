@@ -19,7 +19,7 @@ enum ShakeType {
 var player: Player:
 	get: return WorldState.get_player();
 var camera: Camera2D:
-	get: return player.get_node("Camera2D");
+	get: return player.get_node("Camera2D") if player else null;
 
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
@@ -109,9 +109,3 @@ func _on_entryway_text_body_entered(_body):
 			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
 		else:
 			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'interact_rubble')
-
-func switch_time(to_future: bool):
-	print("switching time in lab-0")
-	$"Future".visible = to_future;
-	$"Past".visible = !to_future;
-	$"CanvasLayer/ColorRect".color = Color.BLACK if to_future else Color.WHITE;
