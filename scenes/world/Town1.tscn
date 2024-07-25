@@ -172,3 +172,4 @@ position = Vector2(43.613, 72.028)
 
 [node name="Wagon" parent="." instance=ExtResource("12_711yk")]
 position = Vector2(-75.387, 20.028)
+pushable_y = false

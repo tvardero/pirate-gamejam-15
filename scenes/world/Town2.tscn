@@ -1,11 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=17 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://cxs04nxi5tr4n" path="res://assets/sprites/bg/lab-04/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
-[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="4_4t400"]
+[ext_resource type="PackedScene" uid="uid://bdvi5akdxem1q" path="res://scenes/props/newspaper/Newspaper.tscn" id="3_pdv1h"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
-[ext_resource type="Script" path="res://scenes/props/newspaper/Newspaper.gd" id="4_jpkcw"]
-[ext_resource type="Texture2D" uid="uid://b1m1p3cxwx650" path="res://assets/objects/newspaper/Newspaper.png" id="5_m1ufj"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="5_r8cyn"]
 [ext_resource type="PackedScene" uid="uid://dvlgtq5e01t5u" path="res://scenes/props/house/partygoers_house.tscn" id="6_wv00r"]
 [ext_resource type="Texture2D" uid="uid://w2kyfiuh8v46" path="res://assets/objects/house/Housecrack.png" id="8_7ln5e"]
@@ -37,8 +35,10 @@ size = Vector2(10, 125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8i8g"]
 size = Vector2(10, 50)
 
-[node name="Town2" type="Node2D"]
+[node name="Town2" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 script = ExtResource("1_mlm7f")
+past_nodes = NodePath("Past")
+future_nodes = NodePath("Future")
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -61,6 +61,9 @@ polygon = PackedVector2Array(-190, 100, -124, 101, -40, 110, 10, 89, 79, 93, 100
 
 [node name="Future" type="Node2D" parent="."]
 
+[node name="Newspaper" parent="Future" instance=ExtResource("3_pdv1h")]
+position = Vector2(130, -84)
+
 [node name="Background" type="Sprite2D" parent="Future"]
 
 [node name="OtherCollisions" type="Node2D" parent="Future"]
@@ -75,16 +78,6 @@ shape = SubResource("RectangleShape2D_aiyby")
 [node name="BottomRight" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
 position = Vector2(107, -121.25)
 shape = SubResource("RectangleShape2D_pdwao")
-
-[node name="Newspaper" type="Node2D" parent="Future"]
-position = Vector2(131, -83)
-script = ExtResource("4_jpkcw")
-
-[node name="Interactable" parent="Future/Newspaper" instance=ExtResource("4_4t400")]
-scale = Vector2(0.095, 0.095)
-
-[node name="Sprite2D" type="Sprite2D" parent="Future/Newspaper"]
-texture = ExtResource("5_m1ufj")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -158,4 +151,4 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_7ln5e")
 
-[connection signal="interacted" from="Future/Newspaper/Interactable" to="Future/Newspaper" method="_on_interactable_interacted"]
+[editable path="Future/Newspaper"]

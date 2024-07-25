@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpcptuskifrpr"]
+[gd_scene load_steps=6 format=3 uid="uid://dpcptuskifrpr"]
 
-[ext_resource type="Script" path="res://scenes/props/wagon/push_wagon.gd" id="1_3jrdg"]
+[ext_resource type="Script" path="res://scenes/props/wagon/pushable.gd" id="1_3jrdg"]
 [ext_resource type="Texture2D" uid="uid://dbbk5p1v5ck7c" path="res://assets/sprites/bg/lab-04/Wagon.png" id="1_cmpm4"]
 [ext_resource type="Texture2D" uid="uid://lgno7osw4ac6" path="res://assets/sprites/bg/lab-04/Wagon-present.png" id="2_3pobn"]
+[ext_resource type="AudioStream" uid="uid://bjd8wr3pp8y1b" path="res://assets/sounds/wagon-push/wagon-push.wav" id="2_i5yeu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
 size = Vector2(58, 42)
 
 [node name="Wagon" type="RigidBody2D"]
-collision_layer = 3
+collision_layer = 19
 collision_mask = 11
 gravity_scale = 1.66533e-16
 contact_monitor = true
+linear_damp = 50.0
 script = ExtResource("1_3jrdg")
+push_sound = ExtResource("2_i5yeu")
 
 [node name="Wagon-past" type="Sprite2D" parent="."]
 texture = ExtResource("1_cmpm4")

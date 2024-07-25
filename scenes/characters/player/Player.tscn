@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://pg6vmturro7f"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/Player.gd" id="1_kqidl"]
-[ext_resource type="PackedScene" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
+[ext_resource type="PackedScene" uid="uid://b0it2xtiiufrc" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
 [ext_resource type="Texture2D" uid="uid://cddm27gvnqo38" path="res://assets/sprites/player/player-spritesheet.png" id="3_hrt3o"]
 [ext_resource type="Shape2D" uid="uid://jadm8mnl1yrg" path="res://scenes/characters/player/PlayerCollision.tres" id="3_re55c"]
 
@@ -531,6 +531,7 @@ states/lantern/position = Vector2(528, 202)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_i36oo")
 states/walk/position = Vector2(528, 103)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8ox2f"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_cjekw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_rbfhi"), "walk", "lantern", SubResource("AnimationNodeStateMachineTransition_uo0kl"), "idle", "lantern", SubResource("AnimationNodeStateMachineTransition_a2gba"), "lantern", "idle", SubResource("AnimationNodeStateMachineTransition_3ckmq")]
+graph_offset = Vector2(-1, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r2toq"]
 radius = 20.0
@@ -559,6 +560,9 @@ libraries = {
 speed_scale = 1.666
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkx0j")
+}
 tree_root = SubResource("AnimationNodeStateMachine_3u51c")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_idle = true

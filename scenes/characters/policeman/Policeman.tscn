@@ -1,8 +1,23 @@
 [gd_scene load_steps=9 format=3 uid="uid://3klxjhkbv73j"]
 
-[ext_resource type="Texture2D" uid="uid://dkrh4tw607p15" path="res://assets/cop/Cop-spritesheet.png" id="1_738ti"]
+[ext_resource type="Texture2D" uid="uid://dkrh4tw607p15" path="res://assets/sprites/cop/Cop-spritesheet.png" id="1_738ti"]
 [ext_resource type="Script" path="res://scenes/characters/policeman/Policeman.gd" id="1_qdbr2"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="2_x3afy"]
+
+[sub_resource type="Animation" id="Animation_kt0qw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_10gem"]
 resource_name = "idle"
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-}
-
-[sub_resource type="Animation" id="Animation_kt0qw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ml62"]

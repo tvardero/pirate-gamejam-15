@@ -1,5 +1,9 @@
 extends StaticBody2D
 
+func _ready():
+	$AnimationPlayer.play('idle')
+
+
 func _on_interactable_interacted(initiator: Node):
 	if initiator is Player:
 		if WorldState.newspaper_picked_up == false:

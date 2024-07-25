@@ -4,6 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://bhwbr5ti12ygw" path="res://assets/sprites/newspaper/Newspaper.png" id="1_sugo1"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="2_87213"]
 
+[sub_resource type="Animation" id="Animation_byiqd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -1)]
+}
+
 [sub_resource type="Animation" id="Animation_edn4m"]
 resource_name = "idle"
 length = 10.0
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "values": [Vector2(1, -1), Vector2(1, 0), Vector2(1, -1), Vector2(2, -1), Vector2(1, -1), Vector2(2, -1), Vector2(1, -1), Vector2(2, 0), Vector2(1, -1)]
 }
 
-[sub_resource type="Animation" id="Animation_byiqd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwm1k"]
 _data = {
 "RESET": SubResource("Animation_byiqd"),
@@ -43,7 +43,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rgb5k"]
-radius = 15.0
+radius = 7.0
 
 [node name="Newspaper" type="Node2D"]
 script = ExtResource("1_04xrf")

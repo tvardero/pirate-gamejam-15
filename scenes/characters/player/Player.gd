@@ -3,10 +3,12 @@ extends CharacterBody2D
 
 var input_movement_vector: Vector2 = Vector2.ZERO;
 var is_sprinting: bool = false;
+var is_pushing: bool = false;
 var _direction: Vector2 = Vector2.ZERO;
 
 @export var walk_speed: float = 3;
 @export var sprint_speed: float = 5;
+@export var push_speed: float = 0.01
 @onready var _interaction_area: Area2D = $"InteractionArea";
 @onready var _animation_tree: AnimationTree = $"AnimationTree";
 @onready var _animation_player: AnimationPlayer = $"AnimationPlayer";
@@ -19,18 +21,32 @@ var direction: Vector2:
 var _sprint_to_walk_ratio: float:
 	get: return sprint_speed / walk_speed;
 
+var _push_to_walk_ratio: float:
+	get: return push_speed / walk_speed
+
 func use_lantern():
 	var success = WorldState.use_lantern();
 	if success: _animation_tree["parameters/conditions/lantern"] = true;
 
-func _physics_process(_delta) -> void:
+func _physics_process(delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
 	velocity = input_movement_vector * multiplier;
-	move_and_collide(velocity);
-	_set_animations();
+	var collision = move_and_collide(velocity);
+	is_pushing = try_push(collision, delta)
+	
+	_set_animations(delta);
 
 func _ready():
 	_set_direction(_direction);
+
+func try_push(collision: KinematicCollision2D, delta) -> bool:
+	if !collision: return false
+	var collider = collision.get_collider()
+	if collider is Pushable:
+		collider.push(-collision.get_normal() * 1000)
+		return true
+	else:
+		return false
 
 func try_interact() -> Node2D:
 	var _sort_interactables_by_dist = func(a: Interactable, b: Interactable) -> bool:
@@ -49,15 +65,20 @@ func try_interact() -> Node2D:
 	closest_interactable.interact(self);
 	return closest_interactable.get_parent();
 
-func _set_animations():
+func _set_animations(delta):
 	var is_walking = input_movement_vector != Vector2.ZERO;
 	_animation_tree["parameters/conditions/is_idle"] = !is_walking;
 	_animation_tree["parameters/conditions/is_walking"] = is_walking;
-
-	_animation_player.speed_scale = 1.0 if !is_walking||!is_sprinting else _sprint_to_walk_ratio;
+	
+	#_animation_player.speed_scale = 100.0 if !is_walking||!is_sprinting else _sprint_to_walk_ratio;
+	var speed_scale = 0.6
+	if is_pushing: speed_scale *= _push_to_walk_ratio
+	elif is_sprinting: speed_scale *= _sprint_to_walk_ratio
+	
+	_animation_tree.advance(speed_scale * delta)
 
 	# preserve old blend position when player stopped
-	if !is_walking: return ;
+	if !is_walking: return
 	_set_direction(input_movement_vector);
 
 func _set_direction(value: Vector2):
