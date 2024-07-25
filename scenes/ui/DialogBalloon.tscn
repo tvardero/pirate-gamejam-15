@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjces4416uy3c"]
+[gd_scene load_steps=11 format=3 uid="uid://cjces4416uy3c"]
 
 [ext_resource type="Script" path="res://scenes/ui/DialogBalloon.gd" id="1_3xlym"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ekg25"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_jygb4"]
 [ext_resource type="Texture2D" uid="uid://b3pulwj6amve0" path="res://icon.svg" id="4_53ktl"]
+[ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="4_l2cpg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -127,6 +128,8 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("4_l2cpg")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -136,6 +139,12 @@ scroll_active = false
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_l2cpg")
+theme_override_fonts/bold_font = ExtResource("4_l2cpg")
+theme_override_fonts/italics_font = ExtResource("4_l2cpg")
+theme_override_fonts/bold_italics_font = ExtResource("4_l2cpg")
+theme_override_fonts/mono_font = ExtResource("4_l2cpg")
+theme_override_font_sizes/normal_font_size = 24
 text = "Dialogue..."
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]
@@ -162,6 +171,8 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_l2cpg")
+theme_override_font_sizes/font_size = 24
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]

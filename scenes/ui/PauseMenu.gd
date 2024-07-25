@@ -2,7 +2,7 @@ extends CanvasLayer
 
 
 func _ready():
-	%StarCount.text = ' ' + str(WorldState.star_fragment_count)
+	%StarCount.text = '  ' + str(WorldState.star_fragment_count)
 
 
 func resume():
