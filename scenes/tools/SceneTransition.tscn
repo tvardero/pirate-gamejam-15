@@ -15,5 +15,3 @@ collision_shape = SubResource("CircleShape2D_vjchi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vjchi")
 debug_color = Color(1, 0.443137, 0, 0.419608)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

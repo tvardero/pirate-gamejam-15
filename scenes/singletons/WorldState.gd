@@ -13,6 +13,8 @@ var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
 var password_found: bool = false
 
+var saved_level_states: Dictionary = {}
+
 func use_lantern() -> bool:
 	if !lantern_unlocked: return false;
 
@@ -42,7 +44,7 @@ func set_time(to_future: bool) -> void:
 	p.set_collision_mask_value(2, to_future)
 
 func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_direction: Vector2):
-	var level = destination.instantiate();
+	var level = load_level_state(destination);
 	if !(level is Level):
 		assert(false, "Invalid destination scene provided, should extend class 'Level'");
 
@@ -50,6 +52,7 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 
 	var current = get_current_level();
 	if current:
+		save_level_state(current)
 		current.visible = false;
 		current.queue_free();
 
@@ -70,3 +73,22 @@ func get_player() -> Player:
 		if child is Player: return child;
 	
 	return null;
+
+func save_level_state(level: Level):
+	var packed_level = PackedScene.new()
+	packed_level.pack(level)
+	saved_level_states[level.name] = packed_level
+
+func load_level_state(packed_level: PackedScene) -> Level:
+	var level: Level = packed_level.instantiate()
+	
+	if saved_level_states.has(level.name):
+		level.queue_free()
+		level.tree_exited
+		var saved_level = saved_level_states[level.name].instantiate()
+		for child in saved_level.get_children():
+			if child is SceneTransition: 
+				for conn in child.get_signal_connection_list('body_entered'):
+					child.disconnect(conn.signal, conn.callable)
+		return saved_level
+	return level

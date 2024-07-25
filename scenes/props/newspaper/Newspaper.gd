@@ -2,6 +2,7 @@ extends Node2D
 @onready var newspaper = $"."
 
 func _ready():
+	$AnimationPlayer.play('idle')
 	if WorldState.newspaper_picked_up == true:
 		newspaper.queue_free()
 

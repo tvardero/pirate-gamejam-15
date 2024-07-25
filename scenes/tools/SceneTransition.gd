@@ -16,6 +16,7 @@ var _shape: Shape2D;
 @onready var collider: CollisionShape2D = $"CollisionShape2D";
 
 func _ready():
+	body_entered.connect(_on_body_entered)
 	_set_shape(_shape);
 
 func transit_player(player: Player) -> void:
