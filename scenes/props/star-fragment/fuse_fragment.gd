@@ -1,9 +1,14 @@
 extends Node2D
 
+@onready var anim = $"../AnimatedSprite2D"
+@onready var instructions = $"../Label"
+
+@onready var build_sfx = preload('res://assets/sounds/lantern/fuse-build.wav')
+@onready var woosh_sfx = preload('res://assets/sounds/lantern/fuse-woosh.wav')
+
 var selected=false
 var rest_point
 var rest_nodes = []
-@onready var anim = $"../AnimatedSprite2D"
 
 func _ready():
 	rest_nodes = get_tree().get_nodes_in_group("zone")
@@ -13,7 +18,7 @@ func _ready():
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if Input.is_action_just_pressed("click"):
 		selected=true
-		
+		instructions.visible = false
 
 func _physics_process(delta):
 	if selected:
@@ -35,5 +40,9 @@ func _input(event):
 					if child.is_destination: resolve()
 					
 func resolve():
-	anim.play('default')
+	anim.play('play')
+	SoundPlayer.play_sound(build_sfx)
+	await get_tree().create_timer(0.4).timeout
+	SoundPlayer.play_sound(woosh_sfx)
+	await get_tree().create_timer(0.3).timeout
 	queue_free()
