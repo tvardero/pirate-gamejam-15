@@ -1,10 +1,14 @@
 extends Node2D
 
+@onready var anim = $"../AnimatedSprite2D"
+@onready var instructions = $"../Label"
+
+@onready var build_sfx = preload('res://assets/sounds/lantern/fuse-build.wav')
+@onready var woosh_sfx = preload('res://assets/sounds/lantern/fuse-woosh.wav')
+
 var selected=false
 var rest_point
 var rest_nodes = []
-@onready var anim = $"../AnimatedSprite2D"
-@onready var instructions = $"../Label"
 
 func _ready():
 	rest_nodes = get_tree().get_nodes_in_group("zone")
@@ -37,8 +41,8 @@ func _input(event):
 					
 func resolve():
 	anim.play('play')
-	SoundPlayer.play_sound(load('res://assets/sounds/lantern/fuse-build.wav'))
+	SoundPlayer.play_sound(build_sfx)
 	await get_tree().create_timer(0.4).timeout
-	SoundPlayer.play_sound(load('res://assets/sounds/lantern/fuse-woosh.wav'))
+	SoundPlayer.play_sound(woosh_sfx)
 	await get_tree().create_timer(0.3).timeout
 	queue_free()
