@@ -7,7 +7,8 @@ var disable_movement: bool = false;
 var player: Player = null;
 var player_exists: bool:
 	get: return player != null;
-	
+signal time_changed(to_future)
+
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
@@ -34,6 +35,7 @@ func set_time(to_future: bool) -> void:
 	SoundPlayer.set_music_track(in_future, 1)
 	var level = get_current_level();
 	if level: level.switch_time(to_future)
+	time_changed.emit(to_future)
 
 	var p = get_player();
 	if !p: return ;
