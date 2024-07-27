@@ -557,7 +557,7 @@ vframes = 10
 libraries = {
 "": SubResource("AnimationLibrary_mkx0j")
 }
-speed_scale = 1.666
+speed_scale = 0.6
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {

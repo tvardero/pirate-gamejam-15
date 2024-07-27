@@ -71,7 +71,7 @@ func _set_animations(delta):
 	_animation_tree["parameters/conditions/is_walking"] = is_walking;
 	
 	#_animation_player.speed_scale = 100.0 if !is_walking||!is_sprinting else _sprint_to_walk_ratio;
-	var speed_scale = 0.16
+	var speed_scale = 0.2
 	if is_pushing: speed_scale *= _push_to_walk_ratio
 	elif is_sprinting: speed_scale *= _sprint_to_walk_ratio
 	
@@ -93,6 +93,6 @@ func detect_collision_before_time_switch(in_future: bool) -> bool:
 	var area: Area2D = ($"Area2DFuture" if in_future else $"Area2DPast") as Area2D;
 	var bodies = []
 	for body in area.get_overlapping_bodies():
-		if body is Player: continue
+		if body in [Player, Interactable]: continue
 		bodies.append(body)
 	return bodies.size() > 0;

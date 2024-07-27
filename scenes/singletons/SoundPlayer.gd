@@ -42,6 +42,7 @@ func play_sound2D(sound: AudioStream, pos: Vector2, volume: float=0) -> AudioStr
 		audio_player.stream = sound
 		audio_player.volume_db = volume
 		audio_player.pitch_scale = 1
+		audio_player.max_distance = 2000
 		audio_player.position = pos
 		audio_player.play()
 		return audio_player

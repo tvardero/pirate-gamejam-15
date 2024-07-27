@@ -63,7 +63,8 @@ vframes = 2
 libraries = {
 "": SubResource("AnimationLibrary_0ml62")
 }
-speed_scale = 1.667
+autoplay = "idle"
+speed_scale = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2tvpf")

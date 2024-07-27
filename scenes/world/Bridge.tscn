@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6uyrw5eppb2s"]
+[gd_scene load_steps=11 format=3 uid="uid://b6uyrw5eppb2s"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_77hfr"]
 [ext_resource type="Texture2D" uid="uid://d18sk7ksu5dfw" path="res://assets/sprites/bg/lab-02/BridgePastTemp.png" id="2_4vkfo"]
 [ext_resource type="Texture2D" uid="uid://d1wqwubhfoq26" path="res://assets/sprites/bg/lab-02/BridgeFutureTemp.png" id="2_h3mss"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_jxdx0"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="4_x0vyj"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_l42oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_of81s"]
@@ -18,9 +19,12 @@ size = Vector2(10, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vanw0"]
 size = Vector2(10, 75)
 
-[node name="Bridge" type="Node2D"]
+[node name="Bridge" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 position = Vector2(147, 80)
 script = ExtResource("1_77hfr")
+auto_spawn_id = 4
+past_nodes = NodePath("Past")
+future_nodes = NodePath("Future")
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -52,6 +56,9 @@ collision_layer = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Future/OtherCollisions/BridgeEdges"]
 position = Vector2(-1, -3)
 polygon = PackedVector2Array(-135, -161, -136, -150, -136, -113, -112, -113, -111, -76, -146, -74, -146, 19, -3, 5, -19, -27, -34, -44, -34, -75, -64, -75, -61, -112, -39, -112, -31, -127, -41, -143, -59, -168, -129, -170, -135, -159)
+
+[node name="StarFragment" parent="Future" instance=ExtResource("4_x0vyj")]
+position = Vector2(-22, -94)
 
 [node name="Walls" type="Node2D" parent="."]
 
