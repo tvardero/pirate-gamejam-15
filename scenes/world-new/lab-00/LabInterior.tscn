@@ -43,6 +43,7 @@ texture = ExtResource("2_24gr8")
 [node name="SceneTransition" parent="Past" instance=ExtResource("3_5fndb")]
 position = Vector2(0, -85)
 destination_level = "res://scenes/world/LabExterior.tscn"
+spawn_id = 3
 override_player_direction = true
 player_direction_override = Vector2(1, 0)
 collision_shape = SubResource("RectangleShape2D_j38sd")

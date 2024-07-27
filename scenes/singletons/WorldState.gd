@@ -55,13 +55,13 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 		save_level_state(current)
 		current.visible = false;
 		current.queue_free();
-
+	
 	get_tree().root.call_deferred("add_child", level);
 
 func get_current_level() -> Level:
 	var children = get_tree().root.get_children();
 	for child in children:
-		if child is Level: return child;
+		if child is Level && child.visible: return child;
 	
 	return null;
 
@@ -84,7 +84,6 @@ func load_level_state(packed_level: PackedScene) -> Level:
 	
 	if saved_level_states.has(level.name):
 		level.queue_free()
-		level.tree_exited
 		var saved_level = saved_level_states[level.name].instantiate()
 		for child in saved_level.get_children():
 			if child is SceneTransition: 

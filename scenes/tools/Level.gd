@@ -26,8 +26,8 @@ func _ready():
 	
 	add_child(canvas);
 	move_child(canvas, 0);
-
-	switch_time(WorldState.in_future);
+	
+	WorldState.set_time(WorldState.in_future);
 
 func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 	var spawn = find_spawnpoint(spawn_id);
