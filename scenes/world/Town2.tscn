@@ -79,6 +79,9 @@ position = Vector2(-62, -1)
 
 [node name="Future" type="Node2D" parent="."]
 
+[node name="StarFragment2" parent="Future" instance=ExtResource("11_h1jlu")]
+position = Vector2(136, 137)
+
 [node name="StarFragment" parent="Future" instance=ExtResource("11_h1jlu")]
 position = Vector2(-160, -142)
 

@@ -63,7 +63,7 @@ func set_music_track(future: bool, fade_seconds: float=0):
 		present_music_player.volume_db = 0 if future else - 80;
 		past_music_player.volume_db = -80 if future else 0;
 		return ;
-
+	
 	# Calculate fade speed per second, from 0db to -80db
 	fade_speed = (1.0 if future else -1.0) / fade_seconds;
 

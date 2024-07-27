@@ -28,10 +28,9 @@ func _on_area_2d_body_entered(body):
 
 func _on_time_changed(in_future: bool):
 	$Area2D.set_deferred('monitoring', in_future)
-	if in_future:
+	if in_future && is_visible_in_tree():
 		sound_player = SoundPlayer.play_sound2D(sound, global_position)
 		sound_player.max_distance = 100
 	elif sound_player:
-		print('STOPPING')
 		sound_player.stop()
 		sound_player = null

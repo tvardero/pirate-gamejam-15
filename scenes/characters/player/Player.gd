@@ -53,12 +53,14 @@ func try_interact() -> Node2D:
 		var lensq_a = (a.position - position).length_squared();
 		var lensq_b = (b.position - position).length_squared();
 		return lensq_a <= lensq_b;
-
+	
 	var areas = _interaction_area.get_overlapping_areas();
 	if len(areas) == 0:
 		return null;
-
-	var interactables := areas.map(func(area): return area.get_parent()).filter(func(i): return i != null&&i is Interactable);
+	
+	var interactables := areas.map(func(area):
+		return area.get_parent()).filter(func(i):
+			return i != null&&i is Interactable&&i.is_visible_in_tree());
 	interactables.sort_custom(_sort_interactables_by_dist);
 	
 	var closest_interactable = interactables[0] as Interactable;

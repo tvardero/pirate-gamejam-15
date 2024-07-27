@@ -59,6 +59,17 @@ future_nodes = NodePath("Future")
 [node name="Background" type="Sprite2D" parent="Past"]
 texture = ExtResource("1_36obe")
 
+[node name="Policeman" parent="Past" instance=ExtResource("7_q1mcf")]
+position = Vector2(-35.387, -71.972)
+collision_layer = 1
+
+[node name="Partygoer" parent="Past" instance=ExtResource("9_ud5is")]
+position = Vector2(-68.0708, 94.0637)
+
+[node name="Clubhouse" parent="Past" instance=ExtResource("10_phmbm")]
+position = Vector2(80.613, -111.972)
+collision_layer = 1
+
 [node name="SewagePast" type="StaticBody2D" parent="Past"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/SewagePast"]
@@ -159,12 +170,3 @@ id = 11
 
 [node name="Town 1 Gate" parent="." instance=ExtResource("8_gsgk6")]
 position = Vector2(-51.387, -96.972)
-
-[node name="Policeman" parent="." instance=ExtResource("7_q1mcf")]
-position = Vector2(-35.387, -71.972)
-
-[node name="Partygoer" parent="." instance=ExtResource("9_ud5is")]
-position = Vector2(-68.0708, 94.0637)
-
-[node name="Clubhouse" parent="." instance=ExtResource("10_phmbm")]
-position = Vector2(80.613, -111.972)
