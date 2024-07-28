@@ -8,7 +8,6 @@ var disable_movement: bool = false;
 var saved_level_states: Dictionary = {}
 
 var star_fragment_count: int = 0
-var lantern_unlocked: bool = false;
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
@@ -24,6 +23,9 @@ var _lantern_animation_elapsed: float = 0;
 var _lantern_total_duration: float = 0;
 var _lantern_level: Level;
 var _lantern_theme_switched: bool = false;
+
+var lantern_unlocked: bool:
+	get: return !get_current_level().lanter_locked;
 
 func _ready():
 	scene_transition_visual = scene_transition_visual_packed.instantiate()

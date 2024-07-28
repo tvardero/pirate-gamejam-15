@@ -30,6 +30,7 @@ enum ShakeType {
 
 func _ready() -> void:
 	super._ready();
+	lanter_locked = true;
 
 	DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'start_of_game_text')
 	rand.randomize()
@@ -69,7 +70,7 @@ func _process(delta: float) -> void:
 		rubble.visible = true
 	if earthquake_timer <= 0:
 		WorldState.disable_movement = false;
-		WorldState.lantern_unlocked = true;
+		lanter_locked = false;
 		earthquake_active = false
 		shake_strength = 0.0
 	else:

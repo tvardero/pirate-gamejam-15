@@ -1,6 +1,8 @@
 class_name Level
 extends Node2D
 
+@export var lanter_locked: bool = false;
+
 @export_group("Player auto spawn")
 @export var auto_spawn_player: bool = false
 @export var auto_spawn_id: int = 0;
