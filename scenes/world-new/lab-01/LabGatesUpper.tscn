@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://db2h0xaytqd4t"]
+
+[ext_resource type="Texture2D" uid="uid://bmxr10dpm8eim" path="res://assets/sprites/bg/lab-01/Lab_Exit-2.png" id="1_2vg26"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y2kl"]
+size = Vector2(13, 77)
+
+[node name="LabGatesUpper" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="LabExit-2" type="Sprite2D" parent="."]
+position = Vector2(85, 21)
+texture = ExtResource("1_2vg26")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -38)
+shape = SubResource("RectangleShape2D_5y2kl")

@@ -1,6 +1,143 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbmia3fv35dsu"]
+[gd_scene load_steps=18 format=3 uid="uid://bbmia3fv35dsu"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-01/LabExterior.gd" id="1_tskym"]
+[ext_resource type="Texture2D" uid="uid://w1myvpl4odr8" path="res://assets/sprites/bg/lab-01/LabExteriorMapPast.png" id="2_1o2mo"]
+[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="2_si7i8"]
+[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="3_8x3nn"]
+[ext_resource type="PackedScene" uid="uid://bnvid6abrol44" path="res://scenes/world-new/lab-01/LabGatesLower.tscn" id="4_t1jha"]
+[ext_resource type="PackedScene" uid="uid://db2h0xaytqd4t" path="res://scenes/world-new/lab-01/LabGatesUpper.tscn" id="5_cq7y5"]
+[ext_resource type="PackedScene" uid="uid://c54soxisgchg6" path="res://scenes/world-new/lab-01/LabBuilding.tscn" id="5_x0m6e"]
+[ext_resource type="Texture2D" uid="uid://ccmas7xdqbn8w" path="res://assets/sprites/bg/lab-01/Lab_Exit-1.png" id="6_wwntv"]
+[ext_resource type="Texture2D" uid="uid://b7peir3f7n3ev" path="res://assets/sprites/bg/lab-01/Lab_Exit-5.png" id="7_8xukp"]
+[ext_resource type="PackedScene" uid="uid://quth0kgrc5x7" path="res://scenes/world-new/lab-01/ForestTop.tscn" id="8_heejr"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="11_16evg"]
 
-[node name="LabExterior" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a2kp"]
+size = Vector2(33, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7qoy"]
+size = Vector2(14, 185)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pg6m"]
+size = Vector2(20, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13qq6"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00chj"]
+size = Vector2(20, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6r2k"]
+size = Vector2(20, 80)
+
+[node name="LabExterior" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
+y_sort_enabled = true
 script = ExtResource("1_tskym")
+past_nodes = NodePath("Past")
+past_color = Color(0.85098, 0.85098, 0.85098, 1)
+future_nodes = NodePath("Future")
+
+[node name="Past" type="Node2D" parent="."]
+visible = false
+y_sort_enabled = true
+
+[node name="LabExteriorMapPast" type="Sprite2D" parent="Past"]
+z_index = -1
+texture = ExtResource("2_1o2mo")
+
+[node name="Bench1" type="StaticBody2D" parent="Past"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Bench1"]
+position = Vector2(-37.5, -31.5)
+shape = SubResource("RectangleShape2D_5a2kp")
+
+[node name="Bench2" type="StaticBody2D" parent="Past"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Bench2"]
+position = Vector2(80, -33)
+shape = SubResource("RectangleShape2D_5a2kp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Past"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/StaticBody2D"]
+polygon = PackedVector2Array(-78, -60, -50, -60, -38, -57, -25, -58, -15, -64, -10, -72, 20, -72, 26, -59, 36, -54, 53, -54, 63, -56, 69, -68, 106, -68, 112, -60, 117, -54, 124, -52, 133, -52, 139, -56, 144, -60, 160, -59, 160, 40, 140, 58, -78, 58, -79, 95, 182, 94, 182, -101, -78, -99)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Past"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/StaticBody2D2"]
+position = Vector2(-85, 1)
+shape = SubResource("RectangleShape2D_l7qoy")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Past"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/StaticBody2D3"]
+polygon = PackedVector2Array(-147, -59, -146, 58, -90, 58, -90, 95, -201, 94, -201, -91, -84, -92, -85, -59)
+
+[node name="Future" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="LabBuilding" parent="Future" instance=ExtResource("5_x0m6e")]
+position = Vector2(-160, 58)
+
+[node name="LabGatesLower" parent="Future" instance=ExtResource("4_t1jha")]
+position = Vector2(-85, 15)
+
+[node name="LabGatesUpper" parent="Future" instance=ExtResource("5_cq7y5")]
+position = Vector2(-85, -21)
+
+[node name="Pathway" type="Sprite2D" parent="Future"]
+z_index = -2
+texture = ExtResource("6_wwntv")
+
+[node name="ForestBottom" type="Sprite2D" parent="Future"]
+z_index = -1
+texture = ExtResource("7_8xukp")
+
+[node name="ForestTop" parent="Future" instance=ExtResource("8_heejr")]
+z_index = 1
+position = Vector2(160, 80)
+
+[node name="Walls" type="StaticBody2D" parent="Future"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Polygon2D" type="CollisionPolygon2D" parent="Future/Walls"]
+polygon = PackedVector2Array(-160, -76, -91, -76, -91, -61, -49, -61, -39, -57, -23, -57, -15, -64, -9, -72, 20, -72, 26, -58, 35, -54, 53, -53, 63, -57, 69, -69, 106, -69, 113, -59, 118, -53, 128, -51, 136, -54, 142, -59, 160, -59, 160, 39, 140, 58, -92, 58, -91, 80, -159, 80, -159, 58, -179, 58, -178, 92, 214, 90, 212, -106, -183, -97, -183, -45, -160, -45)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("2_si7i8")]
+position = Vector2(-130, 0)
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("2_si7i8")]
+position = Vector2(133, 0)
+id = 1
+
+[node name="SceneTransition2" parent="." instance=ExtResource("3_8x3nn")]
+position = Vector2(160, -1)
+destination_level = "res://scenes/world/Bridge.tscn"
+spawn_id = 4
+collision_shape = SubResource("RectangleShape2D_8pg6m")
+
+[node name="InteractableLabBuilding" parent="." instance=ExtResource("11_16evg")]
+position = Vector2(-149, 1)
+shape = SubResource("RectangleShape2D_13qq6")
+
+[node name="InteractableGate" parent="." instance=ExtResource("11_16evg")]
+position = Vector2(-93, 0)
+shape = SubResource("RectangleShape2D_00chj")
+
+[node name="PuzzleSolved" type="Area2D" parent="."]
+position = Vector2(-13, -6)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleSolved"]
+position = Vector2(-54, 5)
+shape = SubResource("RectangleShape2D_h6r2k")
+debug_color = Color(0, 0.547493, 0.932932, 0.42)
+
+[connection signal="interacted" from="InteractableLabBuilding" to="." method="_on_lab_building_interacted"]
+[connection signal="interacted" from="InteractableGate" to="." method="_on_gate_interacted"]
+[connection signal="body_entered" from="PuzzleSolved" to="." method="_on_puzzle_solved_body_entered"]

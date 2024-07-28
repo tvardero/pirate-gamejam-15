@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://quth0kgrc5x7"]
+
+[ext_resource type="Texture2D" uid="uid://b3w3cfq4j6kow" path="res://assets/sprites/bg/lab-01/Lab_Exit-6.png" id="1_cm8bj"]
+
+[node name="ForestTop" type="Node2D"]
+
+[node name="LabExit-6" type="Sprite2D" parent="."]
+position = Vector2(-160, -80)
+texture = ExtResource("1_cm8bj")
