@@ -44,6 +44,7 @@ func _physics_process(delta) -> void:
 
 func _ready():
 	_set_direction(_direction);
+	set_collision_masks_and_layers(WorldState.in_future)
 	WorldState.player = self;
 
 func try_push(collision: KinematicCollision2D) -> bool:
