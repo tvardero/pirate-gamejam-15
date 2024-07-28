@@ -25,11 +25,10 @@ size = Vector2(10, 75)
 position = Vector2(147, 80)
 script = ExtResource("1_ejm3d")
 star_fragment = NodePath("Future/StarFragment")
-future_music = ExtResource("2_hqbr5")
 past_music = ExtResource("3_qf6fd")
 past_nodes = NodePath("Past")
 future_nodes = NodePath("Future")
-future_music = ExtResource("2_1tt1j")
+future_music = ExtResource("2_hqbr5")
 
 [node name="Past" type="Node2D" parent="."]
 
