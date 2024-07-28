@@ -31,6 +31,7 @@ Bouncer: What's the password?
 - Penumbra.
 	Bouncer: Come on in.
 	[i]You go inside just long enough to turn off your lantern and pick up the star fragment.[/i]
+	do WorldState.start_fuse_scene()
 => END
 
 ~ partygoer

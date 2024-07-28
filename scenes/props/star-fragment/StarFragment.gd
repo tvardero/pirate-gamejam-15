@@ -1,17 +1,33 @@
 extends Node2D
 
-@onready var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
+@export var sound: AudioStream
+var sound_player: AudioStreamPlayer2D
+
+signal collected
 
 
-func _on_interactable_interacted(_initiator: Node):
-	visible = false
+func _ready():
+	WorldState.time_changed.connect(_on_time_changed)
+
+
+func _on_area_2d_body_entered(body):
+	if !WorldState.in_future: return
+	
 	await DialogState.start_from_text('Found a Star Fragment!')
 	
-	WorldState.disable_movement = true
-	var fuse_scene = fuse_scene_packed.instantiate()
-	WorldState.get_current_level().add_child(fuse_scene)
-	await fuse_scene.tree_exited
+	visible = false
+	sound_player.stop()
+	await WorldState.start_fuse_scene()
 	
-	WorldState.star_fragment_count += 1
-	WorldState.disable_movement = false
+	collected.emit()
 	queue_free()
+
+
+func _on_time_changed(in_future: bool):
+	$Area2D.set_deferred('monitoring', in_future)
+	if in_future && is_visible_in_tree():
+		sound_player = SoundPlayer.play_sound2D(sound, global_position)
+		sound_player.max_distance = 100
+	elif sound_player:
+		sound_player.stop()
+		sound_player = null

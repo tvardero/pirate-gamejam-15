@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwmy5und3r5r3"]
+[gd_scene load_steps=21 format=3 uid="uid://bwmy5und3r5r3"]
 
+[ext_resource type="Script" path="res://scenes/world/LabExterior.gd" id="1_2fomn"]
 [ext_resource type="Texture2D" uid="uid://w1myvpl4odr8" path="res://assets/sprites/bg/lab-01/LabExteriorMapPast.png" id="1_8reys"]
-[ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_may8i"]
+[ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_3ohmk"]
 [ext_resource type="Texture2D" uid="uid://bojkbtthsbyxw" path="res://assets/sprites/bg/lab-01/LabExteriorPresent.png" id="2_pcolr"]
+[ext_resource type="AudioStream" uid="uid://d0pjxkln07gby" path="res://assets/music/temp_past.ogg" id="3_bi13g"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="3_sx54t"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_2ics6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avaaw"]
-size = Vector2(30, 11)
+size = Vector2(30, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnkyw"]
 size = Vector2(12, 111.25)
@@ -18,7 +20,10 @@ size = Vector2(12, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_568ne"]
 size = Vector2(19, 114)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyvd2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fswep"]
+size = Vector2(16, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82g8f"]
 size = Vector2(12, 44.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d2ff"]
@@ -39,9 +44,18 @@ size = Vector2(17, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay3fe"]
 size = Vector2(10, 75)
 
-[node name="LabExterior" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xho2f"]
+size = Vector2(4, 116)
+
+[node name="LabExterior" type="Node2D" node_paths=PackedStringArray("entrance_text_area", "gate_text_area", "past_nodes", "future_nodes")]
 position = Vector2(-1, 0)
-script = ExtResource("1_may8i")
+script = ExtResource("1_2fomn")
+entrance_text_area = NodePath("EntranceTextArea")
+gate_text_area = NodePath("Past/GateTextArea")
+future_music = ExtResource("2_3ohmk")
+past_music = ExtResource("3_bi13g")
+past_nodes = NodePath("Past")
+future_nodes = NodePath("Future")
 
 [node name="Past" type="Node2D" parent="."]
 
@@ -53,13 +67,13 @@ texture = ExtResource("1_8reys")
 [node name="BenchLeft" type="StaticBody2D" parent="Past/OtherCollisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/BenchLeft"]
-position = Vector2(-37, -35)
+position = Vector2(-37, -35.5)
 shape = SubResource("RectangleShape2D_avaaw")
 
 [node name="Benchright" type="StaticBody2D" parent="Past/OtherCollisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/Benchright"]
-position = Vector2(80, -37.5)
+position = Vector2(80, -38.5)
 shape = SubResource("RectangleShape2D_avaaw")
 
 [node name="FenceBottom" type="StaticBody2D" parent="Past/OtherCollisions"]
@@ -82,6 +96,15 @@ shape = SubResource("RectangleShape2D_8yoci")
 position = Vector2(-161.5, 0)
 shape = SubResource("RectangleShape2D_568ne")
 
+[node name="GateTextArea" type="Area2D" parent="Past"]
+position = Vector2(-85, -3)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/GateTextArea"]
+position = Vector2(-3, 4.5)
+shape = SubResource("RectangleShape2D_fswep")
+
 [node name="Future" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Future"]
@@ -94,7 +117,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Future/OtherCollisions/FenceBottom"]
 position = Vector2(-85, 59)
-shape = SubResource("RectangleShape2D_yyvd2")
+shape = SubResource("RectangleShape2D_82g8f")
 
 [node name="FenceTop" type="StaticBody2D" parent="Future/OtherCollisions"]
 collision_layer = 2
@@ -182,3 +205,9 @@ position = Vector2(163, -3)
 destination_level = "res://scenes/world/Bridge.tscn"
 spawn_id = 4
 collision_shape = SubResource("RectangleShape2D_ay3fe")
+
+[node name="EntranceTextArea" type="Area2D" parent="."]
+position = Vector2(-151, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceTextArea"]
+shape = SubResource("RectangleShape2D_xho2f")

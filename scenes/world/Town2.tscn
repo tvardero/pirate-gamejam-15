@@ -1,15 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=25 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://cxs04nxi5tr4n" path="res://assets/sprites/bg/lab-04/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
 [ext_resource type="PackedScene" uid="uid://bdvi5akdxem1q" path="res://scenes/props/newspaper/Newspaper.tscn" id="3_pdv1h"]
+[ext_resource type="PackedScene" uid="uid://dpcptuskifrpr" path="res://scenes/props/wagon/wagon.tscn" id="3_rijxw"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
+[ext_resource type="AudioStream" uid="uid://bjd8wr3pp8y1b" path="res://assets/sounds/wagon-push/wagon-push.wav" id="4_q2pwf"]
+[ext_resource type="Script" path="res://scenes/props/wagon/wagon.gd" id="4_xbei2"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="5_r8cyn"]
+[ext_resource type="Texture2D" uid="uid://lgno7osw4ac6" path="res://assets/sprites/bg/lab-04/Wagon-present.png" id="6_fi36a"]
 [ext_resource type="PackedScene" uid="uid://dvlgtq5e01t5u" path="res://scenes/props/house/partygoers_house.tscn" id="6_wv00r"]
 [ext_resource type="Texture2D" uid="uid://w2kyfiuh8v46" path="res://assets/objects/house/Housecrack.png" id="8_7ln5e"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="8_t6tew"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="11_h1jlu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
 size = Vector2(377, 2.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
+size = Vector2(58, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8yrn4"]
+radius = 38.71
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aiyby"]
 size = Vector2(153.5, 2.5)
@@ -37,6 +49,7 @@ size = Vector2(10, 50)
 
 [node name="Town2" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 script = ExtResource("1_mlm7f")
+auto_spawn_player = true
 past_nodes = NodePath("Past")
 future_nodes = NodePath("Future")
 
@@ -59,7 +72,40 @@ shape = SubResource("RectangleShape2D_3qtw8")
 position = Vector2(0, -1)
 polygon = PackedVector2Array(-190, 100, -124, 101, -40, 110, 10, 89, 79, 93, 100, 88, 122, 94, 141, 89, 184, 90, 185, 100, 157, 100, 139, 99, 123, 103, 107, 102, 96, 97, 85, 102, 52, 101, 18, 98, -35, 119, -70, 118, -141, 109, -174, 114, -189, 114)
 
+[node name="Wagon" parent="Past" node_paths=PackedStringArray("dest") instance=ExtResource("3_rijxw")]
+position = Vector2(2, -97)
+collision_layer = 17
+dest = NodePath("Destination")
+push_sound = ExtResource("4_q2pwf")
+
+[node name="Destination" type="Marker2D" parent="Past/Wagon"]
+position = Vector2(-62, -1)
+
 [node name="Future" type="Node2D" parent="."]
+
+[node name="StarFragment2" parent="Future" instance=ExtResource("11_h1jlu")]
+position = Vector2(136, 137)
+
+[node name="StarFragment" parent="Future" instance=ExtResource("11_h1jlu")]
+position = Vector2(-160, -142)
+
+[node name="Wagon" type="StaticBody2D" parent="Future" node_paths=PackedStringArray("past_wagon")]
+position = Vector2(2, -97)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_xbei2")
+past_wagon = NodePath("../../Past/Wagon")
+
+[node name="Sprite2D" type="Sprite2D" parent="Future/Wagon"]
+position = Vector2(1, 0)
+texture = ExtResource("6_fi36a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Wagon"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_4dbvp")
+
+[node name="Interactable" parent="Future/Wagon" instance=ExtResource("8_t6tew")]
+shape = SubResource("CircleShape2D_8yrn4")
 
 [node name="Newspaper" parent="Future" instance=ExtResource("3_pdv1h")]
 position = Vector2(130, -84)
@@ -150,5 +196,7 @@ offset_bottom = 1019.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_7ln5e")
+
+[connection signal="interacted" from="Future/Wagon/Interactable" to="Future/Wagon" method="_on_interactable_interacted"]
 
 [editable path="Future/Newspaper"]

@@ -25,7 +25,7 @@ PauseMenu="*res://scenes/ui/PauseMenu.tscn"
 
 [dialogue_manager]
 
-general/states=["DialogState"]
+general/states=["DialogState", "WorldState"]
 general/wrap_lines=true
 general/balloon_path="res://scenes/ui/DialogBalloon.tscn"
 

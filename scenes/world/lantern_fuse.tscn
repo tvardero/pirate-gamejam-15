@@ -194,3 +194,7 @@ text = "Fuse the star fragment by dragging it into the lantern"
 label_settings = SubResource("LabelSettings_2nepi")
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(576, 350)
+current = true

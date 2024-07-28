@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bna50xgjrlfsg"]
+[gd_scene load_steps=14 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-00/LabInterior.gd" id="1_gq17i"]
 [ext_resource type="Texture2D" uid="uid://cgsl5f2ykuxxq" path="res://assets/sprites/bg/lab-00/LabPastMockup.png" id="2_24gr8"]
+[ext_resource type="AudioStream" uid="uid://b244747mcilks" path="res://assets/music/lab_present.ogg" id="2_ib022"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="3_5fndb"]
+[ext_resource type="AudioStream" uid="uid://cmblol3d5mrtv" path="res://assets/music/lab_past.ogg" id="3_6msq0"]
 [ext_resource type="Texture2D" uid="uid://b8u2u6uhukwwm" path="res://assets/sprites/bg/lab-00/LabMockup.png" id="4_j3ruy"]
 [ext_resource type="Texture2D" uid="uid://cx6h262xlyiel" path="res://assets/sprites/bg/lab-00/LabRubbleMockup.png" id="5_y3b7w"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="6_dojuy"]
@@ -22,6 +24,8 @@ size = Vector2(60, 20)
 script = ExtResource("1_gq17i")
 auto_spawn_player = true
 auto_spawn_direction = Vector2(0, 1)
+future_music = ExtResource("2_ib022")
+past_music = ExtResource("3_6msq0")
 past_nodes = NodePath("Past")
 future_nodes = NodePath("Future")
 
@@ -43,6 +47,7 @@ texture = ExtResource("2_24gr8")
 [node name="SceneTransition" parent="Past" instance=ExtResource("3_5fndb")]
 position = Vector2(0, -85)
 destination_level = "res://scenes/world/LabExterior.tscn"
+spawn_id = 3
 override_player_direction = true
 player_direction_override = Vector2(1, 0)
 collision_shape = SubResource("RectangleShape2D_j38sd")
@@ -70,6 +75,9 @@ shape = SubResource("RectangleShape2D_8qucy")
 
 [node name="Lantern" parent="Future" instance=ExtResource("7_hdylt")]
 position = Vector2(0, 26)
+
+[node name="Interactable" parent="Future/Lantern" index="1"]
+visible = true
 
 [node name="EntrywayText" type="Area2D" parent="Future"]
 position = Vector2(-4, -64)

@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 [ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
 [ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
+[ext_resource type="PackedScene" uid="uid://sdtxgsgq6ol2" path="res://scenes/props/pipe/pipe.tscn" id="9_0byed"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="9_lvt10"]
 [ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
 [ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
-[ext_resource type="PackedScene" uid="uid://dpcptuskifrpr" path="res://scenes/props/wagon/wagon.tscn" id="12_711yk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
 size = Vector2(353.049, 20)
@@ -33,9 +34,6 @@ size = Vector2(15.9023, 49.1868)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o128w"]
 size = Vector2(16.1226, 118.774)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6v7c"]
-size = Vector2(20.4643, 34.5852)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33bum"]
 size = Vector2(10, 110)
@@ -60,6 +58,17 @@ future_nodes = NodePath("Future")
 [node name="Background" type="Sprite2D" parent="Past"]
 texture = ExtResource("1_36obe")
 
+[node name="Policeman" parent="Past" instance=ExtResource("7_q1mcf")]
+position = Vector2(-35.387, -71.972)
+collision_layer = 1
+
+[node name="Partygoer" parent="Past" instance=ExtResource("9_ud5is")]
+position = Vector2(-68.0708, 94.0637)
+
+[node name="Clubhouse" parent="Past" instance=ExtResource("10_phmbm")]
+position = Vector2(80.613, -111.972)
+collision_layer = 1
+
 [node name="SewagePast" type="StaticBody2D" parent="Past"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/SewagePast"]
@@ -69,6 +78,9 @@ polygon = PackedVector2Array(122.989, 128.359, 122.989, 113.417, 131.954, 104.87
 
 [node name="Background" type="Sprite2D" parent="Future"]
 texture = ExtResource("2_e0hoc")
+
+[node name="StarFragment" parent="Future" instance=ExtResource("9_lvt10")]
+position = Vector2(-124.387, -123.972)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -121,12 +133,8 @@ collision_layer = 3
 position = Vector2(-177.618, -105.826)
 shape = SubResource("RectangleShape2D_o128w")
 
-[node name="Pipe" type="StaticBody2D" parent="OtherCollisions"]
-collision_layer = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OtherCollisions/Pipe"]
-position = Vector2(128.984, 144.276)
-shape = SubResource("RectangleShape2D_l6v7c")
+[node name="Pipe" parent="OtherCollisions" instance=ExtResource("9_0byed")]
+position = Vector2(128.613, 144.028)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(-150.387, 5.028)
@@ -160,16 +168,3 @@ id = 11
 
 [node name="Town 1 Gate" parent="." instance=ExtResource("8_gsgk6")]
 position = Vector2(-51.387, -96.972)
-
-[node name="Policeman" parent="." instance=ExtResource("7_q1mcf")]
-position = Vector2(-35.387, -71.972)
-
-[node name="Partygoer" parent="." instance=ExtResource("9_ud5is")]
-position = Vector2(-68.0708, 94.0637)
-
-[node name="Clubhouse" parent="." instance=ExtResource("10_phmbm")]
-position = Vector2(43.613, 72.028)
-
-[node name="Wagon" parent="." instance=ExtResource("12_711yk")]
-position = Vector2(-75.387, 20.028)
-pushable_y = false

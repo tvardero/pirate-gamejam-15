@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scenes/singletons/WorldState.gd" id="1_olktn"]
 
 [node name="WorldState" type="Node"]
+process_mode = 3
 script = ExtResource("1_olktn")

@@ -1,11 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3oggqxbkn0u0"]
 
 [ext_resource type="Script" path="res://scenes/props/star-fragment/StarFragment.gd" id="1_vyu37"]
-[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="3_f44bu"]
+[ext_resource type="AudioStream" uid="uid://mlxuupoqvjl5" path="res://assets/sounds/star-fragment-hum/star-fragment-hum-1.mp3" id="2_lb50v"]
 [ext_resource type="Texture2D" uid="uid://cap644hq2jx53" path="res://assets/sprites/star-fragment/starfragment-spritesheet.png" id="3_odgjo"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_i5beb"]
-radius = 20.0
 
 [sub_resource type="Animation" id="Animation_6w3y1"]
 length = 0.001
@@ -45,11 +42,12 @@ _data = {
 "idle": SubResource("Animation_khu0w")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0aa8"]
+radius = 15.0
+
 [node name="StarFragment" type="Node2D"]
 script = ExtResource("1_vyu37")
-
-[node name="Interactable" parent="." instance=ExtResource("3_f44bu")]
-shape = SubResource("CircleShape2D_i5beb")
+sound = ExtResource("2_lb50v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.5, -0.5)
@@ -60,5 +58,14 @@ hframes = 2
 libraries = {
 "": SubResource("AnimationLibrary_lpaqg")
 }
+autoplay = "idle"
+speed_scale = 0.6
 
-[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_d0aa8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

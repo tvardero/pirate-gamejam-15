@@ -3,6 +3,12 @@ extends Node
 @onready var dialogue_manager: DialogueManager = Engine.get_singleton("DialogueManager")
 const balloon_packed = preload("res://scenes/ui/DialogBalloon.tscn")
 var balloon: DialogBalloon
+var disabled: bool:
+	set(val):
+		if val == disabled: return
+		disabled = val
+		if !val: enabled.emit()
+signal enabled
 
 var player_emote_textures: Dictionary = {}
 
@@ -20,12 +26,13 @@ func _ready():
 		player_emote_textures[file] = texture
 
 func create_balloon() -> DialogBalloon:
+	if disabled: await enabled
 	balloon = balloon_packed.instantiate()
 	WorldState.get_current_level().add_child(balloon)
 	return balloon
 
 func start_dialog(dialogue_resource: DialogueResource, dialogue_start: String = 'Start'):
-	create_balloon()
+	await create_balloon()
 	balloon.start(dialogue_resource, dialogue_start)
 	await dialogue_manager.dialogue_ended
 	balloon = null

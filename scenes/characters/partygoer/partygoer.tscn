@@ -1,19 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://cynvv44m3x8ss"]
+[gd_scene load_steps=9 format=3 uid="uid://cynvv44m3x8ss"]
 
 [ext_resource type="Script" path="res://scenes/characters/partygoer/partygoer.gd" id="1_1qbt1"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="1_yx6om"]
+[ext_resource type="Texture2D" uid="uid://dlhm8l2u8jsh" path="res://assets/sprites/partygoer/Partygoer_spritesheet.png" id="2_hpft5"]
+
+[sub_resource type="Animation" id="Animation_2aeq3"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_j5jt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyxfj"]
+_data = {
+"Idle": SubResource("Animation_2aeq3"),
+"RESET": SubResource("Animation_j5jt1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib4ll"]
+size = Vector2(27, 22)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdybj"]
 radius = 22.8
 
-[node name="Partygoer" type="Node2D"]
+[node name="Partygoer" type="StaticBody2D"]
 script = ExtResource("1_1qbt1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.531
-offset_top = -12.85
-offset_right = 9.46898
-offset_bottom = 14.15
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hpft5")
+hframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vyxfj")
+}
+autoplay = "Idle"
+speed_scale = 0.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 9)
+shape = SubResource("RectangleShape2D_ib4ll")
 
 [node name="Interactable" parent="." instance=ExtResource("1_yx6om")]
 shape = SubResource("CircleShape2D_xdybj")

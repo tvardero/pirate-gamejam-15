@@ -27,3 +27,5 @@ func _on_interactable_interacted(initiator):
 			gate_closed.visible = false
 			gate_open.visible = true
 			WorldState.town1_gate_open = true
+	else:
+		DialogState.start_from_text('The gate has rusted shut.')

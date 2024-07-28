@@ -32,14 +32,14 @@ func _physics_process(delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
 	velocity = input_movement_vector * multiplier;
 	var collision = move_and_collide(velocity);
-	is_pushing = try_push(collision, delta)
+	is_pushing = try_push(collision)
 	
 	_set_animations(delta);
 
 func _ready():
 	_set_direction(_direction);
 
-func try_push(collision: KinematicCollision2D, delta) -> bool:
+func try_push(collision: KinematicCollision2D) -> bool:
 	if !collision: return false
 	var collider = collision.get_collider()
 	if collider is Pushable:
@@ -53,12 +53,14 @@ func try_interact() -> Node2D:
 		var lensq_a = (a.position - position).length_squared();
 		var lensq_b = (b.position - position).length_squared();
 		return lensq_a <= lensq_b;
-
+	
 	var areas = _interaction_area.get_overlapping_areas();
 	if len(areas) == 0:
 		return null;
-
-	var interactables := areas.map(func(area): return area.get_parent()).filter(func(i): return i != null&&i is Interactable);
+	
+	var interactables := areas.map(func(area):
+		return area.get_parent()).filter(func(i):
+			return i != null&&i is Interactable&&i.is_visible_in_tree());
 	interactables.sort_custom(_sort_interactables_by_dist);
 	
 	var closest_interactable = interactables[0] as Interactable;
@@ -71,7 +73,7 @@ func _set_animations(delta):
 	_animation_tree["parameters/conditions/is_walking"] = is_walking;
 	
 	#_animation_player.speed_scale = 100.0 if !is_walking||!is_sprinting else _sprint_to_walk_ratio;
-	var speed_scale = 0.6
+	var speed_scale = 0.2
 	if is_pushing: speed_scale *= _push_to_walk_ratio
 	elif is_sprinting: speed_scale *= _sprint_to_walk_ratio
 	
@@ -91,4 +93,8 @@ func _set_direction(value: Vector2):
 
 func detect_collision_before_time_switch(in_future: bool) -> bool:
 	var area: Area2D = ($"Area2DFuture" if in_future else $"Area2DPast") as Area2D;
-	return area.has_overlapping_bodies();
+	var bodies = []
+	for body in area.get_overlapping_bodies():
+		if body in [Player, Interactable]: continue
+		bodies.append(body)
+	return bodies.size() > 0;
