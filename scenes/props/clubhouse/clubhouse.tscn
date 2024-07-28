@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djdpd1kmtidu3"]
+[gd_scene load_steps=10 format=3 uid="uid://djdpd1kmtidu3"]
 
 [ext_resource type="Script" path="res://scenes/props/clubhouse/clubhouse.gd" id="1_1ooch"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="1_54rpb"]
@@ -7,8 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fwj6"]
 size = Vector2(184, 102)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p3s8i"]
-radius = 34.14
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cehc"]
+size = Vector2(32, 16.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki0gl"]
+size = Vector2(80, 30)
 
 [sub_resource type="Animation" id="Animation_itlqc"]
 resource_name = "Idle"
@@ -53,16 +56,21 @@ collision_layer = 3
 script = ExtResource("1_1ooch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -62)
 texture = ExtResource("3_syods")
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 13)
+position = Vector2(-2, -49)
 shape = SubResource("RectangleShape2D_4fwj6")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 10.75)
+shape = SubResource("RectangleShape2D_1cehc")
+
 [node name="Interactable" parent="." instance=ExtResource("1_54rpb")]
-position = Vector2(30, 49)
-shape = SubResource("CircleShape2D_p3s8i")
+position = Vector2(30, 9)
+shape = SubResource("RectangleShape2D_ki0gl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")

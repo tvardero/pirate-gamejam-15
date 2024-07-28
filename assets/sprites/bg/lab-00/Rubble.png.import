@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx6h262xlyiel"
-path="res://.godot/imported/LabRubbleMockup.png-c2685e10ee7e38d12ff98c7ce7827e32.ctex"
+uid="uid://iqe3434oyg34"
+path="res://.godot/imported/Rubble.png-4831f442df9481e7dc902d5542ed3aba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg/lab-00/LabRubbleMockup.png"
-dest_files=["res://.godot/imported/LabRubbleMockup.png-c2685e10ee7e38d12ff98c7ce7827e32.ctex"]
+source_file="res://assets/sprites/bg/lab-00/Rubble.png"
+dest_files=["res://.godot/imported/Rubble.png-4831f442df9481e7dc902d5542ed3aba.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgsl5f2ykuxxq"
-path="res://.godot/imported/LabPastMockup.png-2e1d2010edfe8dc482793f2e3d4ada53.ctex"
+uid="uid://bdexpyi4tpfh"
+path="res://.godot/imported/starfragment-old.png-bc21343c2e4ffb69595264a2bbf5eb62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg/lab-00/LabPastMockup.png"
-dest_files=["res://.godot/imported/LabPastMockup.png-2e1d2010edfe8dc482793f2e3d4ada53.ctex"]
+source_file="res://assets/sprites/star-fragment/starfragment-old.png"
+dest_files=["res://.godot/imported/starfragment-old.png-bc21343c2e4ffb69595264a2bbf5eb62.ctex"]
 
 [params]
 

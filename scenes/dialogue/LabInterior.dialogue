@@ -13,7 +13,7 @@ You: Wait, what's that sound?
 => END
 
 ~ interact_rubble
-You: I'm trapped! Maybe the lantern can help me? [i](Press Space to use the lantern)[/i]
+You: I'm trapped! Maybe the lantern can help me? [i](Press Tab to use the lantern)[/i]
 => END
 
 ~ lantern_first_use

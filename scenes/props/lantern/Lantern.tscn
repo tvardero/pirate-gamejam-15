@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bvbwjpy32d72m" path="res://assets/sprites/lantern/Lantern-spritesheet.png" id="2_fx54j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3lrd"]
-radius = 20.0
+radius = 15.0
 
 [sub_resource type="Animation" id="Animation_g4rk0"]
 length = 0.001
@@ -55,7 +55,6 @@ vframes = 2
 frame = 10
 
 [node name="Interactable" parent="." instance=ExtResource("2_4bfbq")]
-visible = false
 shape = SubResource("CircleShape2D_b3lrd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
