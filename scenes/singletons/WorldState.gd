@@ -19,7 +19,6 @@ var newspaper_picked_up: bool = false
 var password_found: bool = false
 var sewage_valve_off: bool = false
 
-var _color_rect: ColorRect
 var saved_level_states: Dictionary = {}
 
 func _ready():
@@ -59,13 +58,12 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 	disable_movement = true
 	DialogState.disabled = true
 	scene_transition_visual.start()
-	await scene_transition_visual.halfway
 	
 	var level = load_level_state(destination);
 	if !(level is Level):
 		assert(false, "Invalid destination scene provided, should extend class 'Level'");
 	
-	level.spawn_player_at(spawn_id, player_direction);
+	await scene_transition_visual.halfway
 	
 	var current = get_current_level();
 	if current:
@@ -73,17 +71,18 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 		current.visible = false;
 		current.queue_free();
 	
+	level.spawn_player_at(spawn_id, player_direction);
 	get_tree().root.call_deferred("add_child", level);
+	
 	await scene_transition_visual.finished
 	
 	disable_movement = false
 	DialogState.disabled = false
 
-
 func get_current_level() -> Level:
 	var children = get_tree().root.get_children();
 	for child in children:
-		if child is Level && child.visible: return child;
+		if child is Level && !child.is_queued_for_deletion() && child.visible: return child;
 	
 	return null;
 
