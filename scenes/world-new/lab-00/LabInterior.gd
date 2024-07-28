@@ -27,7 +27,7 @@ var camera: Camera2D:
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
 @onready var lantern = $"Future/Lantern"
-@onready var rubble: Sprite2D = $"Future/Entryway/Future/EntrywayRubble/rubble"
+@onready var rubble: Sprite2D = $"Future/EntrywayRubble/rubble"
 @onready var earthquake_timer = Timer.new()
 
 var noise_i: float = 0.0

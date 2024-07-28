@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/world/LabExterior.gd" id="1_2fomn"]
 [ext_resource type="Texture2D" uid="uid://w1myvpl4odr8" path="res://assets/sprites/bg/lab-01/LabExteriorMapPast.png" id="1_8reys"]
-[ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_3ohmk"]
+[ext_resource type="AudioStream" uid="uid://b244747mcilks" path="res://assets/music/lab_present.ogg" id="2_eqmr3"]
 [ext_resource type="Texture2D" uid="uid://bojkbtthsbyxw" path="res://assets/sprites/bg/lab-01/LabExteriorPresent.png" id="2_pcolr"]
-[ext_resource type="AudioStream" uid="uid://d0pjxkln07gby" path="res://assets/music/temp_past.ogg" id="3_bi13g"]
+[ext_resource type="AudioStream" uid="uid://cmblol3d5mrtv" path="res://assets/music/lab_past.ogg" id="3_cxfp6"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="3_sx54t"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_2ics6"]
 
@@ -52,8 +52,8 @@ position = Vector2(-1, 0)
 script = ExtResource("1_2fomn")
 entrance_text_area = NodePath("EntranceTextArea")
 gate_text_area = NodePath("Past/GateTextArea")
-future_music = ExtResource("2_3ohmk")
-past_music = ExtResource("3_bi13g")
+future_music = ExtResource("2_eqmr3")
+past_music = ExtResource("3_cxfp6")
 past_nodes = NodePath("Past")
 future_nodes = NodePath("Future")
 

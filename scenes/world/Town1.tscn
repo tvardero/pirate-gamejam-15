@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 [ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
 [ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
-[ext_resource type="PackedScene" uid="uid://sdtxgsgq6ol2" path="res://scenes/props/pipe/pipe.tscn" id="9_0byed"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="9_lvt10"]
 [ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
+[ext_resource type="PackedScene" uid="uid://0qbuirpoun4c" path="res://scenes/props/pipe/Valve.tscn" id="10_e85ie"]
 [ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]
@@ -133,9 +133,6 @@ collision_layer = 3
 position = Vector2(-177.618, -105.826)
 shape = SubResource("RectangleShape2D_o128w")
 
-[node name="Pipe" parent="OtherCollisions" instance=ExtResource("9_0byed")]
-position = Vector2(128.613, 144.028)
-
 [node name="SpawnPoint" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(-150.387, 5.028)
 id = 6
@@ -168,3 +165,6 @@ id = 11
 
 [node name="Town 1 Gate" parent="." instance=ExtResource("8_gsgk6")]
 position = Vector2(-51.387, -96.972)
+
+[node name="Valve" parent="." instance=ExtResource("10_e85ie")]
+position = Vector2(143.613, 112.028)
