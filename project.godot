@@ -37,6 +37,14 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "green",
+"res://assets/sprites/": "teal",
+"res://scenes/": "blue"
+}
+
 [input]
 
 ui_accept={
