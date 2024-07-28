@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bna50xgjrlfsg"]
+[gd_scene load_steps=16 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-00/LabInterior.gd" id="1_gq17i"]
 [ext_resource type="AudioStream" uid="uid://b244747mcilks" path="res://assets/music/lab_present.ogg" id="2_ib022"]
@@ -12,7 +12,10 @@
 [ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="8_yflx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j38sd"]
-size = Vector2(70, 10)
+size = Vector2(40, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xc2p"]
+size = Vector2(50, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qyew4"]
 size = Vector2(33, 25.5)
@@ -21,16 +24,20 @@ size = Vector2(33, 25.5)
 size = Vector2(60, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qucy"]
-size = Vector2(47, 22.5)
+size = Vector2(52.5, 24.25)
 
 [node name="LabInterior" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
+y_sort_enabled = true
 script = ExtResource("1_gq17i")
 auto_spawn_player = true
+auto_spawn_id = null
 auto_spawn_direction = Vector2(0, 1)
-future_music = ExtResource("2_ib022")
-past_music = ExtResource("3_6msq0")
 past_nodes = NodePath("Past")
+past_color = Color(1, 1, 1, 1)
+past_music = ExtResource("3_6msq0")
 future_nodes = NodePath("Future")
+future_color = null
+future_music = ExtResource("2_ib022")
 
 [node name="Past" type="Node2D" parent="."]
 visible = false
@@ -47,12 +54,20 @@ z_index = -1
 texture = ExtResource("4_3frq7")
 
 [node name="SceneTransition" parent="Past" instance=ExtResource("3_5fndb")]
-position = Vector2(2, -46)
+position = Vector2(2, -41)
+collision_mask = 1
 destination_level = "res://scenes/world/LabExterior.tscn"
 spawn_id = 3
 override_player_direction = true
 player_direction_override = Vector2(1, 0)
 collision_shape = SubResource("RectangleShape2D_j38sd")
+
+[node name="Table" type="StaticBody2D" parent="Past"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Table"]
+position = Vector2(-47, 60)
+shape = SubResource("RectangleShape2D_4xc2p")
 
 [node name="Future" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -77,7 +92,7 @@ position = Vector2(-57, 60)
 shape = SubResource("RectangleShape2D_qyew4")
 
 [node name="EntrywayText" type="Area2D" parent="Future"]
-position = Vector2(-4, -42)
+position = Vector2(-3, -43)
 collision_layer = 0
 collision_mask = 8
 
@@ -86,17 +101,17 @@ shape = SubResource("RectangleShape2D_oxcnd")
 debug_color = Color(0.806313, 0.365183, 0.523813, 0.42)
 
 [node name="EntrywayRubble" type="StaticBody2D" parent="Future"]
+visible = false
 position = Vector2(-3, -71)
 collision_layer = 2
 collision_mask = 0
 
 [node name="rubble" type="Sprite2D" parent="Future/EntrywayRubble"]
-visible = false
 position = Vector2(0, 71)
 texture = ExtResource("7_go4bb")
 
 [node name="Block" type="CollisionShape2D" parent="Future/EntrywayRubble"]
-position = Vector2(-1, 21)
+position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_8qucy")
 
 [node name="Lantern" parent="Future" instance=ExtResource("7_hdylt")]
@@ -105,7 +120,7 @@ position = Vector2(-48, 49)
 [node name="SpawnPoint" parent="." instance=ExtResource("6_dojuy")]
 position = Vector2(-4, -15)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="EarthquakeSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_yflx0")
 
 [connection signal="body_entered" from="Future/EntrywayText" to="." method="_on_entryway_text_body_entered"]

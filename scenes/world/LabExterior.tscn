@@ -52,12 +52,14 @@ position = Vector2(-1, 0)
 script = ExtResource("1_2fomn")
 entrance_text_area = NodePath("EntranceTextArea")
 gate_text_area = NodePath("Past/GateTextArea")
-future_music = ExtResource("2_3ohmk")
-past_music = ExtResource("3_bi13g")
 past_nodes = NodePath("Past")
+past_color = Color(0.85098, 0.85098, 0.85098, 1)
+past_music = ExtResource("3_bi13g")
 future_nodes = NodePath("Future")
+future_music = ExtResource("2_3ohmk")
 
 [node name="Past" type="Node2D" parent="."]
+visible = false
 
 [node name="Background" type="Sprite2D" parent="Past"]
 texture = ExtResource("1_8reys")
