@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=25 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://cxs04nxi5tr4n" path="res://assets/sprites/bg/lab-04/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://lgno7osw4ac6" path="res://assets/sprites/bg/lab-04/Wagon-present.png" id="6_fi36a"]
 [ext_resource type="PackedScene" uid="uid://dvlgtq5e01t5u" path="res://scenes/props/house/partygoers_house.tscn" id="6_wv00r"]
 [ext_resource type="Texture2D" uid="uid://w2kyfiuh8v46" path="res://assets/objects/house/Housecrack.png" id="8_7ln5e"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="8_t6tew"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="11_h1jlu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
@@ -18,6 +19,9 @@ size = Vector2(377, 2.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
 size = Vector2(58, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8yrn4"]
+radius = 38.71
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aiyby"]
 size = Vector2(153.5, 2.5)
@@ -99,6 +103,9 @@ texture = ExtResource("6_fi36a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Wagon"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_4dbvp")
+
+[node name="Interactable" parent="Future/Wagon" instance=ExtResource("8_t6tew")]
+shape = SubResource("CircleShape2D_8yrn4")
 
 [node name="Newspaper" parent="Future" instance=ExtResource("3_pdv1h")]
 position = Vector2(130, -84)
@@ -189,5 +196,7 @@ offset_bottom = 1019.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_7ln5e")
+
+[connection signal="interacted" from="Future/Wagon/Interactable" to="Future/Wagon" method="_on_interactable_interacted"]
 
 [editable path="Future/Newspaper"]

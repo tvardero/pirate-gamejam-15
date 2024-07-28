@@ -9,14 +9,22 @@ var player_exists: bool:
 	get: return player != null;
 signal time_changed(to_future)
 
-@onready var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
+var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
+var scene_transition_visual
+var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
 var password_found: bool = false
+var sewage_valve_off: bool = false
 
+var _color_rect: ColorRect
 var saved_level_states: Dictionary = {}
+
+func _ready():
+	scene_transition_visual = scene_transition_visual_packed.instantiate()
+	add_child(scene_transition_visual)
 
 func use_lantern() -> bool:
 	if !lantern_unlocked: return false;
@@ -48,12 +56,17 @@ func set_time(to_future: bool) -> void:
 	p.set_collision_mask_value(2, to_future)
 
 func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_direction: Vector2):
+	disable_movement = true
+	DialogState.disabled = true
+	scene_transition_visual.start()
+	await scene_transition_visual.halfway
+	
 	var level = load_level_state(destination);
 	if !(level is Level):
 		assert(false, "Invalid destination scene provided, should extend class 'Level'");
-
+	
 	level.spawn_player_at(spawn_id, player_direction);
-
+	
 	var current = get_current_level();
 	if current:
 		save_level_state(current)
@@ -61,6 +74,11 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 		current.queue_free();
 	
 	get_tree().root.call_deferred("add_child", level);
+	await scene_transition_visual.finished
+	
+	disable_movement = false
+	DialogState.disabled = false
+
 
 func get_current_level() -> Level:
 	var children = get_tree().root.get_children();

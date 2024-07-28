@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=24 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_tnids"]
 [ext_resource type="PackedScene" uid="uid://3klxjhkbv73j" path="res://scenes/characters/policeman/Policeman.tscn" id="7_q1mcf"]
 [ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
+[ext_resource type="PackedScene" uid="uid://sdtxgsgq6ol2" path="res://scenes/props/pipe/pipe.tscn" id="9_0byed"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="9_lvt10"]
 [ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
 [ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
 
@@ -32,9 +34,6 @@ size = Vector2(15.9023, 49.1868)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o128w"]
 size = Vector2(16.1226, 118.774)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6v7c"]
-size = Vector2(20.4643, 34.5852)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33bum"]
 size = Vector2(10, 110)
@@ -79,6 +78,9 @@ polygon = PackedVector2Array(122.989, 128.359, 122.989, 113.417, 131.954, 104.87
 
 [node name="Background" type="Sprite2D" parent="Future"]
 texture = ExtResource("2_e0hoc")
+
+[node name="StarFragment" parent="Future" instance=ExtResource("9_lvt10")]
+position = Vector2(-124.387, -123.972)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -131,12 +133,8 @@ collision_layer = 3
 position = Vector2(-177.618, -105.826)
 shape = SubResource("RectangleShape2D_o128w")
 
-[node name="Pipe" type="StaticBody2D" parent="OtherCollisions"]
-collision_layer = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OtherCollisions/Pipe"]
-position = Vector2(128.984, 144.276)
-shape = SubResource("RectangleShape2D_l6v7c")
+[node name="Pipe" parent="OtherCollisions" instance=ExtResource("9_0byed")]
+position = Vector2(128.613, 144.028)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(-150.387, 5.028)

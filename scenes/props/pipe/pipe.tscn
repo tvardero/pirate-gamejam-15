@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://sdtxgsgq6ol2"]
+
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="1_bh6w8"]
+[ext_resource type="Script" path="res://scenes/props/pipe/Pipe.gd" id="1_k2ou5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6v7c"]
+size = Vector2(20.4643, 34.5852)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_48fyi"]
+radius = 18.0
+
+[node name="Pipe" type="StaticBody2D"]
+collision_layer = 3
+script = ExtResource("1_k2ou5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l6v7c")
+
+[node name="Interactable" parent="." instance=ExtResource("1_bh6w8")]
+position = Vector2(-8, 0)
+shape = SubResource("CircleShape2D_48fyi")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

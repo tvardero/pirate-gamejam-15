@@ -585,6 +585,7 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 current = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
 zoom = Vector2(2, 2)
 
 [node name="Area2DPast" type="Area2D" parent="."]

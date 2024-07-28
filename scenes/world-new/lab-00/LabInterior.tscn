@@ -76,6 +76,9 @@ shape = SubResource("RectangleShape2D_8qucy")
 [node name="Lantern" parent="Future" instance=ExtResource("7_hdylt")]
 position = Vector2(0, 26)
 
+[node name="Interactable" parent="Future/Lantern" index="1"]
+visible = true
+
 [node name="EntrywayText" type="Area2D" parent="Future"]
 position = Vector2(-4, -64)
 collision_layer = 0
