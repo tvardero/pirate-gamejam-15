@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8u2u6uhukwwm"
-path="res://.godot/imported/LabMockup.png-84fb29001f76286dbb4534c61ed8fa5d.ctex"
+uid="uid://n8gyqri3li4"
+path="res://.godot/imported/Lab_Night.png-e85176a1bf13b1a3807a0457c7fe4c38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg/lab-00/LabMockup.png"
-dest_files=["res://.godot/imported/LabMockup.png-84fb29001f76286dbb4534c61ed8fa5d.ctex"]
+source_file="res://assets/sprites/bg/lab-00/Lab_Night.png"
+dest_files=["res://.godot/imported/Lab_Night.png-e85176a1bf13b1a3807a0457c7fe4c38.ctex"]
 
 [params]
 
