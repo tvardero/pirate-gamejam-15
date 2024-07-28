@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 @export var sound: AudioStream
 var sound_player: AudioStreamPlayer2D
+
+signal collected
 
 
 func _ready():
@@ -16,13 +17,9 @@ func _on_area_2d_body_entered(body):
 	
 	visible = false
 	sound_player.stop()
-	WorldState.disable_movement = true
-	var fuse_scene = fuse_scene_packed.instantiate()
-	WorldState.get_current_level().add_child(fuse_scene)
-	await fuse_scene.tree_exited
+	await WorldState.start_fuse_scene()
 	
-	WorldState.star_fragment_count += 1
-	WorldState.disable_movement = false
+	collected.emit()
 	queue_free()
 
 

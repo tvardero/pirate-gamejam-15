@@ -8,7 +8,10 @@ extends Level
 @export var SHAKE_DECAY_RATE: float = 1.1
 @export var EARTHQUAKE_DURATION: float = 6.0
 @export var DELAY_BEFORE_EARTHQUAKE: float = 2.0
+
+var dialog_resource: DialogueResource = preload('res://scenes/dialogue/LabInterior.dialogue')
 @export var lantern_picked_up: bool = false
+@export var lantern_used: bool = false
 
 enum ShakeType {
 	Random,
@@ -46,6 +49,7 @@ func _ready() -> void:
 	earthquake_timer.connect("timeout", Callable(self, "_on_earthquake_timer_timeout"))
 
 	switch_time(WorldState.in_future)
+	WorldState.time_changed.connect(_on_time_changed)
 
 func _on_lantern_interacted(_initiator):
 	if WorldState.lantern_unlocked: return ;
@@ -106,6 +110,13 @@ func get_random_offset() -> Vector2:
 func _on_entryway_text_body_entered(_body):
 	if WorldState.in_future:
 		if !WorldState.lantern_unlocked:
-			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'try_leave_lab_without_lantern')
+			DialogState.start_dialog(dialog_resource, 'try_leave_lab_without_lantern')
 		else:
-			DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'interact_rubble')
+			DialogState.start_dialog(dialog_resource, 'interact_rubble')
+
+func _on_time_changed(to_future: bool):
+	if to_future: return
+	if lantern_used: return
+	await WorldState.player._animation_tree.animation_finished
+	DialogState.start_dialog(dialog_resource, 'lantern_first_use')
+	lantern_used = true

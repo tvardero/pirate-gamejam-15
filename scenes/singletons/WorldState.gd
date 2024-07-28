@@ -9,6 +9,8 @@ var player_exists: bool:
 	get: return player != null;
 signal time_changed(to_future)
 
+@onready var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
+
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
@@ -36,7 +38,7 @@ func set_time(to_future: bool) -> void:
 	var level = get_current_level();
 	if level: level.switch_time(to_future)
 	time_changed.emit(to_future)
-
+	
 	var p = get_player();
 	if !p: return ;
 	
@@ -93,3 +95,14 @@ func load_level_state(packed_level: PackedScene) -> Level:
 					child.disconnect(conn.signal, conn.callable)
 		return saved_level
 	return level
+
+func start_fuse_scene():
+	if DialogState.balloon: DialogState.balloon.queue_free()
+	
+	disable_movement = true
+	var fuse_scene = fuse_scene_packed.instantiate()
+	get_current_level().add_child(fuse_scene)
+	await fuse_scene.tree_exited
+	
+	star_fragment_count += 1
+	disable_movement = false

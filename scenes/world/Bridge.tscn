@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6uyrw5eppb2s"]
+[gd_scene load_steps=13 format=3 uid="uid://b6uyrw5eppb2s"]
 
-[ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_77hfr"]
+[ext_resource type="Script" path="res://scenes/world/Bridge.gd" id="1_ejm3d"]
+[ext_resource type="AudioStream" uid="uid://diktu5s3jjwem" path="res://assets/music/temp_present.ogg" id="2_1tt1j"]
 [ext_resource type="Texture2D" uid="uid://d18sk7ksu5dfw" path="res://assets/sprites/bg/lab-02/BridgePastTemp.png" id="2_4vkfo"]
 [ext_resource type="Texture2D" uid="uid://d1wqwubhfoq26" path="res://assets/sprites/bg/lab-02/BridgeFutureTemp.png" id="2_h3mss"]
+[ext_resource type="AudioStream" uid="uid://d0pjxkln07gby" path="res://assets/music/temp_past.ogg" id="3_s72b4"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="4_jxdx0"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="4_x0vyj"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="5_l42oa"]
@@ -19,10 +21,13 @@ size = Vector2(10, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vanw0"]
 size = Vector2(10, 75)
 
-[node name="Bridge" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
+[node name="Bridge" type="Node2D" node_paths=PackedStringArray("star_fragment", "past_nodes", "future_nodes")]
 position = Vector2(147, 80)
-script = ExtResource("1_77hfr")
-auto_spawn_id = 4
+script = ExtResource("1_ejm3d")
+star_fragment = NodePath("Future/StarFragment")
+auto_spawn_player = false
+future_music = ExtResource("2_1tt1j")
+past_music = ExtResource("3_s72b4")
 past_nodes = NodePath("Past")
 future_nodes = NodePath("Future")
 
