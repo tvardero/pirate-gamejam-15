@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/characters/partygoer/partygoer.gd" id="1_1qbt1"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="1_yx6om"]
-[ext_resource type="Texture2D" uid="uid://dlhm8l2u8jsh" path="res://assets/sprites/partygoer/Partygoer_spritesheet.png" id="2_hpft5"]
+[ext_resource type="Texture2D" uid="uid://c7m7mn4nx8qac" path="res://assets/sprites/partygoer/Partygoer_spritesheet.png" id="2_pbpwp"]
 
 [sub_resource type="Animation" id="Animation_2aeq3"]
 resource_name = "Idle"
@@ -52,7 +52,7 @@ radius = 22.8
 script = ExtResource("1_1qbt1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_hpft5")
+texture = ExtResource("2_pbpwp")
 hframes = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
