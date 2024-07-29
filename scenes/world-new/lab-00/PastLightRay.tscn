@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1705aosvotpu"]
+
+[ext_resource type="Texture2D" uid="uid://cykf0hvuv20kt" path="res://assets/sprites/bg/lab-00/Light Rays.png" id="1_gyfx5"]
+
+[node name="PastLightRay" type="Node2D"]
+
+[node name="LightRays" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.576471)
+position = Vector2(-7, -25)
+texture = ExtResource("1_gyfx5")

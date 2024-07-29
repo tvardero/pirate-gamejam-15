@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbmia3fv35dsu"]
+[gd_scene load_steps=19 format=3 uid="uid://bbmia3fv35dsu"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-01/LabExterior.gd" id="1_tskym"]
 [ext_resource type="Texture2D" uid="uid://w1myvpl4odr8" path="res://assets/sprites/bg/lab-01/LabExteriorMapPast.png" id="2_1o2mo"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="2_si7i8"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="3_8x3nn"]
+[ext_resource type="Texture2D" uid="uid://bnkncyhb66gb3" path="res://assets/sprites/bg/lab-01/Lab_Exit_Fence.png" id="3_l2fxr"]
 [ext_resource type="PackedScene" uid="uid://bnvid6abrol44" path="res://scenes/world-new/lab-01/LabGatesLower.tscn" id="4_t1jha"]
 [ext_resource type="PackedScene" uid="uid://db2h0xaytqd4t" path="res://scenes/world-new/lab-01/LabGatesUpper.tscn" id="5_cq7y5"]
 [ext_resource type="PackedScene" uid="uid://c54soxisgchg6" path="res://scenes/world-new/lab-01/LabBuilding.tscn" id="5_x0m6e"]
@@ -38,7 +39,6 @@ past_color = Color(0.85098, 0.85098, 0.85098, 1)
 future_nodes = NodePath("Future")
 
 [node name="Past" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
 
 [node name="LabExteriorMapPast" type="Sprite2D" parent="Past"]
@@ -60,23 +60,31 @@ position = Vector2(80, -33)
 shape = SubResource("RectangleShape2D_5a2kp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Past"]
+visible = false
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/StaticBody2D"]
 polygon = PackedVector2Array(-78, -60, -50, -60, -38, -57, -25, -58, -15, -64, -10, -72, 20, -72, 26, -59, 36, -54, 53, -54, 63, -56, 69, -68, 106, -68, 112, -60, 117, -54, 124, -52, 133, -52, 139, -56, 144, -60, 160, -59, 160, 40, 140, 58, -78, 58, -79, 95, 182, 94, 182, -101, -78, -99)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Past"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Past/StaticBody2D2"]
 position = Vector2(-85, 1)
 shape = SubResource("RectangleShape2D_l7qoy")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Past"]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/StaticBody2D3"]
 polygon = PackedVector2Array(-147, -59, -146, 58, -90, 58, -90, 95, -201, 94, -201, -91, -84, -92, -85, -59)
 
+[node name="LabExitFence" type="Sprite2D" parent="Past"]
+z_index = 2
+texture = ExtResource("3_l2fxr")
+
 [node name="Future" type="Node2D" parent="."]
+visible = false
 y_sort_enabled = true
 
 [node name="LabBuilding" parent="Future" instance=ExtResource("5_x0m6e")]
@@ -116,8 +124,7 @@ id = 1
 
 [node name="SceneTransition2" parent="." instance=ExtResource("3_8x3nn")]
 position = Vector2(160, -1)
-destination_level = "res://scenes/world/Bridge.tscn"
-spawn_id = 4
+destination_level = "res://scenes/world-new/lab-02/Bridge.tscn"
 collision_shape = SubResource("RectangleShape2D_8pg6m")
 
 [node name="InteractableLabBuilding" parent="." instance=ExtResource("11_16evg")]
