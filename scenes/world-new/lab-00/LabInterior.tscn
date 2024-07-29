@@ -50,7 +50,7 @@ z_index = -1
 texture = ExtResource("4_3frq7")
 
 [node name="SceneTransition" parent="Past" instance=ExtResource("3_5fndb")]
-position = Vector2(2, -41)
+position = Vector2(2, -45)
 collision_mask = 1
 destination_level = "res://scenes/world-new/lab-01/LabExterior.tscn"
 override_player_direction = true

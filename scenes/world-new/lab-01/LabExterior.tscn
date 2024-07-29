@@ -124,8 +124,7 @@ id = 1
 
 [node name="SceneTransition2" parent="." instance=ExtResource("3_8x3nn")]
 position = Vector2(160, -1)
-destination_level = "res://scenes/world/Bridge.tscn"
-spawn_id = 4
+destination_level = "res://scenes/world-new/lab-02/Bridge.tscn"
 collision_shape = SubResource("RectangleShape2D_8pg6m")
 
 [node name="InteractableLabBuilding" parent="." instance=ExtResource("11_16evg")]

@@ -14,8 +14,8 @@ var newspaper_picked_up: bool = false
 var password_found: bool = false
 var sewage_valve_off: bool = false
 
-var fuse_scene_packed: PackedScene = preload ('res://scenes/world/lantern_fuse.tscn')
-var scene_transition_visual_packed: PackedScene = preload ('res://scenes/ui/SceneTransitionVisual.tscn')
+var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
+var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
 var scene_transition_visual: Node;
 
 var _processing_lantern_animation: bool = false;
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		_lantern_level.modulate_nodes((percent - 0.75) * 4);
 
 	elif percent >= 0.25 && percent < 0.75:
-		var lerp_value =  2 * percent - 0.5 if in_future else 1.5 - 2 * percent;
+		var lerp_value = 2 * percent - 0.5 if in_future else 1.5 - 2 * percent;
 		_lantern_level.bg_color.color = lerp(_lantern_level.past_color, _lantern_level.future_color, lerp_value);
 		if !_lantern_theme_switched:
 			_lantern_level.switch_nodes(in_future);
@@ -98,7 +98,7 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 func get_current_level() -> Level:
 	var children = get_tree().root.get_children();
 	for child in children:
-		if child is Level&&!child.is_queued_for_deletion()&&child.visible: return child;
+		if child is Level && !child.is_queued_for_deletion() && child.visible: return child;
 	
 	return null;
 

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://ph71i2cgc78p"]
+
+[ext_resource type="Texture2D" uid="uid://bcrdsgkg68wtl" path="res://assets/sprites/Flower 1/flower1-spritesheet.png" id="1_eehr3"]
+
+[sub_resource type="Animation" id="Animation_kycvn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flower1-spritesheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ko2a1"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flower1-spritesheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncx51"]
+_data = {
+"RESET": SubResource("Animation_kycvn"),
+"idle": SubResource("Animation_ko2a1")
+}
+
+[node name="Flower1" type="Node2D"]
+
+[node name="Flower1-spritesheet" type="Sprite2D" parent="."]
+position = Vector2(3, 6)
+texture = ExtResource("1_eehr3")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ncx51")
+}
+autoplay = "idle"
+speed_scale = 0.6
