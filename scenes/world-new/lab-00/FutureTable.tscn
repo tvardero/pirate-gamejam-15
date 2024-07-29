@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4hnxkv3a7i6s"]
+
+[ext_resource type="Texture2D" uid="uid://cals8nejbkkkv" path="res://assets/sprites/bg/lab-00/Night Layers/Untitled_Artwork-5.png" id="1_60ni0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65lgx"]
+size = Vector2(29, 16)
+
+[node name="FutureTable" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -8)
+shape = SubResource("RectangleShape2D_65lgx")
+
+[node name="UntitledArtwork-5" type="Sprite2D" parent="."]
+position = Vector2(54, -69)
+texture = ExtResource("1_60ni0")

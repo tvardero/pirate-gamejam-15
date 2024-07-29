@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bna50xgjrlfsg"]
+[gd_scene load_steps=17 format=3 uid="uid://bna50xgjrlfsg"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-00/LabInterior.gd" id="1_gq17i"]
 [ext_resource type="AudioStream" uid="uid://b244747mcilks" path="res://assets/music/lab_present.ogg" id="2_ib022"]
@@ -9,16 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://n8gyqri3li4" path="res://assets/sprites/bg/lab-00/Lab_Night.png" id="6_s34nq"]
 [ext_resource type="Texture2D" uid="uid://iqe3434oyg34" path="res://assets/sprites/bg/lab-00/Rubble.png" id="7_go4bb"]
 [ext_resource type="PackedScene" uid="uid://bwpwey6vpux15" path="res://scenes/props/lantern/Lantern.tscn" id="7_hdylt"]
+[ext_resource type="PackedScene" uid="uid://d1705aosvotpu" path="res://scenes/world-new/lab-00/PastLightRay.tscn" id="7_ybgl6"]
+[ext_resource type="PackedScene" uid="uid://b4hnxkv3a7i6s" path="res://scenes/world-new/lab-00/FutureTable.tscn" id="8_ctpnv"]
 [ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="8_yflx0"]
+[ext_resource type="PackedScene" uid="uid://s7tvj5dy1cjo" path="res://scenes/world-new/lab-00/PastTable.tscn" id="12_ianx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j38sd"]
 size = Vector2(40, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xc2p"]
-size = Vector2(50, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyew4"]
-size = Vector2(33, 25.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxcnd"]
 size = Vector2(60, 20)
@@ -29,21 +26,20 @@ size = Vector2(52.5, 24.25)
 [node name="LabInterior" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 y_sort_enabled = true
 script = ExtResource("1_gq17i")
-auto_spawn_player = true
 auto_spawn_id = null
 auto_spawn_direction = Vector2(0, 1)
+past_nodes = NodePath("Past")
 past_color = Color(1, 1, 1, 1)
 past_music = ExtResource("3_6msq0")
+future_nodes = NodePath("Future")
 future_color = null
 future_music = ExtResource("2_ib022")
-past_nodes = NodePath("Past")
-future_nodes = NodePath("Future")
 
 [node name="Past" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
 
 [node name="Walls" type="StaticBody2D" parent="Past"]
+visible = false
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/Walls"]
@@ -61,14 +57,18 @@ override_player_direction = true
 player_direction_override = Vector2(1, 0)
 collision_shape = SubResource("RectangleShape2D_j38sd")
 
-[node name="Table" type="StaticBody2D" parent="Past"]
-collision_mask = 0
+[node name="PastTable" parent="Past" instance=ExtResource("12_ianx0")]
+modulate = Color(0.849086, 0.849379, 0.918339, 1)
+position = Vector2(-46, 76)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Table"]
-position = Vector2(-47, 60)
-shape = SubResource("RectangleShape2D_4xc2p")
+[node name="PastLightRay" parent="Past" instance=ExtResource("7_ybgl6")]
+position = Vector2(-40, 45)
+
+[node name="PastLightRay2" parent="Past" instance=ExtResource("7_ybgl6")]
+position = Vector2(-40, 5)
 
 [node name="Future" type="Node2D" parent="."]
+visible = false
 y_sort_enabled = true
 
 [node name="Background" type="Sprite2D" parent="Future"]
@@ -81,14 +81,6 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Future/Walls"]
 polygon = PackedVector2Array(-72, -43, -13, -46, -13, -95, -88, -96, -92, 94, 94, 89, 93, -97, 11, -96, 11, -46, 71, -47, 72, 71, 52, 71, 22, 76, -12, 76, -39, 72, -75, 72)
-
-[node name="Table" type="StaticBody2D" parent="Future"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Table"]
-position = Vector2(-57, 60)
-shape = SubResource("RectangleShape2D_qyew4")
 
 [node name="EntrywayText" type="Area2D" parent="Future"]
 position = Vector2(-3, -43)
@@ -113,7 +105,11 @@ texture = ExtResource("7_go4bb")
 position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_8qucy")
 
+[node name="FutureTable" parent="Future" instance=ExtResource("8_ctpnv")]
+position = Vector2(-54, 69)
+
 [node name="Lantern" parent="Future" instance=ExtResource("7_hdylt")]
+z_index = 1
 position = Vector2(-48, 49)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("6_dojuy")]

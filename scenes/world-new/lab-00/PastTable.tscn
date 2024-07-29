@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://s7tvj5dy1cjo"]
+
+[ext_resource type="Texture2D" uid="uid://bn34fc5gdg6oh" path="res://assets/sprites/bg/lab-00/Day Layers/Untitled_Artwork-6.png" id="1_bkvdk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4tf4"]
+size = Vector2(46, 19)
+
+[node name="PastTable" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -9.5)
+shape = SubResource("RectangleShape2D_h4tf4")
+
+[node name="UntitledArtwork-6" type="Sprite2D" parent="."]
+position = Vector2(46, -76)
+texture = ExtResource("1_bkvdk")
