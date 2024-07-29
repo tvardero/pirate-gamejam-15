@@ -560,6 +560,9 @@ libraries = {
 speed_scale = 0.6
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkx0j")
+}
 tree_root = SubResource("AnimationNodeStateMachine_3u51c")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_idle = true

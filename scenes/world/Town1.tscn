@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d38esckngf5np" path="res://scenes/props/gate/town1_gate/town_1_gate.tscn" id="8_gsgk6"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="9_lvt10"]
 [ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="9_ud5is"]
-[ext_resource type="PackedScene" path="res://scenes/props/pipe/Valve.tscn" id="10_e85ie"]
+[ext_resource type="PackedScene" uid="uid://0qbuirpoun4c" path="res://scenes/props/pipe/Valve.tscn" id="10_e85ie"]
 [ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="10_phmbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_250ur"]

@@ -1,8 +1,8 @@
 extends Level
 
 var dialog_resource = preload ('res://scenes/dialogue/LabExterior.dialogue') as DialogueResource;
-var first_visit: bool = false;
-var gate_puzzle_solved: bool = false;
+@export var first_visit: bool = true;
+@export var gate_puzzle_solved: bool = false;
 
 func _ready():
 	super();
