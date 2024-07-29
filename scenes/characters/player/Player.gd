@@ -11,7 +11,7 @@ var _direction: Vector2 = Vector2.ZERO;
 @export var push_speed: float = 0.01
 @onready var _interaction_area: Area2D = $"InteractionArea";
 @onready var _animation_tree: AnimationTree = $"AnimationTree";
-@onready var _animation_player: AnimationPlayer = $"AnimationPlayer";
+@onready var animation_player: AnimationPlayer = $"AnimationPlayer";
 @onready var camera: Camera2D = $"Camera2D";
 
 var direction: Vector2:
@@ -24,9 +24,15 @@ var _sprint_to_walk_ratio: float:
 var _push_to_walk_ratio: float:
 	get: return push_speed / walk_speed
 
-func use_lantern():
-	var success = WorldState.use_lantern();
-	if success: _animation_tree["parameters/conditions/lantern"] = true;
+func try_use_lantern():
+	var to_future = !WorldState.in_future;
+	
+	var collided = _detect_collision_before_time_switch(to_future);
+	if collided:
+		play_lantern_failure();
+		return ;
+
+	WorldState.set_time(to_future);
 
 func _physics_process(delta) -> void:
 	var multiplier = sprint_speed if is_sprinting else walk_speed;
@@ -38,12 +44,14 @@ func _physics_process(delta) -> void:
 
 func _ready():
 	_set_direction(_direction);
+	set_collision_masks_and_layers(WorldState.in_future)
+	WorldState.player = self;
 
 func try_push(collision: KinematicCollision2D) -> bool:
 	if !collision: return false
 	var collider = collision.get_collider()
 	if collider is Pushable:
-		collider.push(-collision.get_normal() * 1000)
+		collider.push( - collision.get_normal() * 1000)
 		return true
 	else:
 		return false
@@ -91,10 +99,27 @@ func _set_direction(value: Vector2):
 	_animation_tree["parameters/walk/blend_position"] = _direction;
 	_animation_tree["parameters/lantern/blend_position"] = _direction.x;
 
-func detect_collision_before_time_switch(in_future: bool) -> bool:
+func _detect_collision_before_time_switch(in_future: bool) -> bool:
 	var area: Area2D = ($"Area2DFuture" if in_future else $"Area2DPast") as Area2D;
 	var bodies = []
 	for body in area.get_overlapping_bodies():
 		if body in [Player, Interactable]: continue
 		bodies.append(body)
 	return bodies.size() > 0;
+
+func set_collision_masks_and_layers(to_future: bool):
+	set_collision_layer_value(1, !to_future)
+	set_collision_mask_value(1, !to_future)
+	set_collision_layer_value(2, to_future)
+	set_collision_mask_value(2, to_future)
+
+func play_lantern_failure():
+	# todo: play lantern failure animation or show a dialog
+	print('lantern can not be used')
+	pass ;
+
+func play_lantern_animation() -> float:
+	var animation_name = "lantern-left" if direction.x < 0 else "lantern-right";
+	var duration = animation_player.get_animation(animation_name).length;
+	_animation_tree["parameters/conditions/lantern"] = true;
+	return duration;

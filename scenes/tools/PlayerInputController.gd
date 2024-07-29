@@ -38,7 +38,8 @@ func process_movement_input_events(event: InputEvent) -> bool:
 
 func process_lantern_input_event(event: InputEvent) -> bool:
 	if !event.is_action("lantern"): return false;
-	if !event.is_echo()&&event.is_pressed(): player.use_lantern();
+	if !event.is_echo() && event.is_pressed() && WorldState.lantern_unlocked:
+		player.try_use_lantern();
 	return true;
 
 func process_interaction_input_event(event: InputEvent) -> bool:

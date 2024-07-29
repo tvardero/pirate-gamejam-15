@@ -1,13 +1,21 @@
 ~ exited_lab
 You: What the-!
-You: This is- I don't- I've never seen the world like this!
-You: Everything's so bright, as if the lantern is lighting up the whole town. But if that's the case, then the shadows would all be facing away from me, and these shadows... [wait=0.5]They're... [wait=0.5]parallel?
+You: This is- [wait=2]I don't- [wait=1]I've never seen the world like this!
+You: Everything's so bright, as if the lantern is lighting up the whole town! And it's so warm around...
+You: [wait=0.5].[wait=0.5].[wait=0.5].[wait=2] I can't believe my eyes. The street looks just like it did before the Eclipse!
 => END
 
 ~ try_gate_in_past
-You: This wasn't locked when I came in here. I'm trapped... Unless...?
+You: Did someone close this gate? And... it's been completely repaired, too? I thought this town was empty...
 => END
 
 ~ try_lab_entrance_past
 [i](It won't open. The door must have locked behind you when you left the lab.)[/i]
 => END
+
+~ try_lab_entrance_future
+[i](It won't open. The door is blocked by something on the other side.)[/i]
+=> END
+
+~ puzzle_solved
+You: Now the world is back to how I remember it... Dark and cold.

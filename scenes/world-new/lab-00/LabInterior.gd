@@ -1,17 +1,26 @@
 extends Level
 
-@export var NOISE_SHAKE_SPEED: float = 30.0
-@export var NOISE_SWAY_SPEED: float = 1.0
-@export var NOISE_SHAKE_STRENGTH: float = 60.0
-@export var NOISE_SWAY_STRENGTH: float = 10.0
-@export var RANDOM_SHAKE_STRENGTH: float = 30.0
-@export var SHAKE_DECAY_RATE: float = 1.1
-@export var EARTHQUAKE_DURATION: float = 6.0
-@export var DELAY_BEFORE_EARTHQUAKE: float = 2.0
+const NOISE_SHAKE_SPEED: float = 30.0
+const NOISE_SWAY_SPEED: float = 1.0
+const NOISE_SHAKE_STRENGTH: float = 60.0
+const NOISE_SWAY_STRENGTH: float = 10.0
+const RANDOM_SHAKE_STRENGTH: float = 30.0
+const SHAKE_DECAY_RATE: float = 1.1
+const EARTHQUAKE_DURATION: float = 6.0
+const DELAY_BEFORE_EARTHQUAKE: float = 2.0
 
-var dialog_resource: DialogueResource = preload('res://scenes/dialogue/LabInterior.dialogue')
-@export var lantern_picked_up: bool = false
-@export var lantern_used: bool = false
+var dialog_resource: DialogueResource = preload ('res://scenes/dialogue/LabInterior.dialogue')
+var lantern_first_time_used: bool = false
+var noise_i: float = 0.0
+var shake_type: int = ShakeType.Random
+var shake_strength: float = 0.0
+var earthquake_active: bool = false
+
+@onready var noise = FastNoiseLite.new()
+@onready var rand = RandomNumberGenerator.new()
+@onready var lantern = $"Future/Lantern"
+@onready var rubble: Node2D = $"Future/EntrywayRubble"
+@onready var earthquake_timer = Timer.new()
 
 enum ShakeType {
 	Random,
@@ -19,24 +28,9 @@ enum ShakeType {
 	Sway
 }
 
-var player: Player:
-	get: return WorldState.get_player();
-var camera: Camera2D:
-	get: return player.get_node("Camera2D") if player else null;
-
-@onready var noise = FastNoiseLite.new()
-@onready var rand = RandomNumberGenerator.new()
-@onready var lantern = $"Future/Lantern"
-@onready var rubble: Sprite2D = $"Future/EntrywayRubble/rubble"
-@onready var earthquake_timer = Timer.new()
-
-var noise_i: float = 0.0
-var shake_type: int = ShakeType.Random
-var shake_strength: float = 0.0
-var earthquake_active: bool = false
-
 func _ready() -> void:
 	super._ready();
+	lanter_locked = true;
 
 	DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'start_of_game_text')
 	rand.randomize()
@@ -48,12 +42,9 @@ func _ready() -> void:
 	earthquake_timer.one_shot = true
 	earthquake_timer.connect("timeout", Callable(self, "_on_earthquake_timer_timeout"))
 
-	switch_time(WorldState.in_future)
 	WorldState.time_changed.connect(_on_time_changed)
 
 func _on_lantern_interacted(_initiator):
-	if WorldState.lantern_unlocked: return ;
-
 	WorldState.disable_movement = true;
 
 	lantern.visible = false
@@ -61,8 +52,8 @@ func _on_lantern_interacted(_initiator):
 	
 	await DialogState.start_dialog(load('res://scenes/dialogue/LabInterior.dialogue'), 'lantern_picked_up')
 
-	player.direction = Vector2.UP;
-	$AudioStreamPlayer2D.play()
+	WorldState.player.direction = Vector2.UP;
+	$"EarthquakeSound".play()
 	earthquake_timer.start()
 
 func _on_earthquake_timer_timeout():
@@ -79,7 +70,7 @@ func _process(delta: float) -> void:
 		rubble.visible = true
 	if earthquake_timer <= 0:
 		WorldState.disable_movement = false;
-		WorldState.lantern_unlocked = true;
+		lanter_locked = false;
 		earthquake_active = false
 		shake_strength = 0.0
 	else:
@@ -92,7 +83,7 @@ func _process(delta: float) -> void:
 				shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
 			ShakeType.Sway:
 				shake_offset = get_noise_offset(delta, NOISE_SWAY_SPEED, NOISE_SWAY_STRENGTH)
-		camera.offset = shake_offset
+		WorldState.player.camera.offset = shake_offset
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed
@@ -115,8 +106,7 @@ func _on_entryway_text_body_entered(_body):
 			DialogState.start_dialog(dialog_resource, 'interact_rubble')
 
 func _on_time_changed(to_future: bool):
-	if to_future: return
-	if lantern_used: return
-	await WorldState.player._animation_tree.animation_finished
+	if to_future||lantern_first_time_used: return
+
 	DialogState.start_dialog(dialog_resource, 'lantern_first_use')
-	lantern_used = true
+	lantern_first_time_used = true

@@ -1,19 +1,24 @@
 ~ start_of_game_text
-You: Here it is! The solar tome was right - this is the lantern I've been looking for.
+You: This is definitely the lab from the Solar Tome - so, now what? 
+You: [wait=0.5].[wait=0.5].[wait=0.5].
+You: The prophecy of returning sun back to the sky using an artefact from this lab...
+You: The Solar Tome was wrong - this room is totally empty.
+You: Was I this naive?
+You: At least I can grab a lantern - it will come in handy to light these dark streets.
 => END
 
 ~ try_leave_lab_without_lantern
-You: I should get what I came here for.
+You: I should get the lantern, it's really dark outside.
 => END
 
 ~ lantern_picked_up
-You: So... Now what?
+You: Quite rusty, indeed.
 [i]*rumble*[/i]
 You: Wait, what's that sound?
 => END
 
 ~ interact_rubble
-You: I'm trapped! Maybe the lantern can help me? [i](Press Tab to use the lantern)[/i]
+You: I'm trapped! Can't see a way out... [i](Press Tab to use the lantern)[/i]
 => END
 
 ~ lantern_first_use
