@@ -2,15 +2,11 @@
 You: What the-!
 You: This is- [wait=2]I don't- [wait=1]I've never seen the world like this!
 You: Everything's so bright, as if the lantern is lighting up the whole town! And it's so warm around...
-You: [wait=0.5].[wait=0.5].[wait=0.5].[wait=2] I can't believe my eyes. 
-You: The Sun is here! I have seen it only on pictures in books.
-You: Ten years ago, the Everlasting Eclipse casted its shadow on Earth. World began to freeze and now the world is never how it was before.
-You: And not only the Sun is back, but the street also looks like before the Eclipse!
+You: [wait=0.5].[wait=0.5].[wait=0.5].[wait=2] I can't believe my eyes. The street looks just like it did before the Eclipse!
 => END
 
 ~ try_gate_in_past
-You: So... did I travel back in time? To see the world in its previous state?
-You: And to see this gate now repaired and closed? Surely it was collapsed when I came here to the lab.
+You: Did someone close this gate? And... it's been completely repaired, too? I thought this town was empty...
 => END
 
 ~ try_lab_entrance_past
@@ -22,4 +18,4 @@ You: And to see this gate now repaired and closed? Surely it was collapsed when 
 => END
 
 ~ puzzle_solved
-You: Yes, now the world looks like shit it always was.
+You: Now the world is back to how I remember it... Dark and cold.
