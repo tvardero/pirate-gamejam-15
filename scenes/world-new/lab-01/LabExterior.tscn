@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbmia3fv35dsu"]
+[gd_scene load_steps=21 format=3 uid="uid://bbmia3fv35dsu"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-01/LabExterior.gd" id="1_tskym"]
 [ext_resource type="Texture2D" uid="uid://w1myvpl4odr8" path="res://assets/sprites/bg/lab-01/LabExteriorMapPast.png" id="2_1o2mo"]
+[ext_resource type="AudioStream" uid="uid://cmblol3d5mrtv" path="res://assets/music/lab_past.ogg" id="2_mfvu0"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="2_si7i8"]
+[ext_resource type="AudioStream" uid="uid://b244747mcilks" path="res://assets/music/lab_present.ogg" id="3_7lo8x"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="3_8x3nn"]
 [ext_resource type="Texture2D" uid="uid://bnkncyhb66gb3" path="res://assets/sprites/bg/lab-01/Lab_Exit_Fence.png" id="3_l2fxr"]
 [ext_resource type="PackedScene" uid="uid://bnvid6abrol44" path="res://scenes/world-new/lab-01/LabGatesLower.tscn" id="4_t1jha"]
@@ -36,7 +38,9 @@ y_sort_enabled = true
 script = ExtResource("1_tskym")
 past_nodes = NodePath("Past")
 past_color = Color(0.85098, 0.85098, 0.85098, 1)
+past_music = ExtResource("2_mfvu0")
 future_nodes = NodePath("Future")
+future_music = ExtResource("3_7lo8x")
 
 [node name="Past" type="Node2D" parent="."]
 y_sort_enabled = true

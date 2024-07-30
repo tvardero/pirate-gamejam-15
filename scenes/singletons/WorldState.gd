@@ -42,6 +42,7 @@ func _physics_process(delta):
 		_lantern_level.bg_color.color = _lantern_level.future_color if in_future else _lantern_level.past_color;
 
 		disable_movement = false;
+		DialogState.disabled = false
 		time_changed.emit(in_future);
 		_processing_lantern_animation = false;
 	
@@ -64,6 +65,7 @@ func set_time(to_future: bool) -> void:
 	in_future = to_future;
 
 	disable_movement = true;
+	DialogState.disabled = true
 	_processing_lantern_animation = true;
 	_lantern_total_duration = player.play_lantern_animation();
 	_lantern_level = get_current_level();
