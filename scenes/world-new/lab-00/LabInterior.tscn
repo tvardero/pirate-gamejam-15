@@ -14,8 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://3cxl5djhso4p" path="res://assets/sounds/earthquake/earthquake.mp3" id="8_yflx0"]
 [ext_resource type="PackedScene" uid="uid://s7tvj5dy1cjo" path="res://scenes/world-new/lab-00/PastTable.tscn" id="12_ianx0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j38sd"]
-size = Vector2(40, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb5kj"]
+size = Vector2(36, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxcnd"]
 size = Vector2(60, 20)
@@ -53,7 +53,9 @@ collision_mask = 1
 destination_level = "res://scenes/world-new/lab-01/LabExterior.tscn"
 override_player_direction = true
 player_direction_override = Vector2(1, 0)
-collision_shape = SubResource("RectangleShape2D_j38sd")
+
+[node name="CollisionShape2D" parent="Past/SceneTransition" index="0"]
+shape = SubResource("RectangleShape2D_yb5kj")
 
 [node name="PastTable" parent="Past" instance=ExtResource("12_ianx0")]
 modulate = Color(0.849086, 0.849379, 0.918339, 1)
@@ -119,4 +121,5 @@ stream = ExtResource("8_yflx0")
 [connection signal="body_entered" from="Future/EntrywayText" to="." method="_on_entryway_text_body_entered"]
 [connection signal="interacted" from="Future/Lantern/Interactable" to="." method="_on_lantern_interacted"]
 
+[editable path="Past/SceneTransition"]
 [editable path="Future/Lantern"]
