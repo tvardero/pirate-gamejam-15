@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de6qyr2j7ocsd"
-path="res://.godot/imported/box.png-cf52a5322ef34c00842fbf0a3c08f780.ctex"
+uid="uid://bg01uut0kka32"
+path="res://.godot/imported/partygoer_dialog_spritesheet.png-c020935fc91e1f4829a0d928b65fb98b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/emotes/box.png"
-dest_files=["res://.godot/imported/box.png-cf52a5322ef34c00842fbf0a3c08f780.ctex"]
+source_file="res://assets/sprites/partygoer/partygoer_dialog_spritesheet.png"
+dest_files=["res://.godot/imported/partygoer_dialog_spritesheet.png-c020935fc91e1f4829a0d928b65fb98b.ctex"]
 
 [params]
 

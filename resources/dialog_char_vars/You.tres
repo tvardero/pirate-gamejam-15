@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogCharVars" load_steps=5 format=3 uid="uid://d1rugo5grfms1"]
+
+[ext_resource type="Script" path="res://resources/DialogCharVars.gd" id="1_h4mid"]
+[ext_resource type="Script" path="res://resources/DialogSpritesheet.gd" id="2_bmere"]
+[ext_resource type="Texture2D" uid="uid://n77avhtf5heb" path="res://assets/sprites/player/player_dialog_spritesheet.png" id="3_vwsj5"]
+
+[sub_resource type="Resource" id="Resource_ox1u6"]
+script = ExtResource("2_bmere")
+spritesheet = ExtResource("3_vwsj5")
+h_frames = 11
+v_frames = 1
+framerate = 6.0
+continuous = false
+
+[resource]
+script = ExtResource("1_h4mid")
+spritesheets = Array[ExtResource("2_bmere")]([SubResource("Resource_ox1u6")])

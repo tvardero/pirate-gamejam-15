@@ -476,12 +476,16 @@ func create_dialogue_line(data: Dictionary, extra_game_states: Array) -> Dialogu
 	match data.type:
 		DialogueConstants.TYPE_DIALOGUE:
 			var resolved_data: ResolvedLineData = await get_resolved_line_data(data, extra_game_states)
+			var character_name = await get_resolved_character(data, extra_game_states)
+			var character_vars = DialogState.get_char_vars(character_name)
+			
 			return DialogueLine.new({
 				id = data.get(&"id", ""),
 				type = DialogueConstants.TYPE_DIALOGUE,
 				next_id = data.next_id,
-				character = await get_resolved_character(data, extra_game_states),
+				character = character_name,
 				character_replacements = data.character_replacements,
+				char_vars = character_vars,
 				text = resolved_data.text,
 				text_replacements = data.text_replacements,
 				translation_key = data.translation_key,
