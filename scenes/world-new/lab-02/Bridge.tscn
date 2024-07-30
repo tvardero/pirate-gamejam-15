@@ -202,3 +202,6 @@ position = Vector2(214, -50)
 destination_level = "res://scenes/world/Town1.tscn"
 spawn_id = 6
 collision_shape = SubResource("RectangleShape2D_gp0ri")
+
+[node name="WaterfallAudio" type="Marker2D" parent="."]
+position = Vector2(107, -8)
