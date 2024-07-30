@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjces4416uy3c"]
+[gd_scene load_steps=13 format=3 uid="uid://cjces4416uy3c"]
 
 [ext_resource type="Script" path="res://scenes/ui/DialogBalloon.gd" id="1_3xlym"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ekg25"]
@@ -65,6 +65,14 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 
+[sub_resource type="Animation" id="Animation_li13i"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qgk2n"]
+_data = {
+"RESET": SubResource("Animation_li13i")
+}
+
 [node name="DialogBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_3xlym")
@@ -82,8 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_qq3yp")
 
-[node name="PlayerArt" type="Control" parent="Balloon"]
-visible = false
+[node name="Portrait" type="Control" parent="Balloon"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -92,10 +99,17 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="PlayerSprite" type="Sprite2D" parent="Balloon/PlayerArt"]
+[node name="Sprite2D" type="Sprite2D" parent="Balloon/Portrait"]
+visible = false
 position = Vector2(83, -142)
 texture = ExtResource("4_53ktl")
 centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/Portrait/Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_qgk2n")
+}
 
 [node name="Panel" type="Panel" parent="Balloon"]
 clip_children = 2
@@ -180,6 +194,6 @@ theme_override_font_sizes/font_size = 24
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="texture_changed" from="Balloon/PlayerArt/PlayerSprite" to="." method="_on_sprite_texture_changed"]
+[connection signal="texture_changed" from="Balloon/Portrait/Sprite2D" to="." method="_on_sprite_texture_changed"]
 [connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

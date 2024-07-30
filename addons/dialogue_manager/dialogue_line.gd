@@ -56,6 +56,8 @@ var mutation: Dictionary = {}
 ## The conditions to check before including this line in the flow of dialogue. If failed the line will be skipped over.
 var conditions: Dictionary = {}
 
+var char_vars: DialogCharVars
+
 
 func _init(data: Dictionary = {}) -> void:
 	if data.size() > 0:
@@ -76,6 +78,7 @@ func _init(data: Dictionary = {}) -> void:
 				inline_mutations = data.get("inline_mutations", [] as Array[Array])
 				time = data.get("time", "")
 				tags = data.get("tags", [])
+				char_vars = data.char_vars
 
 			_DialogueConstants.TYPE_MUTATION:
 				mutation = data.mutation

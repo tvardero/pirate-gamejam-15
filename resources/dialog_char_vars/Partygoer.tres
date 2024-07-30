@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogCharVars" load_steps=7 format=3 uid="uid://ditbw1amepah1"]
+
+[ext_resource type="Script" path="res://resources/DialogCharVars.gd" id="1_r6ulh"]
+[ext_resource type="Script" path="res://resources/DialogSpritesheet.gd" id="2_to11c"]
+[ext_resource type="Texture2D" uid="uid://ditqkit13tghv" path="res://assets/sprites/partygoer/partygoer_mouth_spritesheet.png" id="3_yivo5"]
+[ext_resource type="Texture2D" uid="uid://bg01uut0kka32" path="res://assets/sprites/partygoer/partygoer_dialog_spritesheet.png" id="4_v65bm"]
+
+[sub_resource type="Resource" id="Resource_6lxx2"]
+script = ExtResource("2_to11c")
+spritesheet = ExtResource("3_yivo5")
+h_frames = 3
+v_frames = 1
+framerate = 6.0
+continuous = false
+
+[sub_resource type="Resource" id="Resource_xbdd1"]
+script = ExtResource("2_to11c")
+spritesheet = ExtResource("4_v65bm")
+h_frames = 3
+v_frames = 1
+framerate = 2.0
+continuous = true
+
+[resource]
+script = ExtResource("1_r6ulh")
+spritesheets = Array[ExtResource("2_to11c")]([SubResource("Resource_6lxx2"), SubResource("Resource_xbdd1")])
