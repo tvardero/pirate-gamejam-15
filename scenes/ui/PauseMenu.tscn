@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb048xqukelm0"]
+[gd_scene load_steps=6 format=3 uid="uid://bb048xqukelm0"]
 
 [ext_resource type="Script" path="res://scenes/ui/PauseMenu.gd" id="1_s7vpu"]
-[ext_resource type="Texture2D" uid="uid://cap644hq2jx53" path="res://assets/sprites/star-fragment/starfragment-spritesheet.png" id="2_4qkx7"]
 [ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="2_ckp4a"]
 [ext_resource type="Script" path="res://scenes/ui/VolumeSlider.gd" id="2_euitm"]
+[ext_resource type="Texture2D" uid="uid://08ixd1mvghr0" path="res://assets/sprites/star-fragment/StarFragmentSmall_spritesheet.png" id="3_uaed2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfi14"]
+atlas = ExtResource("3_uaed2")
+region = Rect2(0, 0, 26, 25)
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -23,7 +27,14 @@ offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -31,25 +42,31 @@ size_flags_vertical = 4
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ckp4a")
 theme_override_font_sizes/font_size = 42
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="StarTracker" type="PanelContainer" parent="PanelContainer/VBoxContainer/Label"]
+[node name="StarTracker" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Label"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-offset_left = -59.0
-offset_top = -16.0
-offset_right = 1.0
-offset_bottom = 26.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -21.0
+offset_bottom = 21.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="StarCount" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Label/StarTracker"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Label/StarTracker"]
+layout_mode = 2
+alignment = 1
+
+[node name="StarCount" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Label/StarTracker/HBoxContainer"]
 unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
@@ -63,67 +80,80 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/Label/StarTracker"]
-position = Vector2(39, 20)
-scale = Vector2(2, 2)
-texture = ExtResource("2_4qkx7")
-hframes = 2
+[node name="Sprite2D" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/Label/StarTracker/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_bfi14")
+stretch_mode = 3
 
-[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Resume" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../MusicVolume/HSlider")
+focus_next = NodePath("../MusicVolume/HSlider")
 theme_override_fonts/font = ExtResource("2_ckp4a")
 theme_override_font_sizes/font_size = 24
 text = "Resume"
 
-[node name="Volumes" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="MusicVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Volumes"]
+[node name="MusicVolume" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Volumes/MusicVolume"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MusicVolume"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ckp4a")
 theme_override_font_sizes/font_size = 24
 text = "Music"
 horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Volumes/MusicVolume"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/MusicVolume"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../../Resume")
+focus_neighbor_bottom = NodePath("../../SFXVolume/HSlider")
+focus_next = NodePath("../../SFXVolume/HSlider")
+focus_previous = NodePath("../../Resume")
 max_value = 1.0
-step = 0.001
+step = 0.05
 script = ExtResource("2_euitm")
 bus_name = "Music"
 
-[node name="SFXVolume" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Volumes"]
+[node name="SFXVolume" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Volumes/SFXVolume"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/SFXVolume"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ckp4a")
 theme_override_font_sizes/font_size = 24
 text = "SFX"
 horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Volumes/SFXVolume"]
-layout_mode = 2
-max_value = 1.0
-step = 0.001
-script = ExtResource("2_euitm")
-bus_name = "SFX"
-
-[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/SFXVolume"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../../MusicVolume/HSlider")
+focus_neighbor_bottom = NodePath("../../Quit")
+focus_next = NodePath("../../Quit")
+focus_previous = NodePath("../../MusicVolume/HSlider")
+max_value = 1.0
+step = 0.05
+script = ExtResource("2_euitm")
+bus_name = "SFX"
+
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../SFXVolume/HSlider")
+focus_previous = NodePath("../SFXVolume/HSlider")
 theme_override_fonts/font = ExtResource("2_ckp4a")
 theme_override_font_sizes/font_size = 24
 text = "Quit
 "
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
