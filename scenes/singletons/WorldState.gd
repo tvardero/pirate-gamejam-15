@@ -53,7 +53,7 @@ func _physics_process(delta):
 		_lantern_level.bg_color.color = lerp(_lantern_level.past_color, _lantern_level.future_color, lerp_value);
 		if !_lantern_theme_switched:
 			_lantern_level.switch_nodes(in_future);
-			SoundPlayer.set_music_track(in_future, 1)
+			SoundPlayer.set_time(in_future, 1)
 			player.set_collision_masks_and_layers(in_future)
 			_lantern_theme_switched = true;
 	
@@ -86,6 +86,7 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 		save_level_state(current)
 		current.visible = false;
 		current.queue_free();
+	SoundPlayer.stop_all_sfx()
 	
 	level.spawn_player_at(spawn_id, player_direction);
 	get_tree().root.call_deferred("add_child", level);

@@ -4,6 +4,8 @@ extends Node
 @onready var audio_players_2D = $AudioPlayers2D
 @onready var present_music_player: AudioStreamPlayer = $MusicPlayers/PresentMusicPlayer
 @onready var past_music_player: AudioStreamPlayer = $MusicPlayers/PastMusicPlayer
+@onready var sfx_present_bus: int = AudioServer.get_bus_index('SFX Present')
+@onready var sfx_past_bus: int = AudioServer.get_bus_index('SFX Past')
 
 var music_position: float = 0
 var fade_speed: float = 0
@@ -22,14 +24,16 @@ func _physics_process(delta):
 
 	present_music_player.volume_db = present_db
 	past_music_player.volume_db = past_db
+	AudioServer.set_bus_volume_db(sfx_present_bus, present_db)
+	AudioServer.set_bus_volume_db(sfx_past_bus, past_db)
 
 func play_sound(sound: AudioStream, volume: float=0) -> AudioStreamPlayer:
 	for audio_player in audio_players.get_children():
 		if audio_player.playing: continue ;
 
+		reset_sfx_player(audio_player)
 		audio_player.stream = sound
 		audio_player.volume_db = volume
-		audio_player.pitch_scale = 1
 		audio_player.play()
 		return audio_player
 
@@ -39,33 +43,43 @@ func play_sound2D(sound: AudioStream, pos: Vector2, volume: float=0) -> AudioStr
 	for audio_player in audio_players_2D.get_children():
 		if audio_player.playing: continue ;
 		
+		reset_sfx_player(audio_player)
 		audio_player.stream = sound
 		audio_player.volume_db = volume
-		audio_player.pitch_scale = 1
-		audio_player.max_distance = 2000
 		audio_player.position = pos
 		audio_player.play()
 		return audio_player
 		
 	return null
 
+func set_time_bus(sound_player, in_future: bool):
+	if in_future: sound_player.bus = 'SFX Present'
+	else: sound_player.bus = 'SFX Past'
+
+
 func play_music(present_track, past_track):
 	if present_music_player.stream == present_track: return
 	
-	set_music_track(WorldState.in_future)
+	set_time(WorldState.in_future)
 	present_music_player.stream = present_track
 	past_music_player.stream = past_track
 	present_music_player.play()
 	past_music_player.play()
 
-func set_music_track(future: bool, fade_seconds: float=0):
+
+func set_time(in_future: bool, fade_seconds: float = 0):
 	if fade_seconds <= 0:
-		present_music_player.volume_db = 0 if future else - 80;
-		past_music_player.volume_db = -80 if future else 0;
-		return ;
+		var present_val: float = 0 if in_future else -80
+		var past_val: float = -80 if in_future else 0
+		present_music_player.volume_db = present_val
+		past_music_player.volume_db = past_val
+		AudioServer.set_bus_volume_db(sfx_present_bus, present_val)
+		AudioServer.set_bus_volume_db(sfx_past_bus, past_val)
+		return
 	
 	# Calculate fade speed per second, from 0db to -80db
-	fade_speed = (1.0 if future else -1.0) / fade_seconds;
+	fade_speed = (1.0 if in_future else -1.0) / fade_seconds;
+
 
 func pause_music(val: bool):
 	if val:
@@ -75,3 +89,19 @@ func pause_music(val: bool):
 	else:
 		present_music_player.play(music_position)
 		past_music_player.play(music_position)
+
+
+func reset_sfx_player(sfx_player):
+	sfx_player.stop()
+	sfx_player.bus = 'SFX'
+	sfx_player.pitch_scale = 1
+	
+	if sfx_player is AudioStreamPlayer2D:
+		sfx_player.max_distance = 2000
+
+
+func stop_all_sfx():
+	for audio_player in audio_players.get_children():
+		reset_sfx_player(audio_player)
+	for audio_player in audio_players_2D.get_children():
+		reset_sfx_player(audio_player)
