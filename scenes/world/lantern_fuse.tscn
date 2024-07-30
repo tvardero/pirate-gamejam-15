@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckmoiew8h0nex"]
+[gd_scene load_steps=26 format=3 uid="uid://ckmoiew8h0nex"]
 
 [ext_resource type="Texture2D" uid="uid://c3guuau5a5jq7" path="res://assets/sprites/bg/LanternCloseUp.png" id="1_avyua"]
+[ext_resource type="Script" path="res://scenes/world/LanternFuse.gd" id="1_k63ms"]
 [ext_resource type="Texture2D" uid="uid://dpkguen3wwvli" path="res://assets/sprites/bg/LanternFuse/FuseAnim.png" id="2_aabc1"]
 [ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="3_qojc2"]
 [ext_resource type="PackedScene" uid="uid://durrk8c4ecw6r" path="res://scenes/props/star-fragment/fusionFragment.tscn" id="4_7uavm"]
@@ -140,7 +141,12 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
-[node name="LanternFuse" type="CanvasLayer"]
+[node name="LanternFuse" type="CanvasLayer" node_paths=PackedStringArray("rest_location", "destination_location")]
+script = ExtResource("1_k63ms")
+rest_location = NodePath("MarginContainer/RestPoint")
+destination_location = NodePath("MarginContainer/DestinationPoint")
+destination_radius = 30.0
+keyboard_input_speed = 260.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -170,12 +176,14 @@ autoplay = "default"
 
 [node name="RestPoint" parent="MarginContainer" instance=ExtResource("5_sj23w")]
 position = Vector2(326, 358)
+script = null
 
 [node name="DestinationPoint" parent="MarginContainer" instance=ExtResource("5_sj23w")]
 position = Vector2(805, 358)
-is_destination = true
+script = null
 
 [node name="Fragment" parent="MarginContainer" instance=ExtResource("4_7uavm")]
+z_index = 1
 position = Vector2(326, 358)
 scale = Vector2(3, 3)
 
