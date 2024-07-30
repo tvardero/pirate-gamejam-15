@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=26 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://cxs04nxi5tr4n" path="res://assets/sprites/bg/lab-04/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
+[ext_resource type="AudioStream" uid="uid://ynf4w4x7mamh" path="res://assets/music/town_past.ogg" id="2_1u3eu"]
+[ext_resource type="AudioStream" uid="uid://dnkrfa2ggbfr4" path="res://assets/music/town_present.ogg" id="3_8yx63"]
 [ext_resource type="PackedScene" uid="uid://bdvi5akdxem1q" path="res://scenes/props/newspaper/Newspaper.tscn" id="3_pdv1h"]
 [ext_resource type="PackedScene" uid="uid://dpcptuskifrpr" path="res://scenes/props/wagon/wagon.tscn" id="3_rijxw"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="4_a4xjw"]
@@ -47,7 +49,9 @@ size = Vector2(20, 118)
 [node name="Town2" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 script = ExtResource("1_mlm7f")
 past_nodes = NodePath("Past")
+past_music = ExtResource("2_1u3eu")
 future_nodes = NodePath("Future")
+future_music = ExtResource("3_8yx63")
 
 [node name="Past" type="Node2D" parent="."]
 
