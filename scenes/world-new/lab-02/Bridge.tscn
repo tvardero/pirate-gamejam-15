@@ -76,10 +76,10 @@ _data = {
 "waterfall": SubResource("Animation_h1g12")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_md5wn"]
-size = Vector2(20, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57atc"]
+size = Vector2(20, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp0ri"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1htqs"]
 size = Vector2(20, 60)
 
 [node name="Bridge" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
@@ -195,13 +195,20 @@ id = 1
 position = Vector2(-115, -51)
 destination_level = "res://scenes/world-new/lab-01/LabExterior.tscn"
 spawn_id = 1
-collision_shape = SubResource("RectangleShape2D_md5wn")
+
+[node name="CollisionShape2D" parent="SceneTransitionLeft" index="0"]
+shape = SubResource("RectangleShape2D_57atc")
 
 [node name="SceneTransitionRight" parent="." instance=ExtResource("10_1il8k")]
 position = Vector2(214, -50)
 destination_level = "res://scenes/world/Town1.tscn"
 spawn_id = 6
-collision_shape = SubResource("RectangleShape2D_gp0ri")
+
+[node name="CollisionShape2D" parent="SceneTransitionRight" index="0"]
+shape = SubResource("RectangleShape2D_1htqs")
 
 [node name="WaterfallAudio" type="Marker2D" parent="."]
 position = Vector2(107, -8)
+
+[editable path="SceneTransitionLeft"]
+[editable path="SceneTransitionRight"]

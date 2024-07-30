@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ndutnk77cj2o"]
+[gd_scene load_steps=24 format=3 uid="uid://ndutnk77cj2o"]
 
 [ext_resource type="Texture2D" uid="uid://cxs04nxi5tr4n" path="res://assets/sprites/bg/lab-04/Town2MapPast.png" id="1_0prr0"]
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_mlm7f"]
@@ -33,7 +33,7 @@ size = Vector2(152, 2.5)
 size = Vector2(13, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt3u"]
-size = Vector2(13, 40.25)
+size = Vector2(13, 104.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpm56"]
 size = Vector2(371, 18)
@@ -41,11 +41,8 @@ size = Vector2(371, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7hin"]
 size = Vector2(13, 344)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_48b7o"]
-size = Vector2(10, 125)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8i8g"]
-size = Vector2(10, 50)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkfgl"]
+size = Vector2(20, 118)
 
 [node name="Town2" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 script = ExtResource("1_mlm7f")
@@ -132,7 +129,7 @@ position = Vector2(-185.5, -102.5)
 shape = SubResource("RectangleShape2D_ltllp")
 
 [node name="LeftBottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-186, 92.875)
+position = Vector2(-186, 124.875)
 shape = SubResource("RectangleShape2D_3vt3u")
 
 [node name="Top" type="CollisionShape2D" parent="Walls"]
@@ -151,7 +148,9 @@ shape = SubResource("RectangleShape2D_g7hin")
 position = Vector2(-185, 14)
 destination_level = "res://scenes/world/Town1.tscn"
 spawn_id = 9
-collision_shape = SubResource("RectangleShape2D_48b7o")
+
+[node name="CollisionShape2D" parent="SceneTransition" index="0"]
+shape = SubResource("RectangleShape2D_vkfgl")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("5_r8cyn")]
 position = Vector2(-161, 13)
@@ -160,12 +159,6 @@ id = 8
 [node name="SpawnPoint2" parent="." instance=ExtResource("5_r8cyn")]
 position = Vector2(-165, 137)
 id = 10
-
-[node name="SceneTransition2" parent="." instance=ExtResource("4_a4xjw")]
-position = Vector2(-185, 137)
-destination_level = "res://scenes/world/Town1.tscn"
-spawn_id = 11
-collision_shape = SubResource("RectangleShape2D_y8i8g")
 
 [node name="PartygoersHouse" parent="." instance=ExtResource("6_wv00r")]
 position = Vector2(67, 8)
@@ -199,3 +192,4 @@ texture = ExtResource("8_7ln5e")
 [connection signal="interacted" from="Future/Wagon/Interactable" to="Future/Wagon" method="_on_interactable_interacted"]
 
 [editable path="Future/Newspaper"]
+[editable path="SceneTransition"]

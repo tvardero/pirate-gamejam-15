@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsejqbayf2grx"]
+[gd_scene load_steps=23 format=3 uid="uid://bsejqbayf2grx"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_20k8d"]
 [ext_resource type="Texture2D" uid="uid://nsqitvnyfsya" path="res://assets/sprites/bg/lab-03/Town1MapPast.png" id="1_36obe"]
@@ -30,19 +30,16 @@ size = Vector2(182.124, 1.58389)
 size = Vector2(14.2946, 111.297)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymjfy"]
-size = Vector2(15.9023, 49.1868)
+size = Vector2(15.9023, 94.0335)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o128w"]
 size = Vector2(16.1226, 118.774)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_33bum"]
-size = Vector2(10, 110)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcfae"]
+size = Vector2(20, 107)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfwto"]
-size = Vector2(10, 120)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1ufm"]
-size = Vector2(10, 50)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4dwf"]
+size = Vector2(20, 119.716)
 
 [node name="Town1" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 position = Vector2(170.387, 159.972)
@@ -122,7 +119,7 @@ position = Vector2(174.987, -105.971)
 shape = SubResource("RectangleShape2D_g85dm")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OtherCollisions/FenceRightEdge"]
-position = Vector2(176.752, 91.5879)
+position = Vector2(176.752, 114.011)
 shape = SubResource("RectangleShape2D_ymjfy")
 
 [node name="FenceLeftEdge" type="StaticBody2D" parent="OtherCollisions"]
@@ -140,19 +137,18 @@ id = 6
 position = Vector2(-174.651, 5.21196)
 destination_level = "res://scenes/world-new/lab-02/Bridge.tscn"
 spawn_id = 1
-collision_shape = SubResource("RectangleShape2D_33bum")
+
+[node name="CollisionShape2D" parent="SceneTransition" index="0"]
+position = Vector2(0, 1.31604)
+shape = SubResource("RectangleShape2D_tcfae")
 
 [node name="SceneTransition2" parent="." instance=ExtResource("5_tnids")]
 position = Vector2(174.401, 8.16992)
 destination_level = "res://scenes/world/Town2.tscn"
 spawn_id = 8
-collision_shape = SubResource("RectangleShape2D_nfwto")
 
-[node name="SceneTransition3" parent="." instance=ExtResource("5_tnids")]
-position = Vector2(174.733, 138.448)
-destination_level = "res://scenes/world/Town2.tscn"
-spawn_id = 10
-collision_shape = SubResource("RectangleShape2D_y1ufm")
+[node name="CollisionShape2D" parent="SceneTransition2" index="0"]
+shape = SubResource("RectangleShape2D_t4dwf")
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("4_g5mc5")]
 position = Vector2(148.613, 8.028)
@@ -167,3 +163,6 @@ position = Vector2(-51.387, -96.972)
 
 [node name="Valve" parent="." instance=ExtResource("10_e85ie")]
 position = Vector2(143.613, 112.028)
+
+[editable path="SceneTransition"]
+[editable path="SceneTransition2"]

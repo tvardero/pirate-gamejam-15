@@ -19,8 +19,8 @@ size = Vector2(33, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7qoy"]
 size = Vector2(14, 185)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pg6m"]
-size = Vector2(20, 80)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u2b2"]
+size = Vector2(8, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13qq6"]
 size = Vector2(20, 40)
@@ -125,7 +125,9 @@ id = 1
 [node name="SceneTransition2" parent="." instance=ExtResource("3_8x3nn")]
 position = Vector2(160, -1)
 destination_level = "res://scenes/world-new/lab-02/Bridge.tscn"
-collision_shape = SubResource("RectangleShape2D_8pg6m")
+
+[node name="CollisionShape2D" parent="SceneTransition2" index="0"]
+shape = SubResource("RectangleShape2D_1u2b2")
 
 [node name="InteractableLabBuilding" parent="." instance=ExtResource("11_16evg")]
 position = Vector2(-149, 1)
@@ -148,3 +150,5 @@ debug_color = Color(0, 0.547493, 0.932932, 0.42)
 [connection signal="interacted" from="InteractableLabBuilding" to="." method="_on_lab_building_interacted"]
 [connection signal="interacted" from="InteractableGate" to="." method="_on_gate_interacted"]
 [connection signal="body_entered" from="PuzzleSolved" to="." method="_on_puzzle_solved_body_entered"]
+
+[editable path="SceneTransition2"]
