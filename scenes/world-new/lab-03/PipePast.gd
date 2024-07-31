@@ -16,5 +16,5 @@ func close():
 	WorldState.sewage_valve_off = true;
 
 func _on_interactable_interacted(_initiator:Node):
-	print("pipe interacted")
+	if WorldState.in_future: return;
 	close()
