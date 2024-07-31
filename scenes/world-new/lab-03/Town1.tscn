@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b64fc5xhf17hr"]
+[gd_scene load_steps=27 format=3 uid="uid://b64fc5xhf17hr"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_i7nla"]
 [ext_resource type="AudioStream" uid="uid://ynf4w4x7mamh" path="res://assets/music/town_past.ogg" id="2_v6wvg"]
@@ -8,20 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://drjs7jexq161x" path="res://assets/sprites/bg/lab-03/Day/Club-3.png" id="6_m56s7"]
 [ext_resource type="PackedScene" uid="uid://cynvv44m3x8ss" path="res://scenes/characters/partygoer/partygoer.tscn" id="6_qtcd2"]
 [ext_resource type="PackedScene" uid="uid://djdpd1kmtidu3" path="res://scenes/props/clubhouse/clubhouse.tscn" id="7_fqwbm"]
+[ext_resource type="PackedScene" uid="uid://bqklpp5dk4u2f" path="res://scenes/world-new/lab-03/PipeFence.tscn" id="8_mfywb"]
 [ext_resource type="Texture2D" uid="uid://bmmoco8yhvvb7" path="res://assets/sprites/bg/lab-03/Day/Club-5.png" id="8_r0rtw"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="9_0sh4d"]
 [ext_resource type="Texture2D" uid="uid://bs5toxyx0qy14" path="res://assets/sprites/bg/lab-03/Day/Club-6.png" id="9_sqgi2"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="10_6dtad"]
-[ext_resource type="Texture2D" uid="uid://csujaajpekh8f" path="res://assets/sprites/bg/lab-03/Day/Club-7.png" id="10_tybvu"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="11_jhrw8"]
 [ext_resource type="Texture2D" uid="uid://cwuvrld4yjnao" path="res://assets/sprites/bg/lab-03/Night/Club-4.png" id="15_654hd"]
 [ext_resource type="Texture2D" uid="uid://kgvfxe0sigj0" path="res://assets/sprites/bg/lab-03/Night/Club-6.png" id="17_8rct0"]
 [ext_resource type="PackedScene" uid="uid://wh0h317a3ev3" path="res://scenes/world-new/lab-03/clubhouse-future.tscn" id="18_j4klg"]
 [ext_resource type="Texture2D" uid="uid://cgfkmqtjtxtv6" path="res://assets/sprites/bg/lab-03/Night/Club-7.png" id="18_nev2t"]
-[ext_resource type="Texture2D" uid="uid://cvusjd2pp5pf4" path="res://assets/sprites/bg/lab-03/Night/Club-8.png" id="19_78miw"]
 [ext_resource type="PackedScene" uid="uid://bkypfn7bs5eut" path="res://scenes/world-new/lab-03/StoneWallGate.tscn" id="19_abfjv"]
 [ext_resource type="PackedScene" uid="uid://h0w1fb63frrm" path="res://scenes/world-new/lab-03/StoneWallTop.tscn" id="22_8rlu1"]
 [ext_resource type="PackedScene" uid="uid://c6lqwkhdvmquy" path="res://scenes/world-new/lab-03/BenchPast.tscn" id="22_fy6ie"]
+[ext_resource type="PackedScene" uid="uid://d2chfj75m2djs" path="res://scenes/world-new/lab-03/PipePast.tscn" id="23_tolp2"]
+[ext_resource type="Texture2D" uid="uid://dynmyq8wl5vk5" path="res://assets/sprites/bg/lab-03/Night/Club-9.png" id="24_ufxve"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cgwbj"]
 load_path = "res://.godot/imported/Club-1.png-3a6c51e6813dd454fca2e46d4a008d38.ctex"
@@ -62,9 +63,8 @@ texture = ExtResource("8_r0rtw")
 z_index = 1
 texture = ExtResource("9_sqgi2")
 
-[node name="PipeFence" type="Sprite2D" parent="Past"]
-z_index = 1
-texture = ExtResource("10_tybvu")
+[node name="PipeFence" parent="Past" instance=ExtResource("8_mfywb")]
+position = Vector2(199.613, 133.028)
 
 [node name="Policeman" parent="Past" instance=ExtResource("5_hnd3m")]
 position = Vector2(-9.387, -89.972)
@@ -83,10 +83,15 @@ position = Vector2(-111.387, 119.028)
 [node name="Partygoer" parent="Past" instance=ExtResource("6_qtcd2")]
 position = Vector2(-117.387, 122.028)
 
+[node name="PipePast" parent="Past" instance=ExtResource("23_tolp2")]
+position = Vector2(217.5, 174)
+
 [node name="Walls" type="StaticBody2D" parent="Past"]
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/Walls"]
-polygon = PackedVector2Array(-239.387, 151.028, 169.613, 144.028, 170.613, 206.028, 209.613, 205.028, 209.613, 139.028, 199.613, 140.028, 199.613, 126.028, 239.613, 126.028, 240.613, 0.0279999, 286.613, -3.972, 289.613, 244.028, -294.387, 237.028, -293.387, 0.0279999, -240.387, 1.028)
+z_index = 1
+polygon = PackedVector2Array(-239.387, 151.028, 169.613, 144.028, 170.613, 205.028, 199.613, 205.028, 199.613, 126.028, 239.613, 126.028, 240.613, 0.0279999, 286.613, -3.972, 289.613, 244.028, -294.387, 237.028, -293.387, 0.0279999, -240.387, 1.028)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Past/Walls"]
 polygon = PackedVector2Array(-304.387, -77.972, -238.387, -76.972, -240.387, -173.972, 238.613, -173.972, 239.613, -77.972, 266.613, -79.972, 269.613, -210.972, -303.387, -210.972)
@@ -110,9 +115,8 @@ texture = ExtResource("17_8rct0")
 z_index = 1
 texture = ExtResource("18_nev2t")
 
-[node name="PipeFence" type="Sprite2D" parent="Future"]
-z_index = 1
-texture = ExtResource("19_78miw")
+[node name="PipeFence2" parent="Future" instance=ExtResource("8_mfywb")]
+position = Vector2(199.613, 133.028)
 
 [node name="StarFragment" parent="Future" instance=ExtResource("9_0sh4d")]
 position = Vector2(-204.387, -143.972)
@@ -120,10 +124,17 @@ position = Vector2(-204.387, -143.972)
 [node name="ClubhouseFuture" parent="Future" instance=ExtResource("18_j4klg")]
 position = Vector2(72, 117.5)
 
+[node name="Club-9" type="Sprite2D" parent="Future"]
+z_index = 1
+texture = ExtResource("24_ufxve")
+
 [node name="Walls" type="StaticBody2D" parent="Future"]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Future/Walls"]
-polygon = PackedVector2Array(-239.387, 151.028, 169.613, 144.028, 170.613, 206.028, 209.613, 205.028, 209.613, 139.028, 199.613, 140.028, 199.613, 126.028, 239.613, 126.028, 240.613, 0.0279999, 286.613, -3.972, 289.613, 244.028, -294.387, 237.028, -293.387, 0.0279999, -240.387, 1.028)
+z_index = 1
+polygon = PackedVector2Array(-239.387, 151.028, 169.613, 144.028, 170.613, 205.028, 199.613, 205.028, 199.613, 126.028, 239.613, 126.028, 240.613, 0.0279999, 286.613, -3.972, 289.613, 244.028, -294.387, 237.028, -293.387, 0.0279999, -240.387, 1.028)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Future/Walls"]
 polygon = PackedVector2Array(-304.387, -77.972, -238.387, -76.972, -240.387, -173.972, 238.613, -173.972, 239.613, -77.972, 266.613, -79.972, 269.613, -210.972, -303.387, -210.972)

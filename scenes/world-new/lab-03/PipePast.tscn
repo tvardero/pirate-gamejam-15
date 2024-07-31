@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2chfj75m2djs"]
+
+[ext_resource type="Script" path="res://scenes/world-new/lab-03/PipePast.gd" id="1_epgfi"]
+[ext_resource type="Texture2D" uid="uid://jwgi83qtna27" path="res://assets/sprites/valve/ValveFlowing_spritesheet.png" id="1_jsimj"]
+[ext_resource type="Texture2D" uid="uid://14wwd7l0j4rj" path="res://assets/sprites/valve/ValveClosed.png" id="3_5xgmf"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="4_djobp"]
+
+[sub_resource type="Animation" id="Animation_0u1gp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ValveFlowingSpritesheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vlqvl"]
+resource_name = "flow"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ValveFlowingSpritesheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ot5kj"]
+_data = {
+"RESET": SubResource("Animation_0u1gp"),
+"flow": SubResource("Animation_vlqvl")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3cc4"]
+radius = 20.0
+
+[node name="PipePast" type="Node2D"]
+script = ExtResource("1_epgfi")
+
+[node name="ValveFlowingSpritesheet" type="Sprite2D" parent="."]
+position = Vector2(-5, -17)
+rotation = -1.5708
+texture = ExtResource("1_jsimj")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ot5kj")
+}
+speed_scale = 0.6
+
+[node name="ValveClosed" type="Sprite2D" parent="."]
+position = Vector2(-5, -17)
+rotation = -1.5708
+texture = ExtResource("3_5xgmf")
+
+[node name="Interactable" parent="." instance=ExtResource("4_djobp")]
+position = Vector2(-16, 3)
+shape = SubResource("CircleShape2D_w3cc4")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
