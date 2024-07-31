@@ -18,6 +18,9 @@ extends Node2D
 @export var future_color: Color;
 @export var future_music: AudioStream
 
+@export_group("\"Shared\" configuration")
+@export var shared_nodes: Node2D;
+
 var _player_packed: PackedScene = preload ("res://scenes/characters/player/Player.tscn");
 var bg_color: ColorRect;
 
@@ -74,3 +77,4 @@ func modulate_nodes(val: float):
 	var color = lerp(Color.TRANSPARENT, Color.WHITE, val);
 	past_nodes.modulate = color;
 	future_nodes.modulate = color;
+	if shared_nodes: shared_nodes.modulate = color;
