@@ -114,9 +114,7 @@ func set_collision_masks_and_layers(to_future: bool):
 	set_collision_mask_value(2, to_future)
 
 func play_lantern_failure():
-	# todo: play lantern failure animation or show a dialog
-	print('lantern can not be used')
-	pass ;
+	_animation_tree["parameters/conditions/lantern_fail"] = true;
 
 func play_lantern_animation() -> float:
 	var animation_name = "lantern-left" if direction.x < 0 else "lantern-right";
