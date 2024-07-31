@@ -1,4 +1,4 @@
 class_name DialogCharVars
 extends Resource
 
-@export var spritesheets: Array[DialogSpritesheet]
+@export var portrait: PackedScene

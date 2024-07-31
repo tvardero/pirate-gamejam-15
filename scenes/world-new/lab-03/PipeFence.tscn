@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqklpp5dk4u2f"]
+
+[ext_resource type="Texture2D" uid="uid://cvusjd2pp5pf4" path="res://assets/sprites/bg/lab-03/Night/Club-8.png" id="1_6oheu"]
+
+[node name="PipeFence" type="Node2D"]
+position = Vector2(0, 4)
+
+[node name="Club-8" type="Sprite2D" parent="."]
+position = Vector2(-200, -143)
+texture = ExtResource("1_6oheu")

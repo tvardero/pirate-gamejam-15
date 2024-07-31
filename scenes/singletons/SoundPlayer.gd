@@ -90,6 +90,11 @@ func pause_music(val: bool):
 		present_music_player.play(music_position)
 		past_music_player.play(music_position)
 
+func stop_music():
+	present_music_player.stop()
+	present_music_player.stream = null;
+	past_music_player.stop()
+	past_music_player.stream = null;
 
 func reset_sfx_player(sfx_player):
 	sfx_player.stop()

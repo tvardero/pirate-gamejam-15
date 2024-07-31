@@ -18,6 +18,9 @@ extends Node2D
 @export var future_color: Color;
 @export var future_music: AudioStream
 
+@export_group("\"Shared\" configuration")
+@export var shared_nodes: Node2D;
+
 var _player_packed: PackedScene = preload ("res://scenes/characters/player/Player.tscn");
 var bg_color: ColorRect;
 
@@ -56,11 +59,14 @@ func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 
 func find_spawnpoint(spawn_id: int) -> SpawnPoint:
 	var children = get_children();
-	
-	for child in children:
-		if child is SpawnPoint&&child.id == spawn_id: return child;
+	var first_spawn: SpawnPoint = null;
 
-	return null;
+	for child in children:
+		if child is SpawnPoint:
+			if !first_spawn: first_spawn = child;
+			if child.id == spawn_id: return child;
+		
+	return first_spawn;
 
 func switch_nodes(to_future: bool):
 	past_nodes.visible = !to_future;
@@ -71,3 +77,4 @@ func modulate_nodes(val: float):
 	var color = lerp(Color.TRANSPARENT, Color.WHITE, val);
 	past_nodes.modulate = color;
 	future_nodes.modulate = color;
+	if shared_nodes: shared_nodes.modulate = color;

@@ -43,7 +43,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ib4ll"]
-size = Vector2(27, 22)
+size = Vector2(23.5, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdybj"]
 radius = 22.8
@@ -52,6 +52,7 @@ radius = 22.8
 script = ExtResource("1_1qbt1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, -20)
 texture = ExtResource("2_pbpwp")
 hframes = 11
 
@@ -63,10 +64,11 @@ autoplay = "Idle"
 speed_scale = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 9)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ib4ll")
 
 [node name="Interactable" parent="." instance=ExtResource("1_yx6om")]
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_xdybj")
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

@@ -13,6 +13,7 @@ var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
 var password_found: bool = false
 var sewage_valve_off: bool = false
+var police_before_newspaper: bool = false #whether the player talked to the policeman before picking up the newspaper
 
 var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
@@ -135,3 +136,13 @@ func start_fuse_scene():
 	if star_fragment_count >= 5:
 		DialogState.start_dialog(dialog_resource, 'end_demo')
 	disable_movement = false
+
+func reset():
+	in_future = true;
+	saved_level_states.clear()
+	star_fragment_count = 0;
+	policeman_moved = false;
+	town1_gate_open = false;
+	newspaper_picked_up = false;
+	password_found = false;
+	sewage_valve_off = false;

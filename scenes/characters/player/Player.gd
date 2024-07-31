@@ -99,6 +99,7 @@ func _set_direction(value: Vector2):
 	_animation_tree["parameters/idle/blend_position"] = _direction;
 	_animation_tree["parameters/walk/blend_position"] = _direction;
 	_animation_tree["parameters/lantern/blend_position"] = _direction.x;
+	_animation_tree["parameters/lantern-fail/blend_position"] = _direction.x;
 
 func _detect_collision_before_time_switch(in_future: bool) -> bool:
 	var area: Area2D = ($"Area2DFuture" if in_future else $"Area2DPast") as Area2D;
