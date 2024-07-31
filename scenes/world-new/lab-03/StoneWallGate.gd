@@ -3,6 +3,7 @@ extends Node2D
 var _closed: bool = true;
 
 var dialog = load("res://scenes/dialogue/PoliceOfficer.dialogue") as DialogueResource
+@onready var sound = $"AudioStreamPlayer2D"
 
 @export var closed: bool:
 	get: return _closed;
@@ -20,4 +21,6 @@ func _set_closed(value: bool):
 func _on_interactable_interacted(_initiator:Node):
 	if WorldState.in_future:
 		DialogState.start_dialog(dialog, "try_gate_in_present")
-	else: closed = false;
+	else: 
+		sound.play();
+		closed = false;

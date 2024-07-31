@@ -67,8 +67,7 @@ texture = ExtResource("9_sqgi2")
 position = Vector2(199.613, 133.028)
 
 [node name="Policeman" parent="Past" instance=ExtResource("5_hnd3m")]
-position = Vector2(-9.387, -89.972)
-collision_layer = 1
+position = Vector2(-9.387, -90.972)
 
 [node name="Clubhouse" parent="Past" instance=ExtResource("7_fqwbm")]
 position = Vector2(80, 106)

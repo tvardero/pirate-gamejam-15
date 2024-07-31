@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkypfn7bs5eut"]
+[gd_scene load_steps=10 format=3 uid="uid://bkypfn7bs5eut"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-03/StoneWallGate.gd" id="1_h8dpc"]
-[ext_resource type="Texture2D" uid="uid://i1neti8em78j" path="res://assets/sprites/bg/lab-03/Night/Open Gate.png" id="3_iphuq"]
+[ext_resource type="Texture2D" uid="uid://bcfksjcjtg8vk" path="res://assets/sprites/bg/lab-03/Night/Open Gate.png" id="3_iphuq"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="4_7btkb"]
-[ext_resource type="Texture2D" uid="uid://bj4q3okbde46y" path="res://assets/sprites/bg/lab-03/Day/Club-2.png" id="4_vjxq8"]
+[ext_resource type="Texture2D" uid="uid://hgrv68ukq8er" path="res://assets/sprites/bg/lab-03/Day/Club-2.png" id="4_vjxq8"]
+[ext_resource type="AudioStream" uid="uid://q5u0tk8aydam" path="res://assets/sounds/gate/gate.wav" id="5_3hc6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8w4s"]
 size = Vector2(217, 7)
@@ -51,5 +52,11 @@ debug_color = Color(0.180204, 0.6324, 0.339864, 0.42)
 [node name="Interactable" parent="." instance=ExtResource("4_7btkb")]
 position = Vector2(231, -2)
 shape = SubResource("RectangleShape2D_5adlh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(231, -2)
+stream = ExtResource("5_3hc6m")
+bus = &"SFX"
+area_mask = 3
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
