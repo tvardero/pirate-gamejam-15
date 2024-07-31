@@ -33,7 +33,7 @@ size = Vector2(22, 103)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4dwf"]
 size = Vector2(23.788, 97.1419)
 
-[node name="Town1" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
+[node name="Town1" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes", "shared_nodes")]
 y_sort_enabled = true
 position = Vector2(170.387, 159.972)
 script = ExtResource("1_i7nla")
@@ -42,6 +42,7 @@ past_color = Color(0.964706, 0.964706, 0.964706, 1)
 past_music = ExtResource("2_v6wvg")
 future_nodes = NodePath("Future")
 future_music = ExtResource("3_rryj6")
+shared_nodes = NodePath("Shared")
 
 [node name="Past" type="Node2D" parent="."]
 y_sort_enabled = true
