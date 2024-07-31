@@ -43,10 +43,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tvpf"]
-size = Vector2(80, 20)
+size = Vector2(37, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umojq"]
-size = Vector2(60, 60)
+size = Vector2(40, 40)
 
 [node name="Policeman" type="StaticBody2D"]
 collision_layer = 3
