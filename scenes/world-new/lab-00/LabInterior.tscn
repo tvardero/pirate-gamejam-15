@@ -55,6 +55,7 @@ override_player_direction = true
 player_direction_override = Vector2(1, 0)
 
 [node name="CollisionShape2D" parent="Past/SceneTransition" index="0"]
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_yb5kj")
 
 [node name="PastTable" parent="Past" instance=ExtResource("12_ianx0")]
@@ -68,7 +69,6 @@ position = Vector2(-40, 45)
 position = Vector2(-40, 5)
 
 [node name="Future" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
 
 [node name="Background" type="Sprite2D" parent="Future"]
@@ -88,6 +88,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Future/EntrywayText"]
+position = Vector2(2, 6)
 shape = SubResource("RectangleShape2D_oxcnd")
 debug_color = Color(0.806313, 0.365183, 0.523813, 0.42)
 
@@ -98,11 +99,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="rubble" type="Sprite2D" parent="Future/EntrywayRubble"]
-position = Vector2(0, 71)
+position = Vector2(3, 78)
 texture = ExtResource("7_go4bb")
 
 [node name="Block" type="CollisionShape2D" parent="Future/EntrywayRubble"]
-position = Vector2(0, 22)
+position = Vector2(1, 28)
 shape = SubResource("RectangleShape2D_8qucy")
 
 [node name="FutureTable" parent="Future" instance=ExtResource("8_ctpnv")]
