@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2chfj75m2djs"]
+[gd_scene load_steps=10 format=3 uid="uid://d2chfj75m2djs"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-03/PipePast.gd" id="1_epgfi"]
 [ext_resource type="Texture2D" uid="uid://jwgi83qtna27" path="res://assets/sprites/valve/ValveFlowing_spritesheet.png" id="1_jsimj"]
 [ext_resource type="Texture2D" uid="uid://14wwd7l0j4rj" path="res://assets/sprites/valve/ValveClosed.png" id="3_5xgmf"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="4_djobp"]
+[ext_resource type="AudioStream" uid="uid://bprcdic53r8g3" path="res://assets/sounds/valve/valve.mp3" id="5_np3ih"]
 
 [sub_resource type="Animation" id="Animation_0u1gp"]
 length = 0.001
@@ -69,5 +70,10 @@ texture = ExtResource("3_5xgmf")
 [node name="Interactable" parent="." instance=ExtResource("4_djobp")]
 position = Vector2(-16, 3)
 shape = SubResource("CircleShape2D_w3cc4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-17, 3)
+stream = ExtResource("5_np3ih")
+bus = &"SFX"
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

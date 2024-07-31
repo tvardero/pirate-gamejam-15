@@ -13,6 +13,7 @@ func _ready():
 func close():
 	_anim.stop();
 	$"ValveClosed".show()
+	$"AudioStreamPlayer2D".play()
 	WorldState.sewage_valve_off = true;
 
 func _on_interactable_interacted(_initiator:Node):
