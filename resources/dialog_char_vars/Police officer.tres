@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogCharVars" load_steps=9 format=3 uid="uid://b821jwrsnbkph"]
+
+[ext_resource type="Script" path="res://resources/DialogCharVars.gd" id="1_e6p1y"]
+[ext_resource type="Script" path="res://resources/DialogSpritesheet.gd" id="2_tdl82"]
+[ext_resource type="Texture2D" uid="uid://diuo2d7v3aqfc" path="res://assets/sprites/cop/dialog/Cop Portrait.png" id="3_mvvwk"]
+[ext_resource type="Texture2D" uid="uid://bk1gyq6xi1smd" path="res://assets/sprites/cop/dialog/cop_hat_spritesheet.png" id="4_htw7c"]
+[ext_resource type="Texture2D" uid="uid://c2dq0bdl5u7lv" path="res://assets/sprites/cop/dialog/cop_mouth_spritesheet.png" id="5_076ot"]
+
+[sub_resource type="Resource" id="Resource_i5n26"]
+script = ExtResource("2_tdl82")
+spritesheet = ExtResource("5_076ot")
+h_frames = 2
+v_frames = 1
+framerate = 6.0
+continuous = false
+
+[sub_resource type="Resource" id="Resource_q5n5h"]
+script = ExtResource("2_tdl82")
+spritesheet = ExtResource("4_htw7c")
+h_frames = 3
+v_frames = 1
+framerate = 6.0
+continuous = true
+
+[sub_resource type="Resource" id="Resource_eefnl"]
+script = ExtResource("2_tdl82")
+spritesheet = ExtResource("3_mvvwk")
+h_frames = 1
+v_frames = 1
+framerate = 6.0
+continuous = false
+
+[resource]
+script = ExtResource("1_e6p1y")
+spritesheets = Array[ExtResource("2_tdl82")]([SubResource("Resource_i5n26"), SubResource("Resource_q5n5h"), SubResource("Resource_eefnl")])

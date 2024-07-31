@@ -25,7 +25,9 @@ var _lantern_level: Level;
 var _lantern_theme_switched: bool = false;
 
 var lantern_unlocked: bool:
-	get: return !get_current_level().lanter_locked;
+	get: 
+		var level = get_current_level();
+		return !level || !level.lanter_locked;
 
 func _ready():
 	scene_transition_visual = scene_transition_visual_packed.instantiate()

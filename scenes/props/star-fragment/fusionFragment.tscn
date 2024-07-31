@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://durrk8c4ecw6r"]
+[gd_scene load_steps=9 format=3 uid="uid://durrk8c4ecw6r"]
 
-[ext_resource type="Script" path="res://scenes/props/star-fragment/fuse_fragment.gd" id="1_kgicx"]
 [ext_resource type="Texture2D" uid="uid://7s61icb084fa" path="res://assets/sprites/star-fragment/Fragment.png" id="1_vyknm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3fthk"]
@@ -50,7 +49,6 @@ animations = [{
 radius = 23.0
 
 [node name="Fragment" type="Node2D"]
-script = ExtResource("1_kgicx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1dxrw")

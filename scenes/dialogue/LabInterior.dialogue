@@ -1,26 +1,27 @@
 ~ start_of_game_text
 You: This is definitely the lab from the Solar Tome - so, now what? 
 You: [wait=0.5].[wait=0.5].[wait=0.5].
-You: The prophecy of returning sun back to the sky using an artefact from this lab...
+You: The prophecy spoke of returning the sun back to the sky using an artefact from this lab, but...
 You: The Solar Tome was wrong - this room is totally empty.
-You: Was I this naive?
-You: At least I can grab a lantern - it will come in handy to light these dark streets.
+You: Was I this naive, to think an old alchemy book would be enough to bring light back to the world?
+You: At least I can grab a lantern - it will come in handy to light these dark streets. (Press E to interact and pick up items.)
 => END
 
 ~ try_leave_lab_without_lantern
-You: I should get the lantern, it's really dark outside.
+You: I should at least get the lantern before I go, it's really dark outside.
 => END
 
 ~ lantern_picked_up
-You: Quite rusty, indeed.
+You: Quite rusty, but it should still work.
 [i]*rumble*[/i]
 You: Wait, what's that sound?
 => END
 
 ~ interact_rubble
-You: I'm trapped! Can't see a way out... [i](Press Tab to use the lantern)[/i]
+You: I'm trapped! I can't see a way out... [i](Press Tab to use the lantern)[/i]
 => END
 
 ~ lantern_first_use
-You: That's weird, the rubble disappeared... Well, I'm not complaining. Time to get out of here.
+You: That's better, I can see properly now. I guess there was more to this lab than I first thought. Still, I shouldn't hang around for long in case more of the lab collapses.
+You: Wait, I thought the earthquake had blocked the exit? It looks fine now... Not that I'm complaining. Time to get out of here.
 => END

@@ -71,6 +71,7 @@ func try_interact() -> Node2D:
 			return i != null&&i is Interactable&&i.is_visible_in_tree());
 	interactables.sort_custom(_sort_interactables_by_dist);
 	
+	if !interactables: return null
 	var closest_interactable = interactables[0] as Interactable;
 	closest_interactable.interact(self);
 	return closest_interactable.get_parent();
