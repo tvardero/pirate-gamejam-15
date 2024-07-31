@@ -18,7 +18,7 @@ You: Wait, what's that sound?
 => END
 
 ~ interact_rubble
-You: I'm trapped! I can't see a way out... [i](Press Tab to use the lantern)[/i]
+You: I think the entrance collapsed in the earthquake! It's too dark to see a way out... [i](Press Tab to use the lantern)[/i]
 => END
 
 ~ lantern_first_use

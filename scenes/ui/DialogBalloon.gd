@@ -12,8 +12,10 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
-@onready var portrait_sprite: Sprite2D = $Balloon/Portrait/Sprite2D
-var current_sprites: Array[Sprite2D] = []
+@onready var npc_portrait_control: Control = $Balloon/Portraits/NPC
+@onready var player_portrait_control: Control = $Balloon/Portraits/Player
+var portrait: Portrait
+
 @onready var talk_sound_player: AudioStreamPlayer = $TalkSound
 @onready var default_talk_sound: AudioStream = preload('res://assets/sounds/ui/menu_beep.wav')
 
@@ -62,11 +64,8 @@ var dialogue_line: DialogueLine:
 		balloon.show()
 		will_hide_balloon = false
 
-		# Show portraits
-		for sprite in current_sprites:
-			sprite.queue_free()
-		current_sprites = []
-		
+		# Show portrait
+		if is_instance_valid(portrait): portrait.queue_free()
 		if dialogue_line.char_vars:
 			show_portrait(dialogue_line.char_vars)
 		
@@ -92,7 +91,6 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
-	_on_sprite_texture_changed()
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -107,7 +105,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 func _process(delta):
-	animate_portraits(delta)
+	if is_instance_valid(portrait): portrait.animate(delta)
 
 
 func _notification(what: int) -> void:
@@ -134,58 +132,15 @@ func next(next_id: String) -> void:
 
 
 func show_portrait(char_vars: DialogCharVars):
-	for sheet in char_vars.spritesheets:
-		var sprite: Sprite2D = portrait_sprite.duplicate()
-		var ap: AnimationPlayer = sprite.get_node('AnimationPlayer')
-		var anim_lib: AnimationLibrary = AnimationLibrary.new()
-		var anim: Animation = Animation.new()
-		
-		anim.length = sheet.frame_count / sheet.framerate
-		#anim.loop_mode = Animation.LOOP_LINEAR
-		sprite.texture = sheet.spritesheet
-		sprite.hframes = sheet.h_frames
-		sprite.vframes = sheet.v_frames
-		
-		current_sprites.append(sprite)
-		sprite.show()
-		portrait_sprite.add_sibling(sprite)
-		
-		var ap_root_node: Node = ap.get_node(ap.root_node)
-		var sprite_path: NodePath = ap_root_node.get_path_to(sprite)
-		var sprite_frame_path: NodePath = "%s:frame" % sprite_path
-		var frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
-		anim.track_set_path(frame_track_id, sprite_frame_path)
-		
-		for frame_index in sheet.frame_count:
-			var time: float = float(frame_index) / float(sheet.frame_count) * anim.length
-			anim.track_insert_key(frame_track_id, time, frame_index)
-		
-		sheet.curr_ap = ap
-		anim_lib.add_animation('Portrait', anim)
-		ap.add_animation_library('Animations', anim_lib)
-		#ap.play('Animations/Portrait')
-		ap.assigned_animation = 'Animations/Portrait'
-		
-		ap.animation_finished.connect(func(_anim): ap.seek(0))
-	if dialogue_label.finished_typing.is_connected(stop_portraits): dialogue_label.finished_typing.disconnect(stop_portraits)
-	dialogue_label.finished_typing.connect(stop_portraits)
-
-
-func animate_portraits(delta: float):
-	if !dialogue_line.char_vars: return
+	if !char_vars.portrait: return
 	
-	for sheet in dialogue_line.char_vars.spritesheets:
-		if !sheet.curr_ap: continue
-		sheet.curr_ap.advance(delta)
-
-
-func stop_portraits():
-	if !dialogue_line.char_vars: return
+	portrait = char_vars.portrait.instantiate()
+	if dialogue_line.character == 'You':
+		player_portrait_control.add_child(portrait)
+	else: npc_portrait_control.add_child(portrait)
 	
-	for sheet in dialogue_line.char_vars.spritesheets:
-		if !sheet.curr_ap: continue
-		if sheet.continuous: continue
-		sheet.curr_ap.stop()
+	if dialogue_label.finished_typing.is_connected(portrait.stop): dialogue_label.finished_typing.disconnect(portrait.stop)
+	dialogue_label.finished_typing.connect(portrait.stop)
 
 
 #region Signals
@@ -237,8 +192,5 @@ func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float):
 	talk_sound_player.pitch_scale = 2 if dialogue_line.character == 'You' else 1
 	talk_sound_player.play()
 
-
-func _on_sprite_texture_changed():
-	portrait_sprite.offset.y = -portrait_sprite.texture.get_height()
 
 #endregion
