@@ -136,3 +136,13 @@ func start_fuse_scene():
 	if star_fragment_count >= 5:
 		DialogState.start_dialog(dialog_resource, 'end_demo')
 	disable_movement = false
+
+func reset():
+	in_future = true;
+	saved_level_states.clear()
+	star_fragment_count = 0;
+	policeman_moved = false;
+	town1_gate_open = false;
+	newspaper_picked_up = false;
+	password_found = false;
+	sewage_valve_off = false;

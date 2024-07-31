@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pirate Software Gamejam 15"
-run/main_scene="res://scenes/world-new/lab-00/LabInterior.tscn"
+run/main_scene="res://scenes/ui/main-menu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ WorldState="*res://scenes/singletons/WorldState.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SoundPlayer="*res://scenes/singletons/SoundPlayer.tscn"
 DialogState="*res://scenes/singletons/DialogState.tscn"
-PauseMenu="*res://scenes/ui/PauseMenu.tscn"
+PauseMenu="*res://scenes/ui/pause/PauseMenu.tscn"
 
 [dialogue_manager]
 
