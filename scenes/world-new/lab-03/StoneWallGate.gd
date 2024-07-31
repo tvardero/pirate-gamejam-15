@@ -2,6 +2,8 @@ extends Node2D
 
 var _closed: bool = true;
 
+var dialog = load("res://scenes/dialogue/PoliceOfficer.dialogue") as DialogueResource
+
 @export var closed: bool:
 	get: return _closed;
 	set(value): _set_closed(value)
@@ -16,4 +18,6 @@ func _set_closed(value: bool):
 	$"Gate/CollisionShape2D".disabled = !_closed;
 
 func _on_interactable_interacted(_initiator:Node):
-	closed = false;
+	if WorldState.in_future:
+		DialogState.start_dialog(dialog, "try_gate_in_present")
+	else: closed = false;
