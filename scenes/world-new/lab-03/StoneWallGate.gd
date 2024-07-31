@@ -23,4 +23,5 @@ func _on_interactable_interacted(_initiator:Node):
 		DialogState.start_dialog(dialog, "try_gate_in_present")
 	else: 
 		sound.play();
+		await get_tree().create_timer(1).timeout
 		closed = false;
