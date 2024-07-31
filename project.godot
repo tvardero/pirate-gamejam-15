@@ -13,7 +13,8 @@ config_version=5
 config/name="Pirate Software Gamejam 15"
 run/main_scene="res://scenes/ui/main-menu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://assets/sprites/ui/splash.png"
+config/icon="res://assets/sprites/ui/Icon.png"
 
 [autoload]
 
