@@ -13,6 +13,7 @@ default_font = ExtResource("1_rblc7")
 texture = ExtResource("4_kbqdx")
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,4 +75,4 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_button_down"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]

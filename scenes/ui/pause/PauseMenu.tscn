@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb048xqukelm0"]
+[gd_scene load_steps=7 format=3 uid="uid://bb048xqukelm0"]
 
 [ext_resource type="Script" path="res://scenes/ui/pause/PauseMenu.gd" id="1_s7vpu"]
 [ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="2_ckp4a"]
 [ext_resource type="Script" path="res://scenes/ui/VolumeSlider.gd" id="2_euitm"]
+[ext_resource type="PackedScene" uid="uid://dlgxpjpxu1g05" path="res://scenes/ui/main-menu/MainMenu.tscn" id="2_ks7me"]
 [ext_resource type="Texture2D" uid="uid://08ixd1mvghr0" path="res://assets/sprites/star-fragment/StarFragmentSmall_spritesheet.png" id="3_uaed2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bfi14"]
@@ -13,6 +14,7 @@ region = Rect2(0, 0, 26, 25)
 process_mode = 3
 layer = 10
 script = ExtResource("1_s7vpu")
+main_menu = ExtResource("2_ks7me")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8

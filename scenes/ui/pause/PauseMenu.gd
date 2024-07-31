@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var main_menu: PackedScene;
+
 func _ready():
 	visible = false
 
@@ -27,4 +29,9 @@ func _on_resume_pressed():
 	resume()
 
 func _on_quit_pressed():
-	get_tree().quit()
+	WorldState.get_current_level().queue_free()
+	SoundPlayer.stop_music()
+	resume()
+
+	var instance = main_menu.instantiate();
+	get_tree().root.call_deferred("add_child", instance)
