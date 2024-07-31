@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d38esckngf5np"]
+[gd_scene load_steps=7 format=3 uid="uid://d38esckngf5np"]
 
 [ext_resource type="Script" path="res://scenes/props/gate/town1_gate/town_1_gate.gd" id="1_coc2l"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="2_fmj3i"]
+[ext_resource type="Texture2D" uid="uid://djyur21q3s0cy" path="res://assets/sprites/bg/lab-03/Night/Club-3.png" id="2_gcpnu"]
+[ext_resource type="Texture2D" uid="uid://i1neti8em78j" path="res://assets/sprites/bg/lab-03/Night/Open Gate.png" id="4_5twl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tebw"]
 size = Vector2(40, 12)
@@ -9,37 +11,27 @@ size = Vector2(40, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip801"]
 size = Vector2(40, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f23g5"]
-size = Vector2(13, 40)
-
 [node name="Town 1 Gate" type="Node2D"]
 script = ExtResource("1_coc2l")
 
 [node name="Gate Closed" type="StaticBody2D" parent="."]
 collision_layer = 3
 
+[node name="Sprite2D" type="Sprite2D" parent="Gate Closed"]
+texture = ExtResource("2_gcpnu")
+
 [node name="Interactable" parent="Gate Closed" instance=ExtResource("2_fmj3i")]
-position = Vector2(20, 12)
+position = Vector2(-8, -99)
 shape = SubResource("RectangleShape2D_8tebw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gate Closed"]
-position = Vector2(20, 6.5)
+position = Vector2(-8, -106)
 shape = SubResource("RectangleShape2D_ip801")
-
-[node name="ColorRect" type="ColorRect" parent="Gate Closed"]
-offset_right = 40.0
-offset_bottom = 13.0
 
 [node name="Gate Open" type="StaticBody2D" parent="."]
 collision_layer = 3
 
-[node name="ColorRect" type="ColorRect" parent="Gate Open"]
-offset_right = 40.0
-offset_bottom = 13.0
-rotation = 1.5708
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate Open"]
-position = Vector2(-6.5, 20)
-shape = SubResource("RectangleShape2D_f23g5")
+[node name="Sprite2D" type="Sprite2D" parent="Gate Open"]
+texture = ExtResource("4_5twl0")
 
 [connection signal="interacted" from="Gate Closed/Interactable" to="." method="_on_interactable_interacted"]

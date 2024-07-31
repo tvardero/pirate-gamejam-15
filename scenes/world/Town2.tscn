@@ -150,7 +150,7 @@ shape = SubResource("RectangleShape2D_g7hin")
 
 [node name="SceneTransition" parent="." instance=ExtResource("4_a4xjw")]
 position = Vector2(-185, 14)
-destination_level = "res://scenes/world/Town1.tscn"
+destination_level = "res://scenes/world-new/lab-03/Town1.tscn"
 spawn_id = 9
 
 [node name="CollisionShape2D" parent="SceneTransition" index="0"]

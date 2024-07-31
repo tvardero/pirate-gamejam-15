@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6lqwkhdvmquy"]
+
+[ext_resource type="Texture2D" uid="uid://kwsmm44f6ch3" path="res://assets/sprites/bg/lab-03/Day/Club-9.png" id="1_agr0d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onkoi"]
+size = Vector2(35, 16)
+
+[node name="BenchPast" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -4)
+shape = SubResource("RectangleShape2D_onkoi")
+
+[node name="Club-9" type="Sprite2D" parent="."]
+position = Vector2(1, -11)
+texture = ExtResource("1_agr0d")
