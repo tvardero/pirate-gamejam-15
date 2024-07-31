@@ -20,6 +20,32 @@ The rest of the article is almost impossible to read, but you can make out a few
 You: That looks exactly like the picture the police officer showed me! Could it really be the same girl? Maybe I can change her fate for the better...
 => END
 
+~ pick_up_newspaper_without_police
+The newspaper is tattered and faded, but you can make out a headline\:
+"Missing daughter found in Sunshine Park."
+The rest of the article is almost impossible to read, but you can make out a few sections\: "...and dehydrated after several days alone" ... "only wish we'd found her sooner" ... "doctors say her recovery will take several weeks."
+You: That's really sad. I wish I could've been there to help.
+=> END
+
+# If the player picked up the newspaper without talking to the police officer first, then came back
+~ police_officer_first_time_after_newspaper
+Police officer: You can't come through here, this is an active crime scene!
+You: Oh... did something happen? [wait=0.5][i](Do they know about the lantern?)[/i]
+Police officer: You didn't hear about the little girl who went missing? This is where she was last seen. 
+You: Wait... what does the missing girl look like? Maybe I can help.
+Police officer: Here. [i](The police officer holds up a photo of a young girl - it looks the same as the picture in the newspaper you found.)[/i] [wait=0.5]Have you seen her?
+You: Yes! I think I saw her not long ago in... Sunshine Park? ([i]Is that even near here?[/i])
+Police officer: Any lead is a good lead. I'll radio it in. [i]*static*[/i] Come in all officers, send dispatch team to Sunshine Park, over.
+Police radio: [i]*static* Roger that, officers en route. Stand by, over. *static*[/i]
+You: ...
+Police officer: ...
+You: ...
+Police radio: [i]*static* The girl has been located. Repeat, the girl has been located. All search units stand down, over. *static*[/i]
+Police officer: What a relief! Sounds like she just ran away from school so she could play longer at the park.
+You: So... does that mean this is no longer an active crime scene?
+Police officer: Not unless you count the murderous amount of paperwork I'm gonna have to do back at the office!
+=> END
+
 ~ police_after_finding_newspaper
 You: Can you show me that picture again?
 Police officer: Sure. [i](The police officer holds up a photo of a young girl.)[/i] [wait=0.5]Have you seen her?
