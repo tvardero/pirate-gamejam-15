@@ -14,6 +14,7 @@ extends CanvasLayer
 var is_grabbed: bool = false;
 var is_grabbed_by_mouse: bool = false;
 var reached_destination: bool = false;
+var resolving: bool = false
 
 signal finished
 
@@ -28,7 +29,7 @@ func _physics_process(delta):
 		shard.position = shard.position.lerp(destination_location.position, 5 * delta)
 		if (shard.position - destination_location.position).length() < 0.25:
 			shard.position = destination_location.position;
-			resolve();
+			if !resolving: resolve();
 
 		return ;
 
@@ -60,6 +61,8 @@ func _input(event):
 	if handled: get_tree().root.set_input_as_handled();
 	
 func resolve():
+	print('resolving')
+	resolving = true
 	anim.play('play')
 	SoundPlayer.play_sound(build_sfx)
 

@@ -132,7 +132,6 @@ func start_fuse_scene():
 	get_current_level().add_child(fuse_scene)
 	await fuse_scene.tree_exited
 	
-	star_fragment_count += 1
 	if star_fragment_count >= 5:
 		DialogState.start_dialog(dialog_resource, 'end_demo')
 	disable_movement = false
