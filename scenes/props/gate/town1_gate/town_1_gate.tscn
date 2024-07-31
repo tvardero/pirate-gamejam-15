@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/props/gate/town1_gate/town_1_gate.gd" id="1_coc2l"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="2_fmj3i"]
-[ext_resource type="Texture2D" uid="uid://cwwxsoh6eldjh" path="res://assets/sprites/bg/lab-03/Night/Club-3.png" id="2_gcpnu"]
-[ext_resource type="Texture2D" uid="uid://bcfksjcjtg8vk" path="res://assets/sprites/bg/lab-03/Night/Open Gate.png" id="4_5twl0"]
+[ext_resource type="Texture2D" uid="uid://djyur21q3s0cy" path="res://assets/sprites/bg/lab-03/Night/Club-3.png" id="2_gcpnu"]
+[ext_resource type="Texture2D" uid="uid://i1neti8em78j" path="res://assets/sprites/bg/lab-03/Night/Open Gate.png" id="4_5twl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tebw"]
 size = Vector2(40, 12)

@@ -50,7 +50,7 @@ script = ExtResource("1_vyu37")
 sound = ExtResource("2_lb50v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.5, -0.5)
+position = Vector2(0, -8)
 texture = ExtResource("3_l5m10")
 hframes = 8
 
@@ -62,6 +62,7 @@ autoplay = "idle"
 speed_scale = 0.6
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -7)
 collision_layer = 0
 collision_mask = 2
 

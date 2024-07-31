@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://wh0h317a3ev3"]
+
+[ext_resource type="Texture2D" uid="uid://kr6kubkh4hqm" path="res://assets/sprites/bg/lab-03/Night/Club-5.png" id="1_r5e0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i77yl"]
+size = Vector2(194, 89.028)
+
+[node name="Clubhouse" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Background5" type="Sprite2D" parent="."]
+position = Vector2(-72, -118)
+texture = ExtResource("1_r5e0g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(7, -45)
+shape = SubResource("RectangleShape2D_i77yl")
