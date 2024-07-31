@@ -180,6 +180,7 @@ size = Vector2(20, 79)
 [node name="Town2" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 script = ExtResource("1_y5m1p")
 past_nodes = NodePath("Past")
+past_color = Color(0.905882, 0.905882, 0.905882, 1)
 past_music = ExtResource("2_og776")
 future_nodes = NodePath("Future")
 future_music = ExtResource("3_s0d73")
@@ -292,7 +293,6 @@ texture = ExtResource("12_2s1qb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Background/Pipe"]
 position = Vector2(-211, 72)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pshct")
 
 [node name="Sewage" type="StaticBody2D" parent="Future/Background"]
