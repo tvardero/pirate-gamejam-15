@@ -31,7 +31,7 @@ size = Vector2(20, 40)
 size = Vector2(20, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6r2k"]
-size = Vector2(20, 80)
+size = Vector2(20, 158)
 
 [node name="LabExterior" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
 y_sort_enabled = true
@@ -142,12 +142,12 @@ position = Vector2(-93, 0)
 shape = SubResource("RectangleShape2D_00chj")
 
 [node name="PuzzleSolved" type="Area2D" parent="."]
-position = Vector2(-13, -6)
+position = Vector2(61, 15)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleSolved"]
-position = Vector2(-54, 5)
+position = Vector2(-54, -17)
 shape = SubResource("RectangleShape2D_h6r2k")
 debug_color = Color(0, 0.547493, 0.932932, 0.42)
 
