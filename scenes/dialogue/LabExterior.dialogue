@@ -6,7 +6,8 @@ You: [wait=0.5].[wait=0.5].[wait=0.5].[wait=2] I can't believe my eyes. The stre
 => END
 
 ~ try_gate_in_past
-You: Did someone close this gate? And... it's been completely repaired, too? I thought this town was empty...
+You: Did someone close this gate? And... it's been completely repaired, too? I thought this town was empty... 
+You: How will I get out now? I need to get through this gate somehow.
 => END
 
 ~ try_lab_entrance_past
