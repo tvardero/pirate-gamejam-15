@@ -7,7 +7,7 @@ var in_future: bool = true;
 var disable_movement: bool = false;
 var saved_level_states: Dictionary = {}
 
-var star_fragment_count: int = 0
+var star_fragment_count: int = 4
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
@@ -17,6 +17,7 @@ var sewage_valve_off: bool = false
 var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
 var scene_transition_visual: Node;
+var dialog_resource: DialogueResource = preload('res://scenes/dialogue/EndDemo.dialogue')
 
 var _processing_lantern_animation: bool = false;
 var _lantern_animation_elapsed: float = 0;
@@ -131,4 +132,6 @@ func start_fuse_scene():
 	await fuse_scene.tree_exited
 	
 	star_fragment_count += 1
+	if star_fragment_count >= 5:
+		DialogState.start_dialog(dialog_resource, 'end_demo')
 	disable_movement = false
