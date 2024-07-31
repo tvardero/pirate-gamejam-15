@@ -13,7 +13,10 @@ func _on_interactable_interacted(initiator):
 			visible=false
 			SoundPlayer.play_sound(load('res://assets/sounds/newspaper/newspaper.wav'))
 			await get_tree().create_timer(1.0).timeout
-			DialogState.start_dialog(load('res://scenes/dialogue/PoliceOfficer.dialogue'), 'pick_up_newspaper')
+			if WorldState.police_before_newspaper == true:
+				DialogState.start_dialog(load('res://scenes/dialogue/PoliceOfficer.dialogue'), 'pick_up_newspaper')
+			elif WorldState.police_before_newspaper == false:
+				DialogState.start_dialog(load('res://scenes/dialogue/PoliceOfficer.dialogue'), 'pick_up_newspaper_without_police')
 			WorldState.newspaper_picked_up = true
 			WorldState.disable_movement = false
 			newspaper.queue_free()

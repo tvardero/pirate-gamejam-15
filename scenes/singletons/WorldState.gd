@@ -13,6 +13,7 @@ var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
 var password_found: bool = false
 var sewage_valve_off: bool = false
+var police_before_newspaper: bool = false #whether the player talked to the policeman before picking up the newspaper
 
 var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
