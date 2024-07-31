@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dxkxxexxwbgk"]
+[gd_scene load_steps=57 format=3 uid="uid://dxkxxexxwbgk"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_y5m1p"]
 [ext_resource type="AudioStream" uid="uid://ynf4w4x7mamh" path="res://assets/music/town_past.ogg" id="2_og776"]
@@ -10,12 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://ih30qevj6f71" path="res://assets/sprites/bg/lab-04/Day/Sewer-3.png" id="6_w4q8j"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="7_ujdca"]
 [ext_resource type="Script" path="res://scenes/props/wagon/wagon.gd" id="8_ktwtf"]
-[ext_resource type="Texture2D" uid="uid://d1us44okwnvb0" path="res://assets/sprites/bg/lab-04/Day/Sewer-6.png" id="9_k7gkd"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="10_nbkv3"]
+[ext_resource type="PackedScene" uid="uid://cm4g5tx0o3vcq" path="res://scenes/props/pipe/sewage.tscn" id="10_w0vic"]
 [ext_resource type="Texture2D" uid="uid://horyh0wg7cio" path="res://assets/sprites/bg/lab-04/Day/Sewer-7.png" id="10_wng0k"]
 [ext_resource type="PackedScene" uid="uid://bdvi5akdxem1q" path="res://scenes/props/newspaper/Newspaper.tscn" id="11_pkhvc"]
+[ext_resource type="Texture2D" uid="uid://bxtdencoookoy" path="res://assets/sprites/pipe/Sewer_Pipe-7.png" id="11_pxnr3"]
 [ext_resource type="Texture2D" uid="uid://dw7jmelgh6op0" path="res://assets/sprites/bg/lab-04/Day/Sewer-8.png" id="11_qxquj"]
-[ext_resource type="Texture2D" uid="uid://nvgljiofa8jl" path="res://assets/sprites/pipe/sewer_flow_spritesheet.png" id="11_uyusk"]
+[ext_resource type="Texture2D" uid="uid://debnqrua5b8jx" path="res://assets/sprites/pipe/Sewer_Pipe-3.png" id="12_2s1qb"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="12_lj2ul"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="13_quaje"]
 [ext_resource type="Texture2D" uid="uid://ro5sgwoh7igp" path="res://assets/sprites/bg/lab-04/Day/Sewer-10.png" id="13_uml6k"]
@@ -24,13 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://cydc5wf2sycxu" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-1.png" id="19_cung6"]
 [ext_resource type="Texture2D" uid="uid://c85ehgdwjnni0" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-2.png" id="20_leox4"]
 [ext_resource type="Texture2D" uid="uid://cbyxhyk8pde7w" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-3.png" id="21_u5hqy"]
+[ext_resource type="Texture2D" uid="uid://nvgljiofa8jl" path="res://assets/sprites/pipe/sewer_flow_spritesheet.png" id="22_iuyaq"]
 [ext_resource type="Texture2D" uid="uid://7ws1qe3qof7g" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-4.png" id="22_ts57p"]
 [ext_resource type="Texture2D" uid="uid://dw50quw7hgoo3" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-5.png" id="23_trtnq"]
-[ext_resource type="Texture2D" uid="uid://mm516iqc3etb" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-6.png" id="24_qspqw"]
 [ext_resource type="Texture2D" uid="uid://pmls7nk0usp1" path="res://assets/sprites/House/House_Night_Ruins.png" id="25_cgy4o"]
 [ext_resource type="Texture2D" uid="uid://cn3rgaesahv8q" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-8.png" id="25_du2ve"]
 [ext_resource type="Texture2D" uid="uid://bfh76vgdmu6w" path="res://assets/sprites/Carriage/Carriage_Night.png" id="25_xah0s"]
 [ext_resource type="Texture2D" uid="uid://cfe34tg4p76qc" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-9.png" id="26_8sihm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pshct"]
+size = Vector2(63.5, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
 size = Vector2(219.5, 36.25)
@@ -41,11 +45,98 @@ size = Vector2(235.75, 36.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlpjh"]
 size = Vector2(18.875, 70.125)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pshct"]
-size = Vector2(63.5, 34)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8g40"]
-size = Vector2(425, 20)
+size = Vector2(484, 24)
+
+[sub_resource type="Animation" id="Animation_7eksx"]
+resource_name = "PastStrong"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_spfbe"]
+resource_name = "PastWeak"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_s1ras"]
+resource_name = "PresentStrong"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_shml1"]
+resource_name = "PresentWeak"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_uruy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrglp"]
+_data = {
+"PastStrong": SubResource("Animation_7eksx"),
+"PastWeak": SubResource("Animation_spfbe"),
+"PresentStrong": SubResource("Animation_s1ras"),
+"PresentWeak": SubResource("Animation_shml1"),
+"RESET": SubResource("Animation_uruy6")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
 size = Vector2(79, 46)
@@ -96,7 +187,28 @@ future_music = ExtResource("3_s0d73")
 [node name="Past" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Past"]
+clip_children = 2
 texture = ExtResource("4_ee1l3")
+
+[node name="Pipe" type="StaticBody2D" parent="Past/Background"]
+z_index = 1
+
+[node name="Shadow" type="Sprite2D" parent="Past/Background/Pipe"]
+z_index = -1
+position = Vector2(-192, 68)
+texture = ExtResource("11_pxnr3")
+
+[node name="Pipe" type="Sprite2D" parent="Past/Background/Pipe"]
+position = Vector2(-192, 68)
+texture = ExtResource("12_2s1qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Background/Pipe"]
+position = Vector2(-211, 72)
+shape = SubResource("RectangleShape2D_pshct")
+
+[node name="Sewage" parent="Past/Background" node_paths=PackedStringArray("future_sewage") instance=ExtResource("10_w0vic")]
+position = Vector2(-15, 72.7)
+future_sewage = NodePath("../../../Future/Background/Sewage")
 
 [node name="Background2" type="Sprite2D" parent="Past"]
 texture = ExtResource("5_lyrkb")
@@ -136,28 +248,6 @@ shape = SubResource("RectangleShape2D_vlpjh")
 position = Vector2(-164, -93)
 shape = SubResource("RectangleShape2D_vlpjh")
 
-[node name="Pipe" type="StaticBody2D" parent="Past"]
-
-[node name="Pipe" type="Sprite2D" parent="Past/Pipe"]
-position = Vector2(0, -23.5)
-texture = ExtResource("9_k7gkd")
-
-[node name="Pipe2" type="CollisionShape2D" parent="Past/Pipe"]
-position = Vector2(-211, 72)
-shape = SubResource("RectangleShape2D_pshct")
-
-[node name="Sewage" type="StaticBody2D" parent="Past"]
-position = Vector2(-1, 75)
-
-[node name="Sprite2D" type="Sprite2D" parent="Past/Sewage"]
-position = Vector2(63, 0)
-texture = ExtResource("11_uyusk")
-hframes = 9
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Sewage"]
-position = Vector2(33.5, -3)
-shape = SubResource("RectangleShape2D_x8g40")
-
 [node name="PartygoersHouse2" parent="Past" instance=ExtResource("14_44rt5")]
 position = Vector2(112, -32)
 collision_layer = 1
@@ -178,13 +268,53 @@ position = Vector2(-62, -1)
 [node name="Future" type="Node2D" parent="."]
 visible = false
 
-[node name="Newspaper" parent="Future" instance=ExtResource("11_pkhvc")]
-position = Vector2(178, -11)
-
 [node name="Background" type="Sprite2D" parent="Future"]
+clip_children = 2
 position = Vector2(0, -2.86102e-06)
 scale = Vector2(1, 0.856187)
 texture = ExtResource("19_cung6")
+
+[node name="Pipe" type="StaticBody2D" parent="Future/Background"]
+z_index = 1
+position = Vector2(0, 3.34158e-06)
+scale = Vector2(1, 1.16797)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shadow" type="Sprite2D" parent="Future/Background/Pipe"]
+z_index = -1
+position = Vector2(-192, 68)
+texture = ExtResource("11_pxnr3")
+
+[node name="Pipe" type="Sprite2D" parent="Future/Background/Pipe"]
+position = Vector2(-192, 68)
+texture = ExtResource("12_2s1qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Background/Pipe"]
+position = Vector2(-211, 72)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pshct")
+
+[node name="Sewage" type="StaticBody2D" parent="Future/Background"]
+position = Vector2(-15, 84.7)
+scale = Vector2(1, 1.16797)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Future/Background/Sewage"]
+position = Vector2(63, 0)
+texture = ExtResource("22_iuyaq")
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Background/Sewage"]
+position = Vector2(33.5, -1)
+shape = SubResource("RectangleShape2D_x8g40")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Future/Background/Sewage"]
+libraries = {
+"": SubResource("AnimationLibrary_xrglp")
+}
+speed_scale = 0.6
 
 [node name="Background2" type="Sprite2D" parent="Future"]
 position = Vector2(0, 23)
@@ -202,10 +332,6 @@ texture = ExtResource("22_ts57p")
 position = Vector2(0, 21)
 texture = ExtResource("23_trtnq")
 
-[node name="Background6" type="Sprite2D" parent="Future"]
-position = Vector2(0, -2)
-texture = ExtResource("24_qspqw")
-
 [node name="Wall" type="Sprite2D" parent="Future"]
 position = Vector2(0, 1)
 texture = ExtResource("25_du2ve")
@@ -213,6 +339,9 @@ texture = ExtResource("25_du2ve")
 [node name="Road" type="Sprite2D" parent="Future"]
 position = Vector2(0, 9)
 texture = ExtResource("26_8sihm")
+
+[node name="Newspaper" parent="Future" instance=ExtResource("11_pkhvc")]
+position = Vector2(178, -11)
 
 [node name="PartygoersHouse" parent="Future" instance=ExtResource("14_44rt5")]
 position = Vector2(112, -32)

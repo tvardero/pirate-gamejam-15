@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://cm4g5tx0o3vcq"]
+
+[ext_resource type="Script" path="res://scenes/props/pipe/sewage.gd" id="1_p3wsn"]
+[ext_resource type="Texture2D" uid="uid://nvgljiofa8jl" path="res://assets/sprites/pipe/sewer_flow_spritesheet.png" id="1_rj2wb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8g40"]
+size = Vector2(484, 24)
+
+[sub_resource type="Animation" id="Animation_7eksx"]
+resource_name = "PastStrong"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_spfbe"]
+resource_name = "PastWeak"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_s1ras"]
+resource_name = "PresentStrong"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_shml1"]
+resource_name = "PresentWeak"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_uruy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrglp"]
+_data = {
+"PastStrong": SubResource("Animation_7eksx"),
+"PastWeak": SubResource("Animation_spfbe"),
+"PresentStrong": SubResource("Animation_s1ras"),
+"PresentWeak": SubResource("Animation_shml1"),
+"RESET": SubResource("Animation_uruy6")
+}
+
+[node name="Sewage" type="StaticBody2D"]
+position = Vector2(-1, 75)
+script = ExtResource("1_p3wsn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(63, 0)
+texture = ExtResource("1_rj2wb")
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(63, -1)
+shape = SubResource("RectangleShape2D_x8g40")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xrglp")
+}
+speed_scale = 0.6
