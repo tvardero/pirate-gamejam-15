@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjces4416uy3c"]
+[gd_scene load_steps=10 format=3 uid="uid://cjces4416uy3c"]
 
 [ext_resource type="Script" path="res://scenes/ui/DialogBalloon.gd" id="1_3xlym"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ekg25"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_jygb4"]
-[ext_resource type="Texture2D" uid="uid://b3pulwj6amve0" path="res://icon.svg" id="4_53ktl"]
 [ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="4_l2cpg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -65,14 +64,6 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 
-[sub_resource type="Animation" id="Animation_li13i"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qgk2n"]
-_data = {
-"RESET": SubResource("Animation_li13i")
-}
-
 [node name="DialogBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_3xlym")
@@ -90,26 +81,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_qq3yp")
 
-[node name="Portrait" type="Control" parent="Balloon"]
+[node name="Portraits" type="Control" parent="Balloon"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -648.0
+offset_bottom = -648.0
 grow_vertical = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Balloon/Portrait"]
-visible = false
-position = Vector2(83, -142)
-texture = ExtResource("4_53ktl")
-centered = false
+[node name="NPC" type="Control" parent="Balloon/Portraits"]
+anchors_preset = 0
+offset_left = 82.0
+offset_top = 468.0
+offset_right = 122.0
+offset_bottom = 508.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/Portrait/Sprite2D"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_qgk2n")
-}
+[node name="Player" type="Control" parent="Balloon/Portraits"]
+anchors_preset = 0
+offset_left = 831.0
+offset_top = 467.0
+offset_right = 871.0
+offset_bottom = 507.0
 
 [node name="Panel" type="Panel" parent="Balloon"]
 clip_children = 2
@@ -194,6 +187,5 @@ theme_override_font_sizes/font_size = 24
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="texture_changed" from="Balloon/Portrait/Sprite2D" to="." method="_on_sprite_texture_changed"]
 [connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
