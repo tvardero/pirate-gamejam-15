@@ -7,7 +7,7 @@ var in_future: bool = true;
 var disable_movement: bool = false;
 var saved_level_states: Dictionary = {}
 
-var star_fragment_count: int = 4
+var star_fragment_count: int = 0
 var policeman_moved: bool = false
 var town1_gate_open: bool = false
 var newspaper_picked_up: bool = false
