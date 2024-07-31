@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dxkxxexxwbgk"]
+[gd_scene load_steps=50 format=3 uid="uid://dxkxxexxwbgk"]
 
 [ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_y5m1p"]
 [ext_resource type="AudioStream" uid="uid://ynf4w4x7mamh" path="res://assets/music/town_past.ogg" id="2_og776"]
@@ -8,15 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dpcptuskifrpr" path="res://scenes/props/wagon/wagon.tscn" id="5_pgk0t"]
 [ext_resource type="AudioStream" uid="uid://bjd8wr3pp8y1b" path="res://assets/sounds/wagon-push/wagon-push.wav" id="6_1nqpc"]
 [ext_resource type="Texture2D" uid="uid://ih30qevj6f71" path="res://assets/sprites/bg/lab-04/Day/Sewer-3.png" id="6_w4q8j"]
-[ext_resource type="Texture2D" uid="uid://c6gafcn6osst1" path="res://assets/sprites/bg/lab-04/Day/Sewer-4.png" id="7_kw7i0"]
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="7_ujdca"]
-[ext_resource type="Texture2D" uid="uid://df2p6kch68cgs" path="res://assets/sprites/bg/lab-04/Day/Sewer-5.png" id="8_3wxgn"]
 [ext_resource type="Script" path="res://scenes/props/wagon/wagon.gd" id="8_ktwtf"]
 [ext_resource type="Texture2D" uid="uid://d1us44okwnvb0" path="res://assets/sprites/bg/lab-04/Day/Sewer-6.png" id="9_k7gkd"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="10_nbkv3"]
 [ext_resource type="Texture2D" uid="uid://horyh0wg7cio" path="res://assets/sprites/bg/lab-04/Day/Sewer-7.png" id="10_wng0k"]
 [ext_resource type="PackedScene" uid="uid://bdvi5akdxem1q" path="res://scenes/props/newspaper/Newspaper.tscn" id="11_pkhvc"]
 [ext_resource type="Texture2D" uid="uid://dw7jmelgh6op0" path="res://assets/sprites/bg/lab-04/Day/Sewer-8.png" id="11_qxquj"]
+[ext_resource type="Texture2D" uid="uid://nvgljiofa8jl" path="res://assets/sprites/pipe/sewer_flow_spritesheet.png" id="11_uyusk"]
 [ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="12_lj2ul"]
 [ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="13_quaje"]
 [ext_resource type="Texture2D" uid="uid://ro5sgwoh7igp" path="res://assets/sprites/bg/lab-04/Day/Sewer-10.png" id="13_uml6k"]
@@ -42,8 +41,11 @@ size = Vector2(235.75, 36.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlpjh"]
 size = Vector2(18.875, 70.125)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4vf2"]
-size = Vector2(418, 27)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pshct"]
+size = Vector2(63.5, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8g40"]
+size = Vector2(425, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
 size = Vector2(79, 46)
@@ -72,9 +74,6 @@ size = Vector2(21.5, 28.3125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltllp"]
 size = Vector2(13, 121)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pshct"]
-size = Vector2(63.5, 34)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt3u"]
 size = Vector2(13, 92)
 
@@ -95,7 +94,6 @@ future_nodes = NodePath("Future")
 future_music = ExtResource("3_s0d73")
 
 [node name="Past" type="Node2D" parent="."]
-visible = false
 
 [node name="Background" type="Sprite2D" parent="Past"]
 texture = ExtResource("4_ee1l3")
@@ -105,18 +103,6 @@ texture = ExtResource("5_lyrkb")
 
 [node name="Background3" type="Sprite2D" parent="Past"]
 texture = ExtResource("6_w4q8j")
-
-[node name="FlowWeak" type="Sprite2D" parent="Past"]
-position = Vector2(0, -20)
-texture = ExtResource("7_kw7i0")
-
-[node name="FlowStrong" type="Sprite2D" parent="Past"]
-position = Vector2(0, -22)
-texture = ExtResource("8_3wxgn")
-
-[node name="Pipe" type="Sprite2D" parent="Past"]
-position = Vector2(0, -23.5)
-texture = ExtResource("9_k7gkd")
 
 [node name="Background7" type="Sprite2D" parent="Past"]
 position = Vector2(0, -20)
@@ -150,11 +136,27 @@ shape = SubResource("RectangleShape2D_vlpjh")
 position = Vector2(-164, -93)
 shape = SubResource("RectangleShape2D_vlpjh")
 
-[node name="SewagePast" type="StaticBody2D" parent="Past/OtherCollisions"]
+[node name="Pipe" type="StaticBody2D" parent="Past"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/OtherCollisions/SewagePast"]
-position = Vector2(31, 75.5)
-shape = SubResource("RectangleShape2D_w4vf2")
+[node name="Pipe" type="Sprite2D" parent="Past/Pipe"]
+position = Vector2(0, -23.5)
+texture = ExtResource("9_k7gkd")
+
+[node name="Pipe2" type="CollisionShape2D" parent="Past/Pipe"]
+position = Vector2(-211, 72)
+shape = SubResource("RectangleShape2D_pshct")
+
+[node name="Sewage" type="StaticBody2D" parent="Past"]
+position = Vector2(-1, 75)
+
+[node name="Sprite2D" type="Sprite2D" parent="Past/Sewage"]
+position = Vector2(63, 0)
+texture = ExtResource("11_uyusk")
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/Sewage"]
+position = Vector2(33.5, -3)
+shape = SubResource("RectangleShape2D_x8g40")
 
 [node name="PartygoersHouse2" parent="Past" instance=ExtResource("14_44rt5")]
 position = Vector2(112, -32)
@@ -174,6 +176,7 @@ push_sound = ExtResource("6_1nqpc")
 position = Vector2(-62, -1)
 
 [node name="Future" type="Node2D" parent="."]
+visible = false
 
 [node name="Newspaper" parent="Future" instance=ExtResource("11_pkhvc")]
 position = Vector2(178, -11)
@@ -280,10 +283,6 @@ collision_layer = 3
 [node name="Left" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-247, -83)
 shape = SubResource("RectangleShape2D_ltllp")
-
-[node name="Pipe" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-211, 72)
-shape = SubResource("RectangleShape2D_pshct")
 
 [node name="LeftBottom" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-247, 98)
