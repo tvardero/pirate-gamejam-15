@@ -1,0 +1,333 @@
+[gd_scene load_steps=49 format=3 uid="uid://dxkxxexxwbgk"]
+
+[ext_resource type="Script" path="res://scenes/tools/Level.gd" id="1_y5m1p"]
+[ext_resource type="AudioStream" uid="uid://ynf4w4x7mamh" path="res://assets/music/town_past.ogg" id="2_og776"]
+[ext_resource type="AudioStream" uid="uid://dnkrfa2ggbfr4" path="res://assets/music/town_present.ogg" id="3_s0d73"]
+[ext_resource type="Texture2D" uid="uid://c6t3j2n7tpfc0" path="res://assets/sprites/bg/lab-04/Day/Sewer-1.png" id="4_ee1l3"]
+[ext_resource type="Texture2D" uid="uid://soa4mqsuy2pm" path="res://assets/sprites/bg/lab-04/Day/Sewer-2.png" id="5_lyrkb"]
+[ext_resource type="PackedScene" uid="uid://dpcptuskifrpr" path="res://scenes/props/wagon/wagon.tscn" id="5_pgk0t"]
+[ext_resource type="AudioStream" uid="uid://bjd8wr3pp8y1b" path="res://assets/sounds/wagon-push/wagon-push.wav" id="6_1nqpc"]
+[ext_resource type="Texture2D" uid="uid://ih30qevj6f71" path="res://assets/sprites/bg/lab-04/Day/Sewer-3.png" id="6_w4q8j"]
+[ext_resource type="Texture2D" uid="uid://c6gafcn6osst1" path="res://assets/sprites/bg/lab-04/Day/Sewer-4.png" id="7_kw7i0"]
+[ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="7_ujdca"]
+[ext_resource type="Texture2D" uid="uid://df2p6kch68cgs" path="res://assets/sprites/bg/lab-04/Day/Sewer-5.png" id="8_3wxgn"]
+[ext_resource type="Script" path="res://scenes/props/wagon/wagon.gd" id="8_ktwtf"]
+[ext_resource type="Texture2D" uid="uid://d1us44okwnvb0" path="res://assets/sprites/bg/lab-04/Day/Sewer-6.png" id="9_k7gkd"]
+[ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="10_nbkv3"]
+[ext_resource type="Texture2D" uid="uid://horyh0wg7cio" path="res://assets/sprites/bg/lab-04/Day/Sewer-7.png" id="10_wng0k"]
+[ext_resource type="PackedScene" uid="uid://bdvi5akdxem1q" path="res://scenes/props/newspaper/Newspaper.tscn" id="11_pkhvc"]
+[ext_resource type="Texture2D" uid="uid://dw7jmelgh6op0" path="res://assets/sprites/bg/lab-04/Day/Sewer-8.png" id="11_qxquj"]
+[ext_resource type="PackedScene" uid="uid://dmllerypcllhe" path="res://scenes/tools/SceneTransition.tscn" id="12_lj2ul"]
+[ext_resource type="PackedScene" uid="uid://c0bdaa1uhiriw" path="res://scenes/tools/SpawnPoint.tscn" id="13_quaje"]
+[ext_resource type="Texture2D" uid="uid://ro5sgwoh7igp" path="res://assets/sprites/bg/lab-04/Day/Sewer-10.png" id="13_uml6k"]
+[ext_resource type="PackedScene" uid="uid://dvlgtq5e01t5u" path="res://scenes/props/house/partygoers_house.tscn" id="14_44rt5"]
+[ext_resource type="Texture2D" uid="uid://w2kyfiuh8v46" path="res://assets/objects/house/Housecrack.png" id="15_jq8g1"]
+[ext_resource type="Texture2D" uid="uid://cydc5wf2sycxu" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-1.png" id="19_cung6"]
+[ext_resource type="Texture2D" uid="uid://c85ehgdwjnni0" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-2.png" id="20_leox4"]
+[ext_resource type="Texture2D" uid="uid://cbyxhyk8pde7w" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-3.png" id="21_u5hqy"]
+[ext_resource type="Texture2D" uid="uid://7ws1qe3qof7g" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-4.png" id="22_ts57p"]
+[ext_resource type="Texture2D" uid="uid://dw50quw7hgoo3" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-5.png" id="23_trtnq"]
+[ext_resource type="Texture2D" uid="uid://mm516iqc3etb" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-6.png" id="24_qspqw"]
+[ext_resource type="Texture2D" uid="uid://pmls7nk0usp1" path="res://assets/sprites/House/House_Night_Ruins.png" id="25_cgy4o"]
+[ext_resource type="Texture2D" uid="uid://cn3rgaesahv8q" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-8.png" id="25_du2ve"]
+[ext_resource type="Texture2D" uid="uid://bfh76vgdmu6w" path="res://assets/sprites/Carriage/Carriage_Night.png" id="25_xah0s"]
+[ext_resource type="Texture2D" uid="uid://cfe34tg4p76qc" path="res://assets/sprites/bg/lab-04/Night/Sewer_Night-9.png" id="26_8sihm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qtw8"]
+size = Vector2(219.5, 36.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vneod"]
+size = Vector2(235.75, 36.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlpjh"]
+size = Vector2(18.875, 70.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dbvp"]
+size = Vector2(79, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhs0c"]
+size = Vector2(69.5, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q64ck"]
+size = Vector2(100, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aiyby"]
+size = Vector2(222.75, 37.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdwao"]
+size = Vector2(236, 37.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibrsq"]
+size = Vector2(19, 74.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6r4g"]
+size = Vector2(19, 28.3125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifgmt"]
+size = Vector2(21.5, 28.3125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltllp"]
+size = Vector2(13, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt3u"]
+size = Vector2(13, 81.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpm56"]
+size = Vector2(509.5, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7hin"]
+size = Vector2(13, 282)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkfgl"]
+size = Vector2(20, 96)
+
+[node name="Town2" type="Node2D" node_paths=PackedStringArray("past_nodes", "future_nodes")]
+script = ExtResource("1_y5m1p")
+past_nodes = NodePath("Past")
+past_music = ExtResource("2_og776")
+future_nodes = NodePath("Future")
+future_music = ExtResource("3_s0d73")
+
+[node name="Past" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Past"]
+texture = ExtResource("4_ee1l3")
+
+[node name="Background2" type="Sprite2D" parent="Past"]
+texture = ExtResource("5_lyrkb")
+
+[node name="Background3" type="Sprite2D" parent="Past"]
+texture = ExtResource("6_w4q8j")
+
+[node name="FlowWeak" type="Sprite2D" parent="Past"]
+position = Vector2(0, -20)
+texture = ExtResource("7_kw7i0")
+
+[node name="FlowStrong" type="Sprite2D" parent="Past"]
+position = Vector2(0, -22)
+texture = ExtResource("8_3wxgn")
+
+[node name="Background6" type="Sprite2D" parent="Past"]
+position = Vector2(0, -21.5)
+texture = ExtResource("9_k7gkd")
+
+[node name="Background7" type="Sprite2D" parent="Past"]
+texture = ExtResource("10_wng0k")
+
+[node name="Background8" type="Sprite2D" parent="Past"]
+texture = ExtResource("11_qxquj")
+
+[node name="Background10" type="Sprite2D" parent="Past"]
+texture = ExtResource("13_uml6k")
+
+[node name="OtherCollisions" type="Node2D" parent="Past"]
+
+[node name="Fences" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="Bottom" type="CollisionShape2D" parent="Past/OtherCollisions/Fences"]
+position = Vector2(-130.75, -41.875)
+shape = SubResource("RectangleShape2D_3qtw8")
+
+[node name="Bottom2" type="CollisionShape2D" parent="Past/OtherCollisions/Fences"]
+position = Vector2(121.875, -41)
+shape = SubResource("RectangleShape2D_vneod")
+
+[node name="Fence1" type="CollisionShape2D" parent="Past/OtherCollisions/Fences"]
+position = Vector2(139.563, -93.0625)
+shape = SubResource("RectangleShape2D_vlpjh")
+
+[node name="Fence2" type="CollisionShape2D" parent="Past/OtherCollisions/Fences"]
+position = Vector2(-164, -93)
+shape = SubResource("RectangleShape2D_vlpjh")
+
+[node name="SewagePast" type="StaticBody2D" parent="Past/OtherCollisions"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/OtherCollisions/SewagePast"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-190, 100, -124, 101, -40, 110, 10, 89, 79, 93, 100, 88, 122, 94, 141, 89, 184, 90, 185, 100, 157, 100, 139, 99, 123, 103, 107, 102, 96, 97, 85, 102, 52, 101, 18, 98, -35, 119, -70, 118, -141, 109, -174, 114, -189, 114)
+
+[node name="PartygoersHouse2" parent="Past" instance=ExtResource("14_44rt5")]
+position = Vector2(152, 23)
+collision_layer = 1
+canvas_layer_path = NodePath("../../CanvasLayer")
+
+[node name="Interactable" parent="Past/PartygoersHouse2" index="2"]
+visible = false
+
+[node name="Wagon" parent="Past" node_paths=PackedStringArray("dest") instance=ExtResource("5_pgk0t")]
+position = Vector2(-3, -1)
+collision_layer = 17
+dest = NodePath("Destination")
+push_sound = ExtResource("6_1nqpc")
+
+[node name="Destination" type="Marker2D" parent="Past/Wagon"]
+position = Vector2(-62, -1)
+
+[node name="Future" type="Node2D" parent="."]
+visible = false
+
+[node name="Newspaper" parent="Future" instance=ExtResource("11_pkhvc")]
+position = Vector2(130, -84)
+
+[node name="Background" type="Sprite2D" parent="Future"]
+position = Vector2(0, -2.86102e-06)
+scale = Vector2(1, 0.856187)
+texture = ExtResource("19_cung6")
+
+[node name="Background2" type="Sprite2D" parent="Future"]
+position = Vector2(0, 23)
+texture = ExtResource("20_leox4")
+
+[node name="Background3" type="Sprite2D" parent="Future"]
+position = Vector2(0, 34)
+texture = ExtResource("21_u5hqy")
+
+[node name="Background4" type="Sprite2D" parent="Future"]
+position = Vector2(0, 21)
+texture = ExtResource("22_ts57p")
+
+[node name="Background5" type="Sprite2D" parent="Future"]
+position = Vector2(0, 21)
+texture = ExtResource("23_trtnq")
+
+[node name="Background6" type="Sprite2D" parent="Future"]
+texture = ExtResource("24_qspqw")
+
+[node name="Wall" type="Sprite2D" parent="Future"]
+position = Vector2(0, 21)
+texture = ExtResource("25_du2ve")
+
+[node name="Road" type="Sprite2D" parent="Future"]
+position = Vector2(0, 21)
+texture = ExtResource("26_8sihm")
+
+[node name="PartygoersHouse" parent="Future" instance=ExtResource("14_44rt5")]
+position = Vector2(152, 23)
+collision_layer = 2
+collision_mask = 2
+canvas_layer_path = NodePath("../../CanvasLayer")
+
+[node name="Sprite2D" parent="Future/PartygoersHouse" index="0"]
+texture = ExtResource("25_cgy4o")
+
+[node name="Wagon" type="StaticBody2D" parent="Future" node_paths=PackedStringArray("past_wagon")]
+position = Vector2(-3, -1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_ktwtf")
+past_wagon = NodePath("../../Past/Wagon")
+
+[node name="Sprite2D" type="Sprite2D" parent="Future/Wagon"]
+position = Vector2(-47, -17)
+texture = ExtResource("25_xah0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/Wagon"]
+position = Vector2(-11.5, -13)
+shape = SubResource("RectangleShape2D_4dbvp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Future/Wagon"]
+position = Vector2(-86.25, -4)
+shape = SubResource("RectangleShape2D_rhs0c")
+
+[node name="Interactable" parent="Future/Wagon" instance=ExtResource("10_nbkv3")]
+position = Vector2(-19, -12)
+shape = SubResource("RectangleShape2D_q64ck")
+
+[node name="StarFragment" parent="Future" instance=ExtResource("7_ujdca")]
+position = Vector2(-206, -92)
+
+[node name="StarFragment2" parent="Future" instance=ExtResource("7_ujdca")]
+position = Vector2(204, 107)
+
+[node name="OtherCollisions" type="Node2D" parent="Future"]
+
+[node name="Fences" type="StaticBody2D" parent="Future/OtherCollisions"]
+collision_layer = 2
+
+[node name="BottomLeft" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
+position = Vector2(-132.375, -41.375)
+shape = SubResource("RectangleShape2D_aiyby")
+
+[node name="BottomRight" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
+position = Vector2(122, -41.375)
+shape = SubResource("RectangleShape2D_pdwao")
+
+[node name="MoreFence" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
+position = Vector2(139.5, -91.3125)
+shape = SubResource("RectangleShape2D_ibrsq")
+
+[node name="MoreFence2" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
+position = Vector2(-164, -65.8438)
+shape = SubResource("RectangleShape2D_j6r4g")
+
+[node name="MoreFence3" type="CollisionShape2D" parent="Future/OtherCollisions/Fences"]
+position = Vector2(-163.75, -133)
+shape = SubResource("RectangleShape2D_ifgmt")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-247, -83)
+shape = SubResource("RectangleShape2D_ltllp")
+
+[node name="LeftBottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-247, 103.438)
+shape = SubResource("RectangleShape2D_3vt3u")
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2.25, -137)
+shape = SubResource("RectangleShape2D_xpm56")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0.5, 137)
+shape = SubResource("RectangleShape2D_xpm56")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(247, -1)
+shape = SubResource("RectangleShape2D_g7hin")
+
+[node name="SceneTransition" parent="." instance=ExtResource("12_lj2ul")]
+position = Vector2(-185, 14)
+destination_level = "res://scenes/world-new/lab-03/Town1.tscn"
+spawn_id = 9
+
+[node name="CollisionShape2D" parent="SceneTransition" index="0"]
+position = Vector2(-63, 7)
+shape = SubResource("RectangleShape2D_vkfgl")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("13_quaje")]
+position = Vector2(-214, 28)
+id = 8
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1024.0
+offset_bottom = -1024.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1023.0
+offset_bottom = 1019.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_jq8g1")
+
+[connection signal="interacted" from="Future/Wagon/Interactable" to="Future/Wagon" method="_on_interactable_interacted"]
+
+[editable path="Past/PartygoersHouse2"]
+[editable path="Future/Newspaper"]
+[editable path="Future/PartygoersHouse"]
+[editable path="SceneTransition"]

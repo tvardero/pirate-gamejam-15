@@ -38,8 +38,6 @@ func hide_overlay():
 		canvas_layer.visible = false
 		overlay_visible = false
 
-
-
 func _on_wrong_side_interacted(initiator):
 	if initiator is Player:
 		if WorldState.in_future:
