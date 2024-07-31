@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://5tybf27mo7n4"]
+
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.gd" id="1_vbqw8"]
+[ext_resource type="Texture2D" uid="uid://diuo2d7v3aqfc" path="res://assets/sprites/cop/dialog/Cop Portrait.png" id="2_bxkli"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.gd" id="3_plyx8"]
+[ext_resource type="Texture2D" uid="uid://c2dq0bdl5u7lv" path="res://assets/sprites/cop/dialog/cop_mouth_spritesheet.png" id="4_nxwb8"]
+[ext_resource type="Texture2D" uid="uid://bk1gyq6xi1smd" path="res://assets/sprites/cop/dialog/cop_hat_spritesheet.png" id="5_3j4ck"]
+
+[sub_resource type="Animation" id="Animation_41xdk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_77eps"]
+resource_name = "Talk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjru7"]
+_data = {
+"RESET": SubResource("Animation_41xdk"),
+"Talk": SubResource("Animation_77eps")
+}
+
+[sub_resource type="Animation" id="Animation_yjevi"]
+resource_name = "Light"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_dyt2f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rkpj4"]
+_data = {
+"Light": SubResource("Animation_yjevi"),
+"RESET": SubResource("Animation_dyt2f")
+}
+
+[node name="PlayerPortrait" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbqw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bxkli")
+script = ExtResource("3_plyx8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("4_nxwb8")
+hframes = 2
+script = ExtResource("3_plyx8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D2"]
+libraries = {
+"": SubResource("AnimationLibrary_qjru7")
+}
+speed_scale = 0.6
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture = ExtResource("5_3j4ck")
+hframes = 3
+script = ExtResource("3_plyx8")
+continuous = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D3"]
+libraries = {
+"": SubResource("AnimationLibrary_rkpj4")
+}
+speed_scale = 0.6
