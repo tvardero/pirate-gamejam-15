@@ -12,7 +12,8 @@ func _ready():
 	SoundPlayer.set_time_bus(sound_player, true)
 
 
-func _on_area_2d_body_entered(_body):
+func _on_area_2d_body_entered(body):
+	if !(body is Player): return
 	await DialogState.start_from_text('Found a Star Fragment!')
 	
 	visible = false
