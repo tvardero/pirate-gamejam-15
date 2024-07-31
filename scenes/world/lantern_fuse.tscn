@@ -145,7 +145,7 @@ shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_k63ms")
 rest_location = NodePath("MarginContainer/RestPoint")
 destination_location = NodePath("MarginContainer/DestinationPoint")
-destination_radius = 30.0
+destination_radius = 100.0
 keyboard_input_speed = 260.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

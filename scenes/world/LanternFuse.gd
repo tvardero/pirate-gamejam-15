@@ -66,8 +66,8 @@ func resolve():
 	await get_tree().create_timer(0.4).timeout
 	SoundPlayer.play_sound(woosh_sfx)
 
-	await get_tree().create_timer(0.3).timeout
-	visible = false
+	await get_tree().create_timer(0.4).timeout
+	shard.visible = false
 
 	await get_tree().create_timer(1.0).timeout
 	WorldState.star_fragment_count += 1;
