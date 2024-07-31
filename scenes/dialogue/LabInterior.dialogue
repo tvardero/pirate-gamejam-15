@@ -1,10 +1,11 @@
 ~ start_of_game_text
 You: This is definitely the lab from the Solar Tome - so, now what? 
-You: [wait=0.5].[wait=0.5].[wait=0.5].
+You: [wait=0.2].[wait=0.2].[wait=0.2].
 You: The prophecy spoke of returning the sun back to the sky using an artefact from this lab, but...
 You: The Solar Tome was wrong - this room is totally empty.
 You: Was I this naive, to think an old alchemy book would be enough to bring light back to the world?
-You: At least I can grab a lantern - it will come in handy to light these dark streets. (Press E to interact and pick up items.)
+You: At least I can grab a lantern from here - it will come in handy to light these dark streets.
+[i](Press 'E' on keyboard or 'X' on XBox controller to interact with your environment.)[/i]
 => END
 
 ~ try_leave_lab_without_lantern
@@ -18,7 +19,8 @@ You: Wait, what's that sound?
 => END
 
 ~ interact_rubble
-You: I think the entrance collapsed in the earthquake! It's too dark to see a way out... [i](Press Tab to use the lantern)[/i]
+You: I think the entrance collapsed in the earthquake! It's too dark to see a way out... 
+[i](Press 'Tab' on keyboard or 'Y' on XBox controller to use the lantern)[/i]
 => END
 
 ~ lantern_first_use

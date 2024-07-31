@@ -16,9 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://c3oggqxbkn0u0" path="res://scenes/props/star-fragment/StarFragment.tscn" id="11_ha2fo"]
 [ext_resource type="PackedScene" uid="uid://cxaosoghto51p" path="res://scenes/props/flowers-future/Flower2.tscn" id="12_ky8j0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr0u6"]
-size = Vector2(193, 160)
-
 [sub_resource type="Animation" id="Animation_ic48h"]
 length = 0.001
 tracks/0/type = "value"
@@ -79,6 +76,9 @@ _data = {
 "waterfall": SubResource("Animation_h1g12")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4r5a"]
+size = Vector2(20, 154)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57atc"]
 size = Vector2(20, 64)
 
@@ -114,14 +114,6 @@ z_index = -1
 position = Vector2(49, -34)
 texture = ExtResource("5_msau8")
 vframes = 4
-
-[node name="FirstTimeDialogArea" type="Area2D" parent="Past"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Past/FirstTimeDialogArea"]
-position = Vector2(-14.5, -34)
-shape = SubResource("RectangleShape2D_wr0u6")
 
 [node name="Walls" type="StaticBody2D" parent="Past"]
 collision_mask = 0
@@ -194,6 +186,15 @@ position = Vector2(197, 17)
 [node name="StarFragment" parent="Future" instance=ExtResource("11_ha2fo")]
 position = Vector2(184, -17)
 
+[node name="NoticeStarShard" type="Area2D" parent="Future"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Future/NoticeStarShard"]
+position = Vector2(-2, -41)
+shape = SubResource("RectangleShape2D_h4r5a")
+
 [node name="SpawnPoint" parent="." instance=ExtResource("9_jr8hp")]
 position = Vector2(-97, -52)
 
@@ -220,7 +221,7 @@ shape = SubResource("RectangleShape2D_1htqs")
 [node name="WaterfallAudio" type="Marker2D" parent="."]
 position = Vector2(107, -8)
 
-[connection signal="body_entered" from="Past/FirstTimeDialogArea" to="." method="_on_first_time_dialog_area_body_entered"]
+[connection signal="body_entered" from="Future/NoticeStarShard" to="." method="_on_notice_star_shard_body_entered"]
 
 [editable path="SceneTransitionLeft"]
 [editable path="SceneTransitionRight"]

@@ -1,8 +1,8 @@
 ~ exited_lab
 You: What the-!
-You: This is- [wait=2]I don't- [wait=1]I've never seen the world like this!
+You: This is- [wait=1]I don't- [wait=1]I've never seen the world like this!
 You: Everything's so bright, as if the lantern is lighting up the whole town! And it's so warm...
-You: [wait=0.5].[wait=0.5].[wait=0.5].[wait=2] I can't believe my eyes. The street looks just like those old picture books from before the Eclipse!
+You: ...[wait=1.5] I can't believe my eyes. The street looks just like those old picture books from before the Eclipse!
 => END
 
 ~ try_gate_in_past

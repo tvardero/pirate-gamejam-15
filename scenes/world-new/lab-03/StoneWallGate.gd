@@ -1,22 +1,15 @@
 extends Node2D
 
-var _closed: bool = true;
-
 var dialog = load("res://scenes/dialogue/PoliceOfficer.dialogue") as DialogueResource
 @onready var sound = $"AudioStreamPlayer2D"
 
-@export var closed: bool:
-	get: return _closed;
-	set(value): _set_closed(value)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	closed = true;
+	_set_closed()
 
-func _set_closed(value: bool):
-	_closed = value;
-	$"ClosedGate".visible = _closed;
-	$"Gate/CollisionShape2D".disabled = !_closed;
+func _set_closed():
+	$"ClosedGate".visible = !WorldState.town1_gate_open;
+	$"Gate/CollisionShape2D".disabled = WorldState.town1_gate_open;
 
 func _on_interactable_interacted(_initiator:Node):
 	if WorldState.in_future:
@@ -24,4 +17,5 @@ func _on_interactable_interacted(_initiator:Node):
 	else: 
 		sound.play();
 		await get_tree().create_timer(1).timeout
-		closed = false;
+		WorldState.town1_gate_open = true;
+		_set_closed()
