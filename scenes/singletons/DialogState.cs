@@ -10,7 +10,7 @@ public partial class DialogState : Node
     private PackedScene balloonPacked;
 
     private DialogueManager _dialogueManager;
-
+  
     public override void _Ready()
     {
         Instance = this;
