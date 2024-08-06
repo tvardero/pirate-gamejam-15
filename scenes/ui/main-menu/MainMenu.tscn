@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlgxpjpxu1g05"]
 
 [ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="1_rblc7"]
-[ext_resource type="Script" path="res://scenes/ui/main-menu/MainMenu.gd" id="1_ynmqs"]
+[ext_resource type="Script" path="res://scenes/ui/main-menu/MainMenu.cs" id="2_4dobs"]
 [ext_resource type="PackedScene" uid="uid://bna50xgjrlfsg" path="res://scenes/world-new/lab-00/LabInterior.tscn" id="2_mthh6"]
 [ext_resource type="Texture2D" uid="uid://c5ikxw5u5nlsj" path="res://assets/sprites/ui/splash.png" id="3_ufixr"]
 [ext_resource type="Texture2D" uid="uid://f73yy17yf8ar" path="res://assets/sprites/ui/Menu Option Book.png" id="4_kbqdx"]
@@ -12,7 +12,7 @@ default_font = ExtResource("1_rblc7")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f8b3c"]
 texture = ExtResource("4_kbqdx")
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -21,8 +21,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_x05uj")
-script = ExtResource("1_ynmqs")
-first_level = ExtResource("2_mthh6")
+script = ExtResource("2_4dobs")
+FirstLevel = ExtResource("2_mthh6")
+startButton = NodePath("PanelContainer/MarginContainer/VBoxContainer/Start")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -75,4 +76,4 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Start" to="." method="OnStartPressed"]

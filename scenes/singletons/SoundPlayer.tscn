@@ -1,10 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://ekw25078c53n"]
 
-[ext_resource type="Script" path="res://scenes/singletons/SoundPlayer.gd" id="1_wqhpd"]
+[ext_resource type="Script" path="res://scenes/singletons/SoundPlayer.cs" id="1_mfp43"]
 
-[node name="SoundPlayer" type="Node"]
+[node name="SoundPlayer" type="Node" node_paths=PackedStringArray("AudioPlayers", "AudioPlayers2D", "PresentMusicPlayer", "PastMusicPlayer")]
 process_mode = 3
-script = ExtResource("1_wqhpd")
+script = ExtResource("1_mfp43")
+AudioPlayers = NodePath("AudioPlayers")
+AudioPlayers2D = NodePath("AudioPlayers2D")
+PresentMusicPlayer = NodePath("MusicPlayers/PresentMusicPlayer")
+PastMusicPlayer = NodePath("MusicPlayers/PastMusicPlayer")
 
 [node name="AudioPlayers" type="Node" parent="."]
 

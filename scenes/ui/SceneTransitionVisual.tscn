@@ -1,15 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6lp484166rnb"]
 
-[ext_resource type="Script" path="res://scenes/ui/SceneTransitionVisual.gd" id="1_6ov2o"]
+[ext_resource type="Script" path="res://scenes/ui/SceneTransitionVisual.cs" id="1_4s8k7"]
 
 [sub_resource type="Curve" id="Curve_flpw2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="SceneTransitionVisual" type="CanvasLayer"]
+[node name="SceneTransitionVisual" type="CanvasLayer" node_paths=PackedStringArray("ColorRect")]
 layer = 5
-script = ExtResource("1_6ov2o")
-curve = SubResource("Curve_flpw2")
+script = ExtResource("1_4s8k7")
+AnimationCurve = SubResource("Curve_flpw2")
+ColorRect = NodePath("ColorRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
