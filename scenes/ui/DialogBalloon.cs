@@ -2,12 +2,13 @@ using Godot;
 using System;
 using DialogueManagerRuntime;
 using Godot.Collections;
+using System.Collections.Generic;
 
 public partial class DialogBalloon : CanvasLayer
 {    
 
-    [Export] public string NextAction = "ui_accept";
-    [Export] public string SkipAction = "ui_cancel";
+    [Export] public string nextAction = "ui_accept";
+    [Export] public string skipAction = "ui_cancel";
 
     [Export] private Control balloon;
     [Export] private RichTextLabel characterLabel;
@@ -15,13 +16,13 @@ public partial class DialogBalloon : CanvasLayer
     [Export] private VBoxContainer responsesMenu;
     [Export] private Control npcPortraitControl;
     [Export] private Control playerPortraitControl;
-    [Export] private AudioStreamPlayer talk_sound_player;
-    [Export] private AudioStream default_talk_sound;
+    [Export] private AudioStreamPlayer talkSoundPlayer;
+    [Export] private AudioStream defaultTalkSound;
 
     private Portrait portrait;
 
     Resource resource;
-    Array<Variant> temporaryGameStates = new Array<Variant>();
+    List<Variant> temporaryGameStates = new List<Variant>();
     bool isWaitingForInput = false;
     bool willHideBalloon = false;
 
@@ -57,7 +58,7 @@ public partial class DialogBalloon : CanvasLayer
         if ((bool)dialogueLabel.Get("is_typing"))
         {
           bool mouseWasClicked = @event is InputEventMouseButton && (@event as InputEventMouseButton).ButtonIndex == MouseButton.Left && @event.IsPressed();
-          bool skipButtonWasPressed = @event.IsActionPressed(SkipAction);
+          bool skipButtonWasPressed = @event.IsActionPressed(skipAction);
           if (mouseWasClicked || skipButtonWasPressed)
           {
             GetViewport().SetInputAsHandled();
@@ -75,7 +76,7 @@ public partial class DialogBalloon : CanvasLayer
         {
           Next(dialogueLine.NextId);
         }
-        else if (@event.IsActionPressed(NextAction) && GetViewport().GuiGetFocusOwner() == balloon)
+        else if (@event.IsActionPressed(nextAction) && GetViewport().GuiGetFocusOwner() == balloon)
         {
           Next(dialogueLine.NextId);
         }
@@ -83,7 +84,7 @@ public partial class DialogBalloon : CanvasLayer
 
       if (string.IsNullOrEmpty((string)responsesMenu.Get("next_action")))
       {
-        responsesMenu.Set("next_action", NextAction);
+        responsesMenu.Set("next_action", nextAction);
       }
       responsesMenu.Connect("response_selected", Callable.From((DialogueResponse response) =>
       {
@@ -253,9 +254,9 @@ public partial class DialogBalloon : CanvasLayer
 
         if (letterIndex % actualSpeed != 0) return;
 
-        talk_sound_player.Stream = default_talk_sound;
-        talk_sound_player.PitchScale = (dialogueLine.Get("character").ToString() == "You") ? 2 : 1;
-        talk_sound_player.Play();
+        talkSoundPlayer.Stream = defaultTalkSound;
+        talkSoundPlayer.PitchScale = (dialogueLine.Get("character").ToString() == "You") ? 2 : 1;
+        talkSoundPlayer.Play();
     }
     #endregion
 }
