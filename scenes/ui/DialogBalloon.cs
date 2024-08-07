@@ -3,6 +3,7 @@ using System;
 using DialogueManagerRuntime;
 using Godot.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class DialogBalloon : CanvasLayer
 {    
@@ -21,13 +22,14 @@ public partial class DialogBalloon : CanvasLayer
 
     private Portrait portrait;
 
-    Resource resource;
-    List<Variant> temporaryGameStates = new List<Variant>();
-    bool isWaitingForInput = false;
-    bool willHideBalloon = false;
+    private Resource resource;
+    private Array<Variant> temporaryGameStates = new Array<Variant>();
+    private bool isWaitingForInput = false;
+    private bool willHideBalloon = false;
 
-    DialogueLine dialogueLine;
-    DialogueLine DialogueLine
+    private DialogueLine dialogueLine;
+    
+    public DialogueLine DialogueLine
     {
       get => dialogueLine;
       set
@@ -120,7 +122,7 @@ public partial class DialogBalloon : CanvasLayer
         }
     }
 
-    public async void Start(Resource dialogueResource, string title, Array<Variant> extraGameStates = null)
+    public async Task Start(Resource dialogueResource, string title, Array<Variant> extraGameStates = null)
     {
         temporaryGameStates = extraGameStates ?? new Array<Variant>();
         isWaitingForInput = false;
@@ -129,13 +131,13 @@ public partial class DialogBalloon : CanvasLayer
         DialogueLine = await DialogueManager.GetNextDialogueLine(resource, title, temporaryGameStates);
     }
 
-    public async void Next(string nextId)
+    public async Task Next(string nextId)
     {
         DialogueLine = await DialogueManager.GetNextDialogueLine(resource, nextId, temporaryGameStates);
     }
 
     #region Helpers
-    private async void UpdateDialogue()
+    private async Task UpdateDialogue()
     {
         if (!IsNodeReady())
         {
