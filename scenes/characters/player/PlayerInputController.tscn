@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj7pc38t2xol3"]
+
+[ext_resource type="Script" path="res://scenes/characters/player/PlayerInputController.cs" id="1_d1awf"]
+
+[node name="PlayerInputController" type="Node"]
+process_mode = 3
+script = ExtResource("1_d1awf")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=3 uid="uid://pg6vmturro7f"]
 
-[ext_resource type="Script" path="res://scenes/characters/player/Player.gd" id="1_kqidl"]
-[ext_resource type="PackedScene" uid="uid://b0it2xtiiufrc" path="res://scenes/tools/PlayerInputController.tscn" id="2_6k1m8"]
+[ext_resource type="Script" path="res://scenes/characters/player/Player.cs" id="1_gu8gn"]
+[ext_resource type="PackedScene" uid="uid://dj7pc38t2xol3" path="res://scenes/characters/player/PlayerInputController.tscn" id="2_6k1m8"]
 [ext_resource type="Texture2D" uid="uid://cddm27gvnqo38" path="res://assets/sprites/player/player-spritesheet.png" id="3_hrt3o"]
 [ext_resource type="Shape2D" uid="uid://jadm8mnl1yrg" path="res://scenes/characters/player/PlayerCollision.tres" id="3_re55c"]
 
@@ -661,7 +661,7 @@ collision_layer = 10
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0872665
-script = ExtResource("1_kqidl")
+script = ExtResource("1_gu8gn")
 
 [node name="PlayerInputController" parent="." instance=ExtResource("2_6k1m8")]
 
@@ -697,7 +697,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 shape = SubResource("CircleShape2D_r2toq")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
@@ -708,17 +707,17 @@ current = true
 process_mode = 3
 zoom = Vector2(2, 2)
 
-[node name="Area2DPast" type="Area2D" parent="."]
+[node name="CollisionCheckPast" type="Area2D" parent="."]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DPast"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionCheckPast"]
 shape = ExtResource("3_re55c")
 
-[node name="Area2DFuture" type="Area2D" parent="."]
+[node name="CollisionCheckFuture" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DFuture"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionCheckFuture"]
 shape = ExtResource("3_re55c")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
