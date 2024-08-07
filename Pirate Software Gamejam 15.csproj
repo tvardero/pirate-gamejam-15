@@ -5,12 +5,17 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <RootNamespace>SunfallGame</RootNamespace>
         <Nullable>enable</Nullable>
+        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <ItemGroup>
         <Content Include="**/*.tscn"/>
         <Content Include="**/*.tres"/>
         <Content Include="**/*.gd"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Humanizer" Version="2.14.1"/>
     </ItemGroup>
 
 </Project>

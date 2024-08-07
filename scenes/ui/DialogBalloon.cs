@@ -16,6 +16,6 @@ public partial class DialogBalloon : CanvasLayer
     [Export] private AudioStreamPlayer talk_sound_player;
     [Export] private AudioStream default_talk_sound;
 
-    private Portrait portrait;
+    private SunfallGame.scenes.dialogue.portraits.Portrait portrait;
 
 }
