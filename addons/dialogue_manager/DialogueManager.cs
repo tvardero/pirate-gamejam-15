@@ -4,8 +4,9 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-#nullable enable
+#nullable disable warnings
 
+// ReSharper disable once CheckNamespace
 namespace DialogueManagerRuntime
 {
     public enum TranslationSource

@@ -1,6 +1,9 @@
 using Godot;
 using Godot.Collections;
 
+#nullable disable warnings
+
+// ReSharper disable once CheckNamespace
 namespace DialogueManagerRuntime
 {
   public partial class ExampleBalloon : CanvasLayer
