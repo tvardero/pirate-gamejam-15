@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://5tybf27mo7n4"]
 
-[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.gd" id="1_vbqw8"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.cs" id="1_vbqw8"]
 [ext_resource type="Texture2D" uid="uid://diuo2d7v3aqfc" path="res://assets/sprites/cop/dialog/Cop Portrait.png" id="2_bxkli"]
-[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.gd" id="3_plyx8"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.cs" id="3_50oca"]
 [ext_resource type="Texture2D" uid="uid://c2dq0bdl5u7lv" path="res://assets/sprites/cop/dialog/cop_mouth_spritesheet.png" id="4_nxwb8"]
 [ext_resource type="Texture2D" uid="uid://bk1gyq6xi1smd" path="res://assets/sprites/cop/dialog/cop_hat_spritesheet.png" id="5_3j4ck"]
 
@@ -93,12 +93,12 @@ script = ExtResource("1_vbqw8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_bxkli")
-script = ExtResource("3_plyx8")
+script = ExtResource("3_50oca")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("4_nxwb8")
 hframes = 2
-script = ExtResource("3_plyx8")
+script = ExtResource("3_50oca")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D2"]
 libraries = {
@@ -109,8 +109,8 @@ speed_scale = 0.6
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 texture = ExtResource("5_3j4ck")
 hframes = 3
-script = ExtResource("3_plyx8")
-continuous = true
+script = ExtResource("3_50oca")
+Continuous = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D3"]
 libraries = {
