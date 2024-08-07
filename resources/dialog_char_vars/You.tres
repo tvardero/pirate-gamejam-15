@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="DialogCharVars" load_steps=3 format=3 uid="uid://d1rugo5grfms1"]
+[gd_resource type="Resource" script_class="DialogCharVars" load_steps=3 format=3 uid="uid://c08w2qynqncne"]
 
-[ext_resource type="Script" path="res://resources/DialogCharVars.gd" id="1_h4mid"]
-[ext_resource type="PackedScene" uid="uid://wsxw333s1ju2" path="res://scenes/dialogue/portraits/PlayerPortrait.tscn" id="1_xj6g7"]
+[ext_resource type="Script" path="res://resources/DialogCharVars.cs" id="1_ntnxq"]
+[ext_resource type="PackedScene" uid="uid://wsxw333s1ju2" path="res://scenes/dialogue/portraits/PlayerPortrait.tscn" id="1_tl8mm"]
 
 [resource]
-script = ExtResource("1_h4mid")
-portrait = ExtResource("1_xj6g7")
+script = ExtResource("1_ntnxq")
+Portrait = ExtResource("1_tl8mm")

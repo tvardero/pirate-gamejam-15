@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjces4416uy3c"]
+[gd_scene load_steps=11 format=3 uid="uid://cjces4416uy3c"]
 
-[ext_resource type="Script" path="res://scenes/ui/DialogBalloon.gd" id="1_3xlym"]
+[ext_resource type="Script" path="res://scenes/ui/DialogBalloon.cs" id="1_wamq6"]
+[ext_resource type="AudioStream" uid="uid://dn31w7fimr0ct" path="res://assets/sounds/ui/menu_beep.wav" id="2_eglt1"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ekg25"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_jygb4"]
 [ext_resource type="FontFile" uid="uid://nl17mcx8e5ms" path="res://assets/fonts/W95FA.otf" id="4_l2cpg"]
@@ -64,9 +65,17 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 
-[node name="DialogBalloon" type="CanvasLayer"]
+[node name="DialogBalloon" type="CanvasLayer" node_paths=PackedStringArray("balloon", "characterLabel", "dialogueLabel", "responsesMenu", "npcPortraitControl", "playerPortraitControl", "talk_sound_player")]
 layer = 100
-script = ExtResource("1_3xlym")
+script = ExtResource("1_wamq6")
+balloon = NodePath("Balloon")
+characterLabel = NodePath("Balloon/Panel/Dialogue/VBoxContainer/CharacterLabel")
+dialogueLabel = NodePath("Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel")
+responsesMenu = NodePath("Balloon/Responses/ResponsesMenu")
+npcPortraitControl = NodePath("Balloon/Portraits/NPC")
+playerPortraitControl = NodePath("Balloon/Portraits/Player")
+talk_sound_player = NodePath("TalkSound")
+default_talk_sound = ExtResource("2_eglt1")
 
 [node name="TalkSound" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
@@ -187,5 +196,5 @@ theme_override_font_sizes/font_size = 24
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
-[connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
+[connection signal="spoke" from="Balloon/Panel/Dialogue/VBoxContainer/DialogueLabel" to="." method="OnDialogLabelSpoke"]
+[connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="OnResponsesMenuResponseSelected"]
