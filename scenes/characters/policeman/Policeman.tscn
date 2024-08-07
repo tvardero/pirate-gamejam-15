@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://3klxjhkbv73j"]
 
 [ext_resource type="Texture2D" uid="uid://dkrh4tw607p15" path="res://assets/sprites/cop/Cop-spritesheet.png" id="1_738ti"]
-[ext_resource type="Script" path="res://scenes/characters/policeman/Policeman.gd" id="1_qdbr2"]
+[ext_resource type="Script" path="res://scenes/characters/policeman/Policeman.cs" id="1_oorls"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="2_x3afy"]
 
 [sub_resource type="Animation" id="Animation_kt0qw"]
@@ -50,7 +50,7 @@ size = Vector2(40, 40)
 
 [node name="Policeman" type="StaticBody2D"]
 collision_mask = 0
-script = ExtResource("1_qdbr2")
+script = ExtResource("1_oorls")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -18)
