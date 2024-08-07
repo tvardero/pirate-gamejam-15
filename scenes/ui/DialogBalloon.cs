@@ -5,8 +5,9 @@ using Godot.Collections;
 
 public partial class DialogBalloon : CanvasLayer
 {    
-    [Export] private string nextAction;
-    [Export] private string skipAction;
+
+    [Export] public string NextAction = "ui_accept";
+    [Export] public string SkipAction = "ui_cancel";
 
     [Export] private Control balloon;
     [Export] private RichTextLabel characterLabel;
@@ -18,100 +19,243 @@ public partial class DialogBalloon : CanvasLayer
     [Export] private AudioStream default_talk_sound;
 
     private Portrait portrait;
-    private Resource dialogueResource;
-    private Godot.Collections.Array temporary_game_states;
 
-    // See if we are waiting for the player
-    private bool is_waiting_for_input = false;
+    Resource resource;
+    Array<Variant> temporaryGameStates = new Array<Variant>();
+    bool isWaitingForInput = false;
+    bool willHideBalloon = false;
 
-    // See if we are running a long mutation and should hide the balloon
-    private bool will_hide_balloon = false;
+    DialogueLine dialogueLine;
+    DialogueLine DialogueLine
+    {
+      get => dialogueLine;
+      set
+      {
+        isWaitingForInput = false;
+        balloon.FocusMode = Control.FocusModeEnum.All;
+        balloon.GrabFocus();
+
+        if (value == null)
+        {
+          QueueFree();
+          return;
+        }
+
+        dialogueLine = value;
+        UpdateDialogue();
+      }
+    }
 
     private string _locale = TranslationServer.GetLocale();
 
-    private DialogueLine _dialogueLine;
+    public override void _Ready()
+    {
+      balloon.Hide();
 
-    private DialogueLine dialogueLine {
-        get { return _dialogueLine;}
-        set {
-            is_waiting_for_input = false;
+      balloon.GuiInput += (@event) =>
+      {
+        if ((bool)dialogueLabel.Get("is_typing"))
+        {
+          bool mouseWasClicked = @event is InputEventMouseButton && (@event as InputEventMouseButton).ButtonIndex == MouseButton.Left && @event.IsPressed();
+          bool skipButtonWasPressed = @event.IsActionPressed(SkipAction);
+          if (mouseWasClicked || skipButtonWasPressed)
+          {
+            GetViewport().SetInputAsHandled();
+            dialogueLabel.Call("skip_typing");
+            return;
+          }
+        }
 
+        if (!isWaitingForInput) return;
+        if (dialogueLine.Responses.Count > 0) return;
+
+        GetViewport().SetInputAsHandled();
+
+        if (@event is InputEventMouseButton && @event.IsPressed() && (@event as InputEventMouseButton).ButtonIndex == MouseButton.Left)
+        {
+          Next(dialogueLine.NextId);
+        }
+        else if (@event.IsActionPressed(NextAction) && GetViewport().GuiGetFocusOwner() == balloon)
+        {
+          Next(dialogueLine.NextId);
+        }
+      };
+
+      if (string.IsNullOrEmpty((string)responsesMenu.Get("next_action")))
+      {
+        responsesMenu.Set("next_action", NextAction);
+      }
+      responsesMenu.Connect("response_selected", Callable.From((DialogueResponse response) =>
+      {
+        Next(response.NextId);
+      }));
+
+      DialogueManager.Mutated += OnMutated;
+    }
+
+    public override void _ExitTree()
+    {
+        DialogueManager.Mutated -= OnMutated;
+    }
+
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        // Only the balloon is allowed to handle input while it's showing
+        GetViewport().SetInputAsHandled();
+    }
+
+    public override async void _Notification(int what)
+    {
+        // Detect a change of locale and update the current dialogue line to show the new language
+        if (what == NotificationTranslationChanged)
+        {
+            float visibleRatio = dialogueLabel.VisibleRatio;
+            DialogueLine = await DialogueManager.GetNextDialogueLine(resource, DialogueLine.Id, temporaryGameStates);
+            if (visibleRatio < 1.0f)
+            {
+            dialogueLabel.Call("skip_typing");
+            }
+        }
+    }
+
+    public async void Start(Resource dialogueResource, string title, Array<Variant> extraGameStates = null)
+    {
+        temporaryGameStates = extraGameStates ?? new Array<Variant>();
+        isWaitingForInput = false;
+        resource = dialogueResource;
+
+        DialogueLine = await DialogueManager.GetNextDialogueLine(resource, title, temporaryGameStates);
+    }
+
+    public async void Next(string nextId)
+    {
+        DialogueLine = await DialogueManager.GetNextDialogueLine(resource, nextId, temporaryGameStates);
+    }
+
+    #region Helpers
+    private async void UpdateDialogue()
+    {
+        if (!IsNodeReady())
+        {
+            await ToSignal(this, SignalName.Ready);
+        }
+
+        // Set up the character name
+        characterLabel.Visible = !string.IsNullOrEmpty(dialogueLine.Character);
+        characterLabel.Text = Tr(dialogueLine.Character, "dialogue");
+
+        // Set up the dialogue
+        dialogueLabel.Hide();
+        dialogueLabel.Set("dialogue_line", dialogueLine);
+
+        // Set up the responses
+        responsesMenu.Hide();
+        responsesMenu.Set("responses", dialogueLine.Responses);
+
+        // Type out the text
+        balloon.Show();
+        willHideBalloon = false;
+
+        // Show Portrait
+        if (IsInstanceValid(portrait))
+            QueueFree();
+
+        if (dialogueLine.Get("char_vars").Obj != null)
+        {
+            if (dialogueLine.Get("char_vars").Obj is DialogCharVars charVars)
+            {
+                ShowPortrait(charVars);
+            }
+        }
+
+        dialogueLabel.Show();
+        if (!string.IsNullOrEmpty(dialogueLine.Text))
+        {
+            dialogueLabel.Call("type_out");
+            await ToSignal(dialogueLabel, "finished_typing");
+        }
+
+        // Wait for input
+        if (dialogueLine.Responses.Count > 0)
+        {
+            balloon.FocusMode = Control.FocusModeEnum.None;
+            responsesMenu.Show();
+        }
+        else if (!string.IsNullOrEmpty(dialogueLine.Time))
+        {
+            float time = 0f;
+            if (!float.TryParse(dialogueLine.Time, out time))
+            {
+            time = dialogueLine.Text.Length * 0.02f;
+            }
+            await ToSignal(GetTree().CreateTimer(time), "timeout");
+            Next(dialogueLine.NextId);
+        }
+        else
+        {
+            isWaitingForInput = true;
             balloon.FocusMode = Control.FocusModeEnum.All;
             balloon.GrabFocus();
-
-            // The dialogue has finished so close the balloon
-            if (value == null)
-            {
-                QueueFree();
-                return;
-            }
-
-            // If the node isn't ready yet then none of the labels will be ready yet either
-            if (!IsNodeReady())
-            {
-                WaitForReady();
-            }
-
-            _dialogueLine = value;
-
-            characterLabel.Visible = !(dialogueLine.Get("character").ToString() == string.Empty);
-            characterLabel.Text = Tr(dialogueLine.Get("character").ToString(), "dialogue");
-
-            characterLabel.Hide();
-		    characterLabel.Set("dialogueLine", dialogueLine);
-
-		    responsesMenu.Hide();
-            responsesMenu.Set("responses", dialogueLine.Responses);		    
-
-            // Show our balloon
-            balloon.Show();
-            will_hide_balloon = false;
-
-            // Show portrait
-            if (GodotObject.IsInstanceValid(portrait)) portrait.QueueFree();
-
-            // if (dialogueLine.Get("char_vars").Obj != null)
-            //     show_portrait(dialogue_line.char_vars)
-            
-            // dialogue_label.show()
-            // if not dialogue_line.text.is_empty():
-            //     dialogue_label.type_out()
-            //     await dialogue_label.finished_typing
-
-            // # Wait for input
-            // if dialogue_line.responses.size() > 0:
-            //     balloon.focus_mode = Control.FOCUS_NONE
-            //     responses_menu.show()
-            // elif dialogue_line.time != "":
-            //     var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
-            //     await get_tree().create_timer(time).timeout
-            //     next(dialogue_line.next_id)
-            // else:
-            //     is_waiting_for_input = true
-            //     balloon.focus_mode = Control.FOCUS_ALL
-            //     balloon.grab_focus()
         }
     }
     
-    private void ShowPortrait(Resource charVars)
+    private void ShowPortrait(DialogCharVars charVars)
     {
-        if (charVars.Get("portrait").Obj == null) return;
+        if (charVars.Portrait == null) return;
+        portrait = charVars.Portrait.Instantiate<Portrait>();
 
-    //     	portrait = (charVars.Get("portrait") as PackedScene).Instantiate();
-	// if dialogue_line.character == 'You':
-	// 	player_portrait_control.add_child(portrait)
-	// else: npc_portrait_control.add_child(portrait)
-	
-	// if dialogue_label.finished_typing.is_connected(portrait.stop): dialogue_label.finished_typing.disconnect(portrait.stop)
-	// dialogue_label.finished_typing.connect(portrait.stop)
+        if (dialogueLine.Get("character").ToString() == "You")
+        {
+            playerPortraitControl.AddChild(portrait);
+        }
+        else
+        {
+            npcPortraitControl.AddChild(portrait);
+        }
 
+        if(dialogueLabel.IsConnected("finished_typing", Callable.From(portrait.Stop)))
+        {
+            dialogueLabel.Disconnect("finished_typing", Callable.From(portrait.Stop));
+        }
+        
+        dialogueLabel.Connect("finished_typing", Callable.From(portrait.Stop));
     }
 
-	
 
+    #endregion
 
-    private async void WaitForReady()
+    #region signals
+    private void OnMutated(Dictionary _mutation)
     {
-        await ToSignal(GetParent(), SignalName.Ready);
+      isWaitingForInput = false;
+      willHideBalloon = true;
+      GetTree().CreateTimer(0.1f).Timeout += () =>
+      {
+        if (willHideBalloon)
+        {
+          willHideBalloon = false;
+          balloon.Hide();
+        }
+      };
     }
+
+    private void OnResponsesMenuResponseSelected(DialogueResponse response)
+    {
+        Next(response.NextId);
+    }
+
+    private void OnDialogLabelSpoke(string letter, int letterIndex, float speed)
+    {
+        if (letter.Contains(" ") || letter.Contains(".")) return;
+
+        int actualSpeed = (speed >= 1) ? 3 : 1;
+
+        if (letterIndex % actualSpeed != 0) return;
+
+        talk_sound_player.Stream = default_talk_sound;
+        talk_sound_player.PitchScale = (dialogueLine.Get("character").ToString() == "You") ? 2 : 1;
+        talk_sound_player.Play();
+    }
+    #endregion
 }
