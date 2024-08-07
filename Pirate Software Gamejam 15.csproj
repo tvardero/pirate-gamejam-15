@@ -5,6 +5,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <RootNamespace>SunfallGame</RootNamespace>
         <Nullable>enable</Nullable>
+        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <ItemGroup>
