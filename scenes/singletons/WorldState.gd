@@ -14,7 +14,7 @@ var newspaper_picked_up: bool = false
 var password_found: bool = false
 var sewage_valve_off: bool = false
 var police_before_newspaper: bool = false #whether the player talked to the policeman before picking up the newspaper
-
+var got_fuse_from_clubhouse: bool = false
 var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
 var scene_transition_visual: Node;
@@ -124,6 +124,12 @@ func load_level_state(packed_level: PackedScene) -> Level:
 		return saved_level_states[_name].instantiate() as Level;
 
 	return level;
+
+func start_clubhouse_fuse_scene():
+	if !got_fuse_from_clubhouse:
+		start_fuse_scene();
+		got_fuse_from_clubhouse = true;
+	# @todo possibly add some other responce if they have already got the fuse?
 
 func start_fuse_scene():
 	if DialogState.balloon: DialogState.balloon.queue_free()
