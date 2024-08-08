@@ -25,6 +25,7 @@ var _lantern_animation_elapsed: float = 0;
 var _lantern_total_duration: float = 0;
 var _lantern_level: Level;
 var _lantern_theme_switched: bool = false;
+var lantern_move_allow_timer: float = 0;
 
 var lantern_unlocked: bool:
 	get: 
@@ -39,6 +40,11 @@ func _physics_process(delta):
 	if !_processing_lantern_animation: return ;
 
 	_lantern_animation_elapsed += delta;
+	lantern_move_allow_timer -= delta;
+
+	if lantern_move_allow_timer <= 0:
+		disable_movement = false;
+		
 	var percent = _lantern_animation_elapsed / _lantern_total_duration;
 
 	if percent >= 1:
@@ -72,6 +78,7 @@ func set_time(to_future: bool) -> void:
 	DialogState.disabled = true
 	_processing_lantern_animation = true;
 	_lantern_total_duration = player.play_lantern_animation();
+	lantern_move_allow_timer = _lantern_total_duration - 1; 
 	_lantern_level = get_current_level();
 	_lantern_theme_switched = false;
 	_lantern_animation_elapsed = 0;
