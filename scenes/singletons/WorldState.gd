@@ -78,7 +78,7 @@ func set_time(to_future: bool) -> void:
 	DialogState.disabled = true
 	_processing_lantern_animation = true;
 	_lantern_total_duration = player.play_lantern_animation();
-	lantern_move_allow_timer = _lantern_total_duration - 1; 
+	lantern_move_allow_timer = _lantern_total_duration - 0.5; 
 	_lantern_level = get_current_level();
 	_lantern_theme_switched = false;
 	_lantern_animation_elapsed = 0;
