@@ -12,7 +12,7 @@ func _process(_delta):
 func toggle():
 	if is_instance_valid(DialogState.balloon): return
 	
-	if !visible: pause()
+	if !visible and !WorldState.disable_movement: pause()
 	else: resume()
 
 func pause():
