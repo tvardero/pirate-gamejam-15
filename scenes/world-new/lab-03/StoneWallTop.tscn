@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://h0w1fb63frrm"]
+[gd_scene load_steps=6 format=3 uid="uid://h0w1fb63frrm"]
 
 [ext_resource type="Texture2D" uid="uid://c4dwklkqsfkg8" path="res://assets/sprites/bg/lab-03/Night/Club-2.png" id="1_ry63i"]
+[ext_resource type="Script" path="res://scenes/world-new/lab-03/WallChanger.gd" id="2_laiti"]
+[ext_resource type="Texture2D" uid="uid://dy6e08gp0v6vr" path="res://assets/sprites/bg/lab-03/Day/Club-1.png" id="3_dvps8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yp3iu"]
 size = Vector2(480, 9)
@@ -17,6 +19,9 @@ collision_mask = 0
 position = Vector2(235, 168)
 texture = ExtResource("1_ry63i")
 flip_h = true
+script = ExtResource("2_laiti")
+night_image = ExtResource("1_ry63i")
+day_image = ExtResource("3_dvps8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(235, -7)

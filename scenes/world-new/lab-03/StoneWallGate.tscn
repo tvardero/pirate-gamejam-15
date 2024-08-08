@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkypfn7bs5eut"]
+[gd_scene load_steps=13 format=3 uid="uid://bkypfn7bs5eut"]
 
 [ext_resource type="Script" path="res://scenes/world-new/lab-03/StoneWallGate.gd" id="1_h8dpc"]
+[ext_resource type="Script" path="res://scenes/world-new/lab-03/WallChanger.gd" id="3_gt36f"]
 [ext_resource type="Texture2D" uid="uid://bcfksjcjtg8vk" path="res://assets/sprites/bg/lab-03/Night/Open Gate.png" id="3_iphuq"]
 [ext_resource type="PackedScene" uid="uid://d33p3q0t5n6wp" path="res://scenes/tools/Interactable.tscn" id="4_7btkb"]
+[ext_resource type="Texture2D" uid="uid://bnoa76nek325y" path="res://assets/sprites/bg/lab-03/Day/Open Gate.png" id="4_unfby"]
 [ext_resource type="Texture2D" uid="uid://hgrv68ukq8er" path="res://assets/sprites/bg/lab-03/Day/Club-2.png" id="4_vjxq8"]
 [ext_resource type="AudioStream" uid="uid://q5u0tk8aydam" path="res://assets/sounds/gate/gate.wav" id="5_3hc6m"]
+[ext_resource type="Texture2D" uid="uid://c4dwklkqsfkg8" path="res://assets/sprites/bg/lab-03/Night/Club-2.png" id="6_0ummo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8w4s"]
 size = Vector2(217, 7)
@@ -24,10 +27,16 @@ script = ExtResource("1_h8dpc")
 [node name="OpenGate" type="Sprite2D" parent="."]
 position = Vector2(240, 99)
 texture = ExtResource("3_iphuq")
+script = ExtResource("3_gt36f")
+night_image = ExtResource("3_iphuq")
+day_image = ExtResource("4_unfby")
 
 [node name="ClosedGate" type="Sprite2D" parent="."]
 position = Vector2(240, 99)
 texture = ExtResource("4_vjxq8")
+script = ExtResource("3_gt36f")
+night_image = ExtResource("6_0ummo")
+day_image = ExtResource("4_vjxq8")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_layer = 3
