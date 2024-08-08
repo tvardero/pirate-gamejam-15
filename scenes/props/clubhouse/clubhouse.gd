@@ -13,7 +13,8 @@ func _on_interactable_interacted(initiator):
 		if WorldState.in_future:
 			DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'try_clubhouse_future')
 		else:
-			if !WorldState.password_found:
-				DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'try_clubhouse_past')
-			else:
-				DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'clubhouse_past_with_password')
+			if !WorldState.got_fuse_from_clubhouse:
+				if !WorldState.password_found:
+					DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'try_clubhouse_past')
+				else:
+					DialogState.start_dialog(load('res://scenes/dialogue/Clubhouse.dialogue'), 'clubhouse_past_with_password')
