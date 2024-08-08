@@ -30,8 +30,6 @@ Bouncer: What's the password?
 	Bouncer: Cute, but no.
 - Penumbra.
 	Bouncer: Come on in.
-	[i]You go inside just long enough to turn off your lantern and pick up the star fragment.[/i]
-	do WorldState.start_fuse_scene()
 => END
 
 ~ partygoer
@@ -63,4 +61,10 @@ Partygoer: If you want to get inside the clubhouse there, you'll need the passwo
 
 ~ partygoer_after_password_seen
 Partygoer: Sorry, have we met?
+=> END
+
+
+# todo: implement
+~ partygoers_house_after_no_alcohol
+You: I guess he stopped... "forgetting" things.
 => END

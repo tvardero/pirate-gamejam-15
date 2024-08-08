@@ -1,0 +1,25 @@
+~ try_trash
+It's empty.
+=> END
+
+
+~ lost_girl_1
+You: You're the girl everyone's looking for!
+Girl: Who's looking for me?
+- The police
+	Girl: Nooo I don't wanna go to jail!
+	You: You're not in trouble! All you need to do is come home, no one will be angry.
+- Your parents
+	You: You really need to go back home.
+Girl: No! My dad's gonna be upset!
+You: Why would he be upset?
+Girl: I lost my blankie! Mom made it for me!
+- You need to come home
+	Girl: No! Promise you won't tell anyone where I am until I find my blankie! Promise!
+	- I can't promise that.
+	- I'll try my best.
+- If I find your blankie, will you go home?
+	Girl: Yes. Promise you won't tell anyone where I am until I find it?
+	- I can't promise that.
+	- I'll try my best.
+=> END
