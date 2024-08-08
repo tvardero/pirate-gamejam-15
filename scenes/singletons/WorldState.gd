@@ -96,6 +96,7 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 	
 	level.spawn_player_at(spawn_id, player_direction);
 	get_tree().root.call_deferred("add_child", level);
+	level.set_deferred("owner", get_tree().root);
 	
 	await scene_transition_visual.finished
 	
@@ -121,7 +122,7 @@ func load_level_state(packed_level: PackedScene) -> Level:
 	if saved_level_states.has(_name):
 		level.free();
 		return saved_level_states[_name].instantiate() as Level;
-	
+
 	return level;
 
 func start_fuse_scene():
