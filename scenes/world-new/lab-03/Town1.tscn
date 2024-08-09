@@ -100,7 +100,7 @@ polygon = PackedVector2Array(-304.387, -77.972, -238.387, -76.972, -240.387, -17
 y_sort_enabled = true
 
 [node name="StoneWallTop" parent="Past/Shared" instance=ExtResource("14_okjos")]
-position = Vector2(-235.387, -170.972)
+position = Vector2(-235.387, -167.972)
 
 [node name="StoneWallGate2" parent="Past/Shared" instance=ExtResource("15_mf6bs")]
 position = Vector2(-240, -100)
@@ -152,7 +152,7 @@ polygon = PackedVector2Array(-304.387, -77.972, -238.387, -76.972, -240.387, -17
 y_sort_enabled = true
 
 [node name="StoneWallTopFut" parent="Future/Shared" instance=ExtResource("22_1cvme")]
-position = Vector2(-235.387, -170.972)
+position = Vector2(-235.387, -167.972)
 
 [node name="StoneWallGate2" parent="Future/Shared" instance=ExtResource("23_jq6qa")]
 position = Vector2(-240, -100)
