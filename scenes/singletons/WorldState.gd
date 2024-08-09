@@ -14,7 +14,7 @@ var newspaper_picked_up: bool = false
 var password_found: bool = false
 var sewage_valve_off: bool = false
 var police_before_newspaper: bool = false #whether the player talked to the policeman before picking up the newspaper
-
+var got_fuse_from_clubhouse: bool = false
 var fuse_scene_packed: PackedScene = preload('res://scenes/world/lantern_fuse.tscn')
 var scene_transition_visual_packed: PackedScene = preload('res://scenes/ui/SceneTransitionVisual.tscn')
 var scene_transition_visual: Node;
@@ -25,6 +25,7 @@ var _lantern_animation_elapsed: float = 0;
 var _lantern_total_duration: float = 0;
 var _lantern_level: Level;
 var _lantern_theme_switched: bool = false;
+var lantern_move_allow_timer: float = 0;
 
 var lantern_unlocked: bool:
 	get: 
@@ -39,6 +40,11 @@ func _physics_process(delta):
 	if !_processing_lantern_animation: return ;
 
 	_lantern_animation_elapsed += delta;
+	lantern_move_allow_timer -= delta;
+
+	if lantern_move_allow_timer <= 0:
+		disable_movement = false;
+		
 	var percent = _lantern_animation_elapsed / _lantern_total_duration;
 
 	if percent >= 1:
@@ -72,6 +78,7 @@ func set_time(to_future: bool) -> void:
 	DialogState.disabled = true
 	_processing_lantern_animation = true;
 	_lantern_total_duration = player.play_lantern_animation();
+	lantern_move_allow_timer = _lantern_total_duration - 0.5; 
 	_lantern_level = get_current_level();
 	_lantern_theme_switched = false;
 	_lantern_animation_elapsed = 0;
@@ -96,6 +103,7 @@ func transit_player_to_scene(destination: PackedScene, spawn_id: int, player_dir
 	
 	level.spawn_player_at(spawn_id, player_direction);
 	get_tree().root.call_deferred("add_child", level);
+	level.set_deferred("owner", get_tree().root);
 	
 	await scene_transition_visual.finished
 	
@@ -121,8 +129,14 @@ func load_level_state(packed_level: PackedScene) -> Level:
 	if saved_level_states.has(_name):
 		level.free();
 		return saved_level_states[_name].instantiate() as Level;
-	
+
 	return level;
+
+func start_clubhouse_fuse_scene():
+	if !got_fuse_from_clubhouse:
+		start_fuse_scene();
+		got_fuse_from_clubhouse = true;
+	# @todo possibly add some other responce if they have already got the fuse?
 
 func start_fuse_scene():
 	if DialogState.balloon: DialogState.balloon.queue_free()

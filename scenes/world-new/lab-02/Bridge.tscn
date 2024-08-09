@@ -111,7 +111,7 @@ texture = ExtResource("4_6k14p")
 
 [node name="Waterfall-spritesheet" type="Sprite2D" parent="Past"]
 z_index = -1
-position = Vector2(49, -34)
+position = Vector2(51, -34)
 texture = ExtResource("5_msau8")
 vframes = 4
 
@@ -119,10 +119,10 @@ vframes = 4
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/Walls"]
-polygon = PackedVector2Array(-111, -114, -41, -114, -41, -97, 13, -97, 13, -114, 41, -114, 41, -60, 52, -56, 158, -56, 169, -60, 169, -114, 209, -114, 209, -55, 234, -55, 233, -154, -147, -154, -146, -54, -111, -54)
+polygon = PackedVector2Array(-111, -114, -41, -114, -41, -97, 13, -97, 13, -114, 44, -112, 44, -92, 44, -73, 52, -66, 52, -61, 158, -60, 169, -72, 169, -114, 209, -114, 209, -55, 234, -55, 233, -154, -147, -154, -146, -54, -111, -54)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Past/Walls"]
-polygon = PackedVector2Array(-146, -34, -111, -34, -111, 26, 42, 26, 37, -28, 37, -35, 51, -39, 159, -39, 171, -35, 171, -28, 169, 46, 209, 46, 209, -35, 233, -36, 230, 69, -143, 69)
+polygon = PackedVector2Array(-146, -34, -111, -34, -111, 26, 42, 26, 37, -28, 37, -35, 51, -37, 160, -37, 171, -35, 171, -28, 169, 46, 209, 46, 209, -35, 233, -36, 230, 69, -143, 69)
 
 [node name="AnimationPlayerPast" type="AnimationPlayer" parent="Past"]
 root_node = NodePath("../..")
@@ -148,7 +148,6 @@ z_index = -2
 position = Vector2(49, -34)
 texture = ExtResource("8_cnlvg")
 vframes = 4
-frame = 2
 
 [node name="AnimationPlayerFuture" type="AnimationPlayer" parent="Future"]
 libraries = {

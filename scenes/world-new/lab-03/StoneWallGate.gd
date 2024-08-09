@@ -2,11 +2,18 @@ extends Node2D
 
 var dialog = load("res://scenes/dialogue/PoliceOfficer.dialogue") as DialogueResource
 @onready var sound = $"AudioStreamPlayer2D"
+var lastState : bool;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	lastState = WorldState.town1_gate_open;
 	_set_closed()
 
+func _process(delta):
+	if(lastState != WorldState.town1_gate_open):
+		lastState = WorldState.town1_gate_open;
+		_set_closed();
+		
 func _set_closed():
 	$"ClosedGate".visible = !WorldState.town1_gate_open;
 	$"Gate/CollisionShape2D".disabled = WorldState.town1_gate_open;
