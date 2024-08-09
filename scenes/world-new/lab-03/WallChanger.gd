@@ -2,6 +2,8 @@ extends Sprite2D
 
 @export var night_image : Texture2D;
 @export var day_image : Texture2D;
+@export var does_flip_H : bool;
+
 var lastState : bool;
 var isChanging : bool = false;
 
@@ -20,9 +22,11 @@ func changeImage(in_future : bool):
 	if in_future:
 		await get_tree().create_timer(1.0).timeout
 		self.texture = night_image;
+		self.flip_h = does_flip_H;
 	else:
 		await get_tree().create_timer(1.0).timeout
 		self.texture = day_image;
+		self.flip_h = does_flip_H;
 	isChanging = false;
 
 	
