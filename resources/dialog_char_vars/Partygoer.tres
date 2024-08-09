@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="DialogCharVars" load_steps=3 format=3 uid="uid://ditbw1amepah1"]
+[gd_resource type="Resource" script_class="DialogCharVars" load_steps=3 format=3 uid="uid://ct8214qq3mncc"]
 
+[ext_resource type="Script" path="res://resources/DialogCharVars.cs" id="1_4loc5"]
 [ext_resource type="PackedScene" uid="uid://1fp4yymtfqeq" path="res://scenes/dialogue/portraits/PartygoerPortrait.tscn" id="1_g2u50"]
-[ext_resource type="Script" path="res://resources/DialogCharVars.gd" id="1_r6ulh"]
 
 [resource]
-script = ExtResource("1_r6ulh")
-portrait = ExtResource("1_g2u50")
+script = ExtResource("1_4loc5")
+Portrait = ExtResource("1_g2u50")

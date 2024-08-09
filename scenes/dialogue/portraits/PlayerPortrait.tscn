@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://wsxw333s1ju2"]
 
-[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.gd" id="1_vrgti"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.cs" id="1_vrgti"]
 [ext_resource type="Texture2D" uid="uid://n77avhtf5heb" path="res://assets/sprites/player/player_dialog_spritesheet.png" id="2_gd02i"]
-[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.gd" id="3_kptej"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.cs" id="3_oseu0"]
 
 [sub_resource type="Animation" id="Animation_34lmc"]
 length = 0.001
@@ -54,7 +54,7 @@ script = ExtResource("1_vrgti")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gd02i")
 hframes = 11
-script = ExtResource("3_kptej")
+script = ExtResource("3_oseu0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 root_node = NodePath("../..")

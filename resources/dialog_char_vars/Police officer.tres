@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="DialogCharVars" load_steps=3 format=3 uid="uid://b821jwrsnbkph"]
-
-[ext_resource type="Script" path="res://resources/DialogCharVars.gd" id="1_e6p1y"]
-[ext_resource type="PackedScene" uid="uid://5tybf27mo7n4" path="res://scenes/dialogue/portraits/CopPortrait.tscn" id="1_u8wep"]
-
-[resource]
-script = ExtResource("1_e6p1y")
-spritesheets = Array[Resource("res://resources/DialogSpritesheet.gd")]([])
-portrait = ExtResource("1_u8wep")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://1fp4yymtfqeq"]
 
-[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.gd" id="1_gtyww"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/Portrait.cs" id="1_gtyww"]
 [ext_resource type="Texture2D" uid="uid://bg01uut0kka32" path="res://assets/sprites/partygoer/partygoer_dialog_spritesheet.png" id="2_736to"]
-[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.gd" id="3_6ngi4"]
+[ext_resource type="Script" path="res://scenes/dialogue/portraits/PortraitSprite.cs" id="3_6ngi4"]
 [ext_resource type="Texture2D" uid="uid://ditqkit13tghv" path="res://assets/sprites/partygoer/partygoer_mouth_spritesheet.png" id="4_p8qgx"]
 
 [sub_resource type="Animation" id="Animation_vxjuf"]
@@ -94,7 +94,7 @@ script = ExtResource("1_gtyww")
 texture = ExtResource("2_736to")
 hframes = 3
 script = ExtResource("3_6ngi4")
-continuous = true
+Continuous = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

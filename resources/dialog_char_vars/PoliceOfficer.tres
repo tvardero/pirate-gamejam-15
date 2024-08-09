@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogCharVars" load_steps=3 format=3 uid="uid://cy5h8qy1dfktv"]
+
+[ext_resource type="PackedScene" uid="uid://5tybf27mo7n4" path="res://scenes/dialogue/portraits/CopPortrait.tscn" id="1_df82c"]
+[ext_resource type="Script" path="res://resources/DialogCharVars.cs" id="1_xmajt"]
+
+[resource]
+script = ExtResource("1_xmajt")
+Portrait = ExtResource("1_df82c")
