@@ -6,6 +6,7 @@
         <RootNamespace>SunfallGame</RootNamespace>
         <Nullable>enable</Nullable>
         <IsTrimmable>true</IsTrimmable>
+        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,6 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="Humanizer" Version="2.14.1"/>
+        <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     </ItemGroup>
 
 </Project>

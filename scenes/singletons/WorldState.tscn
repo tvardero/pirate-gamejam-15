@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c730qy1pl8aqv"]
-
-[ext_resource type="Script" path="res://scenes/singletons/WorldState.cs" id="1_m7rod"]
-
-[node name="WorldState" type="Node"]
-process_mode = 3
-script = ExtResource("1_m7rod")

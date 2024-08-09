@@ -16,11 +16,11 @@ public partial class Policeman : StaticBody2D, IInteractable
     /// <inheritdoc />
     public void StartInteraction(Node2D initiator)
     {
-        if (initiator is not Player player) return;
+        if (initiator is not Player) return;
 
-        if (Game.PlayerData.NewspaperPickedUp)
+        if (Game.Instance.PlayerData.NewspaperPickedUp)
         {
-            if (Game.PlayerData.PolicemanQuestActive)
+            if (Game.Instance.PlayerData.PolicemanQuestActive)
             {
                 // todo: play dialog "police_officer_first_time_after_newspaper"
             }
@@ -34,7 +34,7 @@ public partial class Policeman : StaticBody2D, IInteractable
         else
         {
             // todo: play dialog "police_officer"
-            Game.PlayerData.PolicemanQuestActive = true;
+            Game.Instance.PlayerData.PolicemanQuestActive = true;
         }
     }
 

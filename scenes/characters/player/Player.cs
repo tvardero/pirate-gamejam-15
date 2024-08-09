@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Godot;
+﻿using Godot;
 using SunfallGame.Abstraction;
 using SunfallGame.Code;
 
@@ -33,8 +31,7 @@ public partial class Player : CharacterBody2D
         CollisionCheckPast = GetNode<Area2D>("CollisionCheckPast");
         CollisionCheckFuture = GetNode<Area2D>("CollisionCheckFuture");
 
-        SetCollisionMasksAndLayers(Game.IsWorldInFuture);
-        Game.Player = this;
+        SetCollisionMasksAndLayers(Game.Instance.PlayerData!.InFuture);
     }
 
     public void EndInteraction()
@@ -72,13 +69,13 @@ public partial class Player : CharacterBody2D
 
     public void UseLantern()
     {
-        bool willBeFuture = !Game.IsWorldInFuture;
+        bool willBeFuture = !Game.Instance.PlayerData!.InFuture;
 
         Area2D collisionArea = willBeFuture ? CollisionCheckFuture : CollisionCheckPast;
         bool willCollide = collisionArea.GetOverlappingBodies().Count > 0;
 
         if (willCollide) PlayLanternFailure();
-        else Game.SwitchTime();
+        else Game.Instance.PlayerData.SwitchTime();
     }
 
     private void PlayLanternFailure()

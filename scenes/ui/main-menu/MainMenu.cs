@@ -1,28 +1,22 @@
 using Godot;
-using System;
+using SunfallGame.Code;
 
 public partial class MainMenu : Control
 {
-    [Export]
-    public PackedScene FirstLevel;
-
-    [Export]
-    private Button startButton;
+    [Export] public Button? StartButton { get; set; }
 
     public override void _Ready()
     {
-        startButton.GrabFocus();
-    }
-
-    public void OnStartPressed()
-    {
-        StartGame();
-        QueueFree();
+        if (StartButton != null)
+        {
+            StartButton.Pressed += StartGame;
+            StartButton.GrabFocus();
+        }
     }
 
     private void StartGame()
-    {        
-	    WorldState.Instance.Reset();
-	    //WorldState.transit_player_to_scene(first_level, 0, Vector2.DOWN)
+    {
+        var randomName = Guid.NewGuid().ToString("N");
+        _ = Game.Instance.StartNewGameAsync(randomName);
     }
 }
