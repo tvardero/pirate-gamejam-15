@@ -48,8 +48,9 @@ func _physics_process(delta):
 	var percent = _lantern_animation_elapsed / _lantern_total_duration;
 
 	if percent >= 1:
-		_lantern_level.modulate_nodes(1);
-		_lantern_level.bg_color.color = _lantern_level.future_color if in_future else _lantern_level.past_color;
+		if(!_lantern_level.portal_effect_enable):
+			_lantern_level.modulate_nodes(1);
+			_lantern_level.bg_color.color = _lantern_level.future_color if in_future else _lantern_level.past_color;
 
 		disable_movement = false;
 		DialogState.disabled = false
@@ -57,11 +58,13 @@ func _physics_process(delta):
 		_processing_lantern_animation = false;
 	
 	elif percent >= 0.75 && percent < 1:
-		_lantern_level.modulate_nodes((percent - 0.75) * 4);
+		if(!_lantern_level.portal_effect_enable):
+			_lantern_level.modulate_nodes((percent - 0.75) * 4);
 
 	elif percent >= 0.25 && percent < 0.75:
-		var lerp_value = 2 * percent - 0.5 if in_future else 1.5 - 2 * percent;
-		_lantern_level.bg_color.color = lerp(_lantern_level.past_color, _lantern_level.future_color, lerp_value);
+		if(!_lantern_level.portal_effect_enable):
+			var lerp_value = 2 * percent - 0.5 if in_future else 1.5 - 2 * percent;
+			_lantern_level.bg_color.color = lerp(_lantern_level.past_color, _lantern_level.future_color, lerp_value);
 		if !_lantern_theme_switched:
 			_lantern_level.switch_nodes(in_future);
 			SoundPlayer.set_time(in_future, 1)
@@ -69,7 +72,8 @@ func _physics_process(delta):
 			_lantern_theme_switched = true;
 	
 	elif percent >= 0:
-		_lantern_level.modulate_nodes(1 - 4 * percent);
+		if(!_lantern_level.portal_effect_enable):
+			_lantern_level.modulate_nodes(1 - 4 * percent);
 	
 func set_time(to_future: bool) -> void:
 	in_future = to_future;

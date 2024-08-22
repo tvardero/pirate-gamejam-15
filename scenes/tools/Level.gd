@@ -21,6 +21,10 @@ extends Node2D
 @export_group("\"Shared\" configuration")
 @export var shared_nodes: Node2D;
 
+@export_category("Lantern Portal Effect")
+@export var portal_effect_enable : bool = false;
+@export var mask_node : MASK;
+
 var _player_packed: PackedScene = preload ("res://scenes/characters/player/Player.tscn");
 var bg_color: ColorRect;
 
@@ -55,6 +59,11 @@ func spawn_player_at(spawn_id: int, direction: Vector2=Vector2.ZERO) -> void:
 	player.direction = direction;
 	player.position = spawn_position;
 
+	if (portal_effect_enable):
+		player.z_index = 15;
+	else:
+		player.z_index = 0;
+
 	call_deferred("add_child", player);
 
 func find_spawnpoint(spawn_id: int) -> SpawnPoint:
@@ -69,12 +78,18 @@ func find_spawnpoint(spawn_id: int) -> SpawnPoint:
 	return first_spawn;
 
 func switch_nodes(to_future: bool):
-	past_nodes.visible = !to_future;
-	future_nodes.visible = to_future;
+	if(!portal_effect_enable):
+		past_nodes.visible = !to_future;
+		future_nodes.visible = to_future;
+	else:
+		mask_node.change(to_future); 
 
 func modulate_nodes(val: float):
 	val = clamp(val, 0, 1);
 	var color = lerp(Color.TRANSPARENT, Color.WHITE, val);
 	past_nodes.modulate = color;
 	future_nodes.modulate = color;
-	if shared_nodes: shared_nodes.modulate = color;
+	if shared_nodes: 
+		shared_nodes.modulate = color;
+	if (portal_effect_enable) : 
+		mask_node.modulate = color;
